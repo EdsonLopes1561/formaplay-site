@@ -1,0 +1,76 @@
+.componentes {
+  background-color: var(--bg-white);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 4rem;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  background-color: var(--bg-light);
+  border-radius: 1rem;
+  border: 1px solid var(--border);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--accent-purple);
+}
+
+.iconWrapper {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background-color: rgba(168, 85, 247, 0.1);
+  color: var(--accent-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.label {
+  font-weight: 600;
+  color: var(--text-dark);
+}
+
+.fraseApoio {
+  margin-top: 4rem;
+  font-size: 1.25rem;
+  color: var(--primary);
+  font-weight: 500;
+  font-style: italic;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2rem;
+  background-color: rgba(59, 130, 246, 0.05);
+  border-radius: 1rem;
+  border-left: 4px solid var(--accent-blue);
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+  
+  .card:last-child {
+    grid-column: 2 / 4; /* center the last odd item */
+  }
+}

@@ -1,0 +1,100 @@
+.destaque {
+  background-color: var(--bg-white);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.imageColumn {
+  position: relative;
+}
+
+.imagePlaceholder {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  box-shadow: var(--shadow-xl);
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.floatingCard {
+  position: absolute;
+  bottom: 2rem;
+  left: -2rem;
+  background: var(--bg-white);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  display: none;
+}
+
+.badge {
+  display: inline-block;
+  background-color: var(--secondary);
+  color: var(--text-light);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.contentColumn {
+  max-width: 600px;
+}
+
+.description {
+  font-size: 1.125rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.destaquesList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.destaqueItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.checkIcon {
+  color: var(--accent-green);
+  flex-shrink: 0;
+  margin-top: 0.125rem;
+}
+
+.destaqueItem span {
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.btnAction {
+  margin-top: 1rem;
+}
+
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .floatingCard {
+    display: block;
+  }
+}

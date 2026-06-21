@@ -1,0 +1,85 @@
+.chamadaFinal {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: var(--text-light);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Abstract background shapes */
+.chamadaFinal::before,
+.chamadaFinal::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.chamadaFinal::before {
+  width: 400px;
+  height: 400px;
+  top: -100px;
+  left: -100px;
+}
+
+.chamadaFinal::after {
+  width: 600px;
+  height: 600px;
+  bottom: -200px;
+  right: -200px;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1.5rem;
+  color: var(--text-light);
+}
+
+.description {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 3rem;
+}
+
+.btnLarge {
+  padding: 1rem 2rem;
+  font-size: 1.125rem;
+}
+
+.btnOutlineWhite {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: var(--text-light);
+}
+
+.btnOutlineWhite:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--text-light);
+  color: var(--text-light);
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
+  
+  .actions {
+    flex-direction: row;
+  }
+}
