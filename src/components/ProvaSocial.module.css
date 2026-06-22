@@ -1,7 +1,15 @@
 .provaSocial {
-  background-color: var(--bg-light);
+  background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
   position: relative;
   overflow: hidden;
+}
+
+.provaSocial :global(.section-title) {
+  color: #f8fafc;
+}
+
+.provaSocial :global(.section-subtitle) {
+  color: #cbd5e1;
 }
 
 /* Background element */
@@ -32,7 +40,7 @@
 
 .description {
   font-size: 1.125rem;
-  color: var(--text-muted);
+  color: #cbd5e1;
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
@@ -48,16 +56,16 @@
   align-items: center;
   gap: 1rem;
   padding: 1.5rem;
-  background-color: var(--bg-white);
+  background-color: #0f172a;
   border-radius: 1rem;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all 0.2s ease;
 }
 
 .destaqueItem:hover {
   transform: translateX(-5px);
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 15px 30px rgba(59, 130, 246, 0.08);
   border-color: var(--secondary);
 }
 
@@ -75,7 +83,7 @@
 
 .destaqueItem span {
   font-weight: 500;
-  color: var(--text-dark);
+  color: #ffffff;
 }
 
 @media (min-width: 1024px) {

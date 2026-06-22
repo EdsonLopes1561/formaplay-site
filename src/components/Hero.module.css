@@ -3,22 +3,22 @@
   display: flex;
   align-items: center;
   padding-top: 80px; /* offset for header */
-  background: linear-gradient(135deg, var(--bg-white) 0%, #f0f4f8 100%);
+  background: url('/bg_logistics.png') no-repeat center center;
+  background-size: cover;
   position: relative;
   overflow: hidden;
 }
 
-/* Background grid pattern */
+/* Gradient Overlay to ensure text readability and soften the background */
 .hero::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: radial-gradient(var(--border) 1px, transparent 1px);
-  background-size: 32px 32px;
-  opacity: 0.5;
+  top: 0; left: 0; right: 0; bottom: 0;
+  /* Cinematic dark overlay */
+  background: linear-gradient(110deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.8) 45%, rgba(15, 23, 42, 0.4) 100%);
+  /* Apply a slight blur to the background image for a premium, less competing feel */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
   z-index: 0;
 }
 
@@ -38,12 +38,13 @@
 .badge {
   display: inline-block;
   padding: 0.5rem 1rem;
-  background-color: rgba(59, 130, 246, 0.1);
-  color: var(--accent-blue);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #bfdbfe;
   border-radius: 9999px;
   font-weight: 600;
   font-size: 0.875rem;
   margin-bottom: 1.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .title {
@@ -51,7 +52,7 @@
   font-weight: 800;
   margin-bottom: 1rem;
   line-height: 1.1;
-  color: var(--primary);
+  color: #ffffff;
 }
 
 .highlight {
@@ -61,13 +62,13 @@
 .subtitle {
   font-size: 1.5rem;
   font-weight: 600;
-  color: var(--primary-light);
+  color: #e2e8f0;
   margin-bottom: 1rem;
 }
 
 .description {
   font-size: 1.125rem;
-  color: var(--text-muted);
+  color: #cbd5e1;
   margin-bottom: 2rem;
 }
 

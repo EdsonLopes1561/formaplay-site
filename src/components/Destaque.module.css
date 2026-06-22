@@ -1,5 +1,27 @@
 .destaque {
-  background-color: var(--bg-white);
+  background-color: #1e293b;
+  color: #f8fafc;
+  position: relative;
+  overflow: hidden;
+}
+
+.destaque::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(59, 130, 246, 0.15) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.destaque :global(.section-title) {
+  color: #f8fafc;
+}
+
+.destaque :global(.section-subtitle) {
+  color: #cbd5e1;
 }
 
 .grid {
@@ -30,12 +52,14 @@
   position: absolute;
   bottom: 2rem;
   left: -2rem;
-  background: var(--bg-white);
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(12px);
   padding: 1.5rem;
   border-radius: 1rem;
-  box-shadow: var(--shadow-lg);
-  border: 1px solid var(--border);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   display: none;
+  color: #f8fafc;
 }
 
 .badge {
@@ -56,7 +80,7 @@
 
 .description {
   font-size: 1.125rem;
-  color: var(--text-muted);
+  color: #cbd5e1;
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
@@ -82,7 +106,7 @@
 
 .destaqueItem span {
   font-weight: 500;
-  color: var(--text-dark);
+  color: #f8fafc;
 }
 
 .btnAction {

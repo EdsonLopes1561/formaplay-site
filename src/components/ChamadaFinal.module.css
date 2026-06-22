@@ -1,5 +1,5 @@
 .chamadaFinal {
-  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
   color: var(--text-light);
   text-align: center;
   position: relative;
@@ -12,7 +12,8 @@
   content: '';
   position: absolute;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(4px);
 }
 
 .chamadaFinal::before {

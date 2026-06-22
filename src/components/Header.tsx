@@ -18,16 +18,11 @@ export const Header: React.FC = () => {
 
   const menuItems = [
     { label: 'Início', href: '#inicio' },
-    { label: 'Sobre', href: '#sobre' },
     { label: 'Jogos', href: '#jogos' },
-    { label: 'Desafio Logístico', href: '#desafio-logistico' },
     { label: 'Como Funciona', href: '#como-funciona' },
     { label: 'Benefícios', href: '#beneficios' },
     { label: 'Para Quem é', href: '#para-quem-e' },
-    { label: 'Componentes', href: '#componentes' },
-    { label: 'Validação', href: '#validacao' },
     { label: 'Orçamento', href: 'https://formaplay-orcamento.vercel.app/solicitar-orcamento' },
-    { label: 'Contato', href: '#contato' },
   ];
 
   return (

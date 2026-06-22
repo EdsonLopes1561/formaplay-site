@@ -1,5 +1,13 @@
 .comoFunciona {
-  background-color: var(--bg-light);
+  background-color: #0f172a;
+}
+
+.comoFunciona :global(.section-title) {
+  color: #f8fafc;
+}
+
+.comoFunciona :global(.section-subtitle) {
+  color: #cbd5e1;
 }
 
 .timeline {
@@ -15,7 +23,7 @@
   left: 2rem;
   height: 100%;
   width: 2px;
-  background-color: var(--border);
+  background-color: #334155;
 }
 
 .timelineItem {
@@ -33,7 +41,7 @@
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
-  background-color: var(--bg-white);
+  background-color: #1e293b;
   border: 2px solid var(--secondary);
   color: var(--secondary);
   display: flex;
@@ -41,26 +49,26 @@
   justify-content: center;
   flex-shrink: 0;
   z-index: 1;
-  box-shadow: var(--shadow-md);
+  box-shadow: 0 0 15px rgba(249, 115, 22, 0.2);
 }
 
 .timelineContent {
-  background-color: var(--bg-white);
+  background-color: #1e293b;
   padding: 2rem;
   border-radius: 1rem;
-  box-shadow: var(--shadow-sm);
-  border: 1px solid var(--border);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   flex-grow: 1;
 }
 
 .timelineContent h3 {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
-  color: var(--primary);
+  color: #ffffff;
 }
 
 .timelineContent p {
-  color: var(--text-muted);
+  color: #cbd5e1;
   line-height: 1.6;
 }
 

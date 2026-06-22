@@ -1,6 +1,14 @@
 .sobre {
-  background-color: var(--bg-white);
+  background-color: #0f172a;
   position: relative;
+}
+
+.sobre :global(.section-title) {
+  color: #f8fafc;
+}
+
+.sobre :global(.section-subtitle) {
+  color: #cbd5e1;
 }
 
 .grid {
@@ -16,7 +24,7 @@
 
 .paragraph {
   font-size: 1.125rem;
-  color: var(--text-muted);
+  color: #cbd5e1;
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
@@ -30,7 +38,7 @@
 .quote {
   font-size: 1.5rem;
   font-weight: 700;
-  color: var(--primary);
+  color: var(--secondary);
   font-style: italic;
 }
 
@@ -44,8 +52,9 @@
   padding: 2rem;
   border-radius: 1rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: var(--bg-light);
-  border: 1px solid var(--border);
+  background-color: #ffffff;
+  border: 1px solid rgba(59, 130, 246, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .card:hover {
@@ -58,7 +67,7 @@
   width: 3rem;
   height: 3rem;
   border-radius: 0.75rem;
-  background-color: rgba(59, 130, 246, 0.1);
+  background-color: rgba(59, 130, 246, 0.15);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -66,16 +75,17 @@
 }
 
 .icon {
-  color: var(--accent-blue);
+  color: #2563eb;
 }
 
 .card h3 {
   font-size: 1.25rem;
   margin-bottom: 0.5rem;
+  color: #0f172a;
 }
 
 .card p {
-  color: var(--text-muted);
+  color: #475569;
 }
 
 @media (min-width: 1024px) {

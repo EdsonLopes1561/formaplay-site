@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './LinhaDeJogos.module.css';
-import { Package, Truck, BookOpen, Crown, Laptop, PenTool } from 'lucide-react';
+import { Puzzle, Truck, BookOpen, Crown, Laptop, PenTool } from 'lucide-react';
 import { getWhatsAppOnlineLink, getWhatsAppPersonalizadoLink } from '../constants';
 
 export const LinhaDeJogos: React.FC = () => {
@@ -30,7 +30,7 @@ export const LinhaDeJogos: React.FC = () => {
           </div>
 
           {/* Card 2 - Desafio Logístico Premium */}
-          <div className={`${styles.card} animate-fade-in-up`} style={{ animationDelay: '0.2s' }}>
+          <div className={`${styles.card} ${styles.cardPremium} animate-fade-in-up`} style={{ animationDelay: '0.2s' }}>
             <div className={styles.iconWrapperPremium}>
               <Crown className={styles.icon} />
             </div>
@@ -46,7 +46,7 @@ export const LinhaDeJogos: React.FC = () => {
           {/* Card 3 - Desafio Kids */}
           <div className={`${styles.card} animate-fade-in-up`} style={{ animationDelay: '0.3s' }}>
             <div className={styles.iconWrapperKids}>
-              <Package className={styles.icon} />
+              <Puzzle className={styles.icon} />
             </div>
             <h3>Desafio Kids</h3>
             <p>
