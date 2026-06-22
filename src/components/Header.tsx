@@ -7,10 +7,25 @@ import styles from './Header.module.css';
 export const Header: React.FC = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState('inicio');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
+
+      const sections = ['inicio', 'jogos', 'como-funciona', 'beneficios', 'para-quem-e'];
+      let current = 'inicio';
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // Add offset to trigger active state just before the section reaches the top
+          if (rect.top <= 150) {
+            current = section;
+          }
+        }
+      }
+      setActiveSection(current);
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
@@ -39,7 +54,7 @@ export const Header: React.FC = () => {
               <li key={item.label}>
                 <a 
                   href={item.href} 
-                  className={styles.navLink}
+                  className={`${styles.navLink} ${activeSection === item.href.substring(1) ? styles.activeLink : ''}`}
                   {...(item.href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
                 >
                   {item.label}
@@ -50,10 +65,10 @@ export const Header: React.FC = () => {
         </nav>
 
         <div className={styles.actions}>
-          <a href="https://formaplay-orcamento.vercel.app/solicitar-orcamento" target="_blank" rel="noopener noreferrer" className="btn btn-outline">
+          <a href="https://formaplay-orcamento.vercel.app/solicitar-orcamento" target="_blank" rel="noopener noreferrer" className={styles.btnOrcamento}>
             Orçamento
           </a>
-          <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
+          <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className={styles.btnWhatsapp}>
             WhatsApp
           </a>
         </div>
@@ -86,10 +101,10 @@ export const Header: React.FC = () => {
             ))}
           </ul>
           <div className={styles.mobileActions}>
-            <a href="https://formaplay-orcamento.vercel.app/solicitar-orcamento" target="_blank" rel="noopener noreferrer" className="btn btn-outline" onClick={() => setIsMobileMenuOpen(false)}>
+            <a href="https://formaplay-orcamento.vercel.app/solicitar-orcamento" target="_blank" rel="noopener noreferrer" className={styles.btnOrcamento} onClick={() => setIsMobileMenuOpen(false)}>
               Solicitar Orçamento
             </a>
-            <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className="btn btn-primary" onClick={() => setIsMobileMenuOpen(false)}>
+            <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className={styles.btnWhatsapp} onClick={() => setIsMobileMenuOpen(false)}>
               Falar no WhatsApp
             </a>
           </div>
