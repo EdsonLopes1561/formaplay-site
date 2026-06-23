@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Logo } from './Logo';
-import { getWhatsAppLink } from '../constants';
+
 import styles from './Header.module.css';
 
 export const Header: React.FC = () => {
@@ -37,7 +37,6 @@ export const Header: React.FC = () => {
     { label: 'Como Funciona', href: '#como-funciona' },
     { label: 'Benefícios', href: '#beneficios' },
     { label: 'Para Quem é', href: '#para-quem-e' },
-    { label: 'Orçamento', href: 'https://formaplay-orcamento.vercel.app/solicitar-orcamento' },
   ];
 
   return (
@@ -64,14 +63,7 @@ export const Header: React.FC = () => {
           </ul>
         </nav>
 
-        <div className={styles.actions}>
-          <a href="https://formaplay-orcamento.vercel.app/solicitar-orcamento" target="_blank" rel="noopener noreferrer" className={styles.btnOrcamento}>
-            Orçamento
-          </a>
-          <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className={styles.btnWhatsapp}>
-            WhatsApp
-          </a>
-        </div>
+
 
         {/* Mobile Toggle */}
         <button 
@@ -100,14 +92,7 @@ export const Header: React.FC = () => {
               </li>
             ))}
           </ul>
-          <div className={styles.mobileActions}>
-            <a href="https://formaplay-orcamento.vercel.app/solicitar-orcamento" target="_blank" rel="noopener noreferrer" className={styles.btnOrcamento} onClick={() => setIsMobileMenuOpen(false)}>
-              Solicitar Orçamento
-            </a>
-            <a href={getWhatsAppLink()} target="_blank" rel="noopener noreferrer" className={styles.btnWhatsapp} onClick={() => setIsMobileMenuOpen(false)}>
-              Falar no WhatsApp
-            </a>
-          </div>
+
         </div>
       )}
     </header>

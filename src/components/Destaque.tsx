@@ -17,11 +17,7 @@ export const Destaque: React.FC = () => {
         <div className={styles.grid}>
           <div className={`${styles.imageColumn} animate-fade-in-up`}>
             <div className={styles.imagePlaceholder}>
-              <img src="/hero.png" alt="Desafio Logístico Detalhes" className={styles.image} />
-              <div className={styles.floatingCard}>
-                <span className={styles.badge}>Destaque</span>
-                <h4>O Jogo Completo</h4>
-              </div>
+              <img src="/desafio-logistico-produto-mesa.png" alt="Desafio Logístico Detalhes" className={styles.image} />
             </div>
           </div>
           

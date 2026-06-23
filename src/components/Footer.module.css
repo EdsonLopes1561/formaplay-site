@@ -23,6 +23,19 @@
   max-width: 300px;
 }
 
+.institutionalData {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 0.5rem;
+}
+
+.institutionalData strong {
+  color: rgba(255, 255, 255, 0.8);
+}
+
 .columnTitle {
   font-size: 1.25rem;
   font-weight: 600;

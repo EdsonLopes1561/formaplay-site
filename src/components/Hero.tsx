@@ -33,7 +33,7 @@ export const Hero: React.FC = () => {
         
         <div className={`${styles.imageWrapper} animate-fade-in-up`} style={{ animationDelay: '0.2s' }}>
           <img 
-            src="/hero.png" 
+            src="/desafio-logistico-cidade-futura.png" 
             alt="Desafio Logístico - Caminhão e Tabuleiro" 
             className={styles.heroImage}
           />

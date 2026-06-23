@@ -18,3 +18,10 @@
 .l { color: var(--accent-blue); }
 .a { color: var(--accent-green); }
 .y { color: var(--accent-purple); }
+
+@media (max-width: 768px) {
+  .logoContainer {
+    font-size: 1.4rem;
+  }
+}
+

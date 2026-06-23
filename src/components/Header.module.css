@@ -244,3 +244,9 @@
     display: none;
   }
 }
+
+@media (max-width: 768px) {
+  .logoLink {
+    padding: 0.4rem 1.2rem;
+  }
+}

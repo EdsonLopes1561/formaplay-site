@@ -27,7 +27,7 @@
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: 1.5rem;
   margin-top: 4rem;
 }
@@ -45,6 +45,7 @@
   transition: all 0.3s ease;
   position: relative;
   z-index: 1;
+  height: 100%;
 }
 
 .card:hover {
@@ -63,11 +64,13 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 1rem;
+  flex-shrink: 0;
 }
 
 .label {
   font-weight: 600;
   color: #ffffff;
+  line-height: 1.4;
 }
 
 .fraseApoio {
@@ -82,21 +85,47 @@
   padding: 2rem;
   background-color: rgba(255, 255, 255, 0.05);
   border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   border-left: 4px solid var(--secondary);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
 }
 
+/* Tablet: 3 columns */
 @media (min-width: 768px) {
   .grid {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+  }
+  
+  .card {
+    grid-column: span 2;
+  }
+  
+  /* Center the 7th card on tablet */
+  .card:nth-child(7) {
+    grid-column: 3 / 5;
   }
 }
 
+/* Desktop: 4 columns in top row, 3 centered in bottom row */
 @media (min-width: 1024px) {
   .grid {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(8, 1fr);
   }
   
-  .card:last-child {
-    grid-column: 2 / 4; /* center the last odd item */
+  .card {
+    grid-column: span 2;
+  }
+  
+  /* Row 2 (items 5, 6, 7) offset to center */
+  .card:nth-child(5) {
+    grid-column: 2 / 4;
+  }
+  
+  .card:nth-child(6) {
+    grid-column: 4 / 6;
+  }
+  
+  .card:nth-child(7) {
+    grid-column: 6 / 8;
   }
 }

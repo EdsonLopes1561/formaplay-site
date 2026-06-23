@@ -14,8 +14,13 @@ export const Footer: React.FC = () => {
         <div className={styles.column}>
           <Logo />
           <p className={styles.tagline}>
-            Educação que transforma. Diversão que ensina.
+            Atendimento para escolas, instituições, professores e empresas.
           </p>
+          <div className={styles.institutionalData}>
+            <p><strong>FormaPlay — Jogos Educacionais</strong></p>
+            <p>CNPJ: 66.710.107/0001-31</p>
+            <p>www.formaplayjogos.com.br</p>
+          </div>
         </div>
 
         <div className={styles.column}>
