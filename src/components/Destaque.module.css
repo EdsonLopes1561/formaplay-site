@@ -38,14 +38,22 @@
 .imagePlaceholder {
   position: relative;
   border-radius: 1.5rem;
-  overflow: hidden;
+  border: 2px solid transparent;
   box-shadow: var(--shadow-xl);
+  transition: all 0.3s ease;
+}
+
+.imagePlaceholder:hover {
+  border-color: #38bdf8;
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.4), var(--shadow-xl);
+  transform: translateY(-4px) scale(1.015);
 }
 
 .image {
   width: 100%;
   height: auto;
   display: block;
+  border-radius: calc(1.5rem - 2px);
 }
 
 

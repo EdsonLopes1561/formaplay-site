@@ -97,12 +97,14 @@
   position: relative;
   z-index: 2;
   box-shadow: var(--shadow-xl);
-  transform: perspective(1000px) rotateY(-5deg);
-  transition: transform 0.3s ease;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
 }
 
 .heroImage:hover {
-  transform: perspective(1000px) rotateY(0deg);
+  border-color: #38bdf8;
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.4), var(--shadow-xl);
+  transform: translateY(-4px) scale(1.015);
 }
 
 .glowEffect {
