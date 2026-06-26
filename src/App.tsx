@@ -13,6 +13,7 @@ import { ComponentesDoJogo } from './components/ComponentesDoJogo';
 import { ProvaSocial } from './components/ProvaSocial';
 import { ChamadaFinal } from './components/ChamadaFinal';
 import { Footer } from './components/Footer';
+import { WhatsappFloat } from './components/WhatsappFloat';
 
 const App: React.FC = () => {
   return (
@@ -32,6 +33,7 @@ const App: React.FC = () => {
         <ProvaSocial />
         <ChamadaFinal />
       </main>
+      <WhatsappFloat />
       <Footer />
     </>
   );

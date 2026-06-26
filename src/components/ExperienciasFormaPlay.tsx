@@ -104,7 +104,7 @@ export const ExperienciasFormaPlay: React.FC = () => {
   }, [activeTheme]);
 
   return (
-    <section className={`${styles.section} ${styles[`theme_${activeTheme}`]}`}>
+    <section id="jogos" className={`${styles.section} ${styles[`theme_${activeTheme}`]}`}>
       <div className={styles.backgroundOverlay}></div>
       <div className={`container ${styles.container}`}>
         <div className={styles.header}>
