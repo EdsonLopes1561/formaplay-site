@@ -13,10 +13,10 @@ export const Hero: React.FC = () => {
             Desafio <span className={styles.highlight}>Logístico</span>
           </h1>
           <p className={styles.subtitle}>
-            O jogo educacional que transforma logística em estratégia.
+            O jogo educacional que transforma logística em uma experiência prática e divertida.
           </p>
           <p className={styles.description}>
-            Aprender, brincar e evoluir com decisões logísticas reais.
+            Aprender, decidir e evoluir com desafios logísticos reais.
           </p>
           
           <div className={styles.actions}>

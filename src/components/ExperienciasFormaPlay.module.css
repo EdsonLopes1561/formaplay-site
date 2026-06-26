@@ -1,0 +1,166 @@
+.section {
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.8s ease-in-out;
+  /* Base dark background */
+  background-color: #0b192c;
+  color: #ffffff;
+}
+
+/* Themes matching the card data IDs */
+.section.theme_main {
+  background-color: #0b192c; /* Profissional, azul petróleo */
+}
+.section.theme_premium {
+  background-color: #09090b; /* Escuro, elegante premium */
+}
+.section.theme_kids {
+  background-color: #1e3a8a; /* Azul mais vivo e amigável */
+}
+.section.theme_teacher {
+  background-color: #1f2937; /* Cinza escuro, sala de aula */
+}
+.section.theme_class {
+  background-color: #0f766e; /* Teal educacional */
+}
+.section.theme_components {
+  background-color: #374151; /* Cinza médio, foco em montagem */
+}
+.section.theme_budget {
+  background-color: #0c4a6e; /* Azul escuro profissional institucional */
+}
+
+/* Ambient glow effect based on theme */
+.backgroundOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.4;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  background: linear-gradient(to right, #fff, #e2e8f0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+  font-size: 1.125rem;
+  color: rgba(255, 255, 255, 0.8);
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+.cardsWrapper {
+  display: flex;
+  gap: 1.5rem;
+  padding: 2rem 1rem 4rem;
+  margin: 0 -1rem; /* Negate container padding on mobile for edge-to-edge scroll */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE and Edge */
+  -webkit-overflow-scrolling: touch;
+}
+
+.cardsWrapper::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
+}
+
+.card {
+  flex: 0 0 85%;
+  max-width: 320px;
+  background-color: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 20px;
+  padding: 2rem;
+  scroll-snap-align: center;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  outline: none;
+}
+
+.cardContent {
+  position: relative;
+  z-index: 2;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #ffffff;
+}
+
+.cardText {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.75);
+  margin: 0;
+}
+
+/* Hover and Active states */
+.card:hover, .card:focus, .card.active {
+  transform: translateY(-8px);
+  background-color: rgba(30, 41, 59, 0.9);
+  border-color: rgba(56, 189, 248, 0.5); /* Borda neon azul suave */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(56, 189, 248, 0.15);
+}
+
+.card.active {
+  border-color: rgba(56, 189, 248, 0.8);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(56, 189, 248, 0.25);
+}
+
+/* Desktop layout */
+@media (min-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
+  
+  .cardsWrapper {
+    margin: 0;
+    padding: 2rem 0.5rem 4rem;
+    gap: 2rem;
+    /* We can let it keep scrolling nicely on desktop or let it warp. 
+       Let's keep the elegant horizontal scroll for a modern app feel, 
+       just making the cards a bit smaller relative to screen */
+  }
+  
+  .card {
+    flex: 0 0 calc(33.333% - 1.35rem);
+    max-width: none;
+  }
+}
+
+@media (min-width: 1024px) {
+  .card {
+    flex: 0 0 calc(25% - 1.5rem);
+  }
+}
