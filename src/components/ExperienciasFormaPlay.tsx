@@ -1,47 +1,60 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './ExperienciasFormaPlay.module.css';
 
+import { Users, Package, Building2 } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
+import { FormaPlayText } from './FormaPlayText';
+
 interface CardData {
   id: string;
   title: string;
-  text: string;
+  text: React.ReactNode;
+  image?: string;
+  Icon?: LucideIcon;
 }
 
 const cardsData: CardData[] = [
   {
     id: 'main',
     title: 'Desafio Logístico',
-    text: 'O jogo principal da FormaPlay para desenvolver estratégia, planejamento, custos e tomada de decisão.',
+    text: <>O jogo principal da <FormaPlayText /> para desenvolver estratégia, planejamento, custos e tomada de decisão.</>,
+    image: '/desafio-logistico-2.png',
   },
   {
     id: 'premium',
     title: 'Desafio Logístico Premium',
     text: 'Uma versão especial com apresentação superior, ideal para instituições que buscam uma experiência mais marcante.',
+    image: '/desafio-premium-2.png',
   },
   {
     id: 'kids',
     title: 'Desafio Kids',
     text: 'Uma proposta lúdica para trabalhar decisões, rotas e segurança de forma simples e divertida.',
+    image: '/desafio-kids-2.png',
   },
   {
     id: 'teacher',
     title: 'Edição do Professor',
     text: 'Uma solução pensada para educadores que desejam aplicar o jogo em aulas, dinâmicas e projetos de aprendizagem.',
+    image: '/edicao-professor-2.png',
   },
   {
     id: 'class',
     title: 'Aplicação em sala',
     text: 'Ideal para cursos técnicos, escolas, treinamentos corporativos e atividades práticas de aprendizagem.',
+    Icon: Users,
   },
   {
     id: 'components',
     title: 'Componentes do jogo',
     text: 'Tabuleiro, cartas, caminhões, dado, dinheiro fictício e embalagem personalizada para uma experiência completa.',
+    Icon: Package,
   },
   {
     id: 'budget',
     title: 'Orçamento institucional',
     text: 'Solicite uma proposta para escolas, SENAI, SENAC, empresas e instituições de ensino.',
+    Icon: Building2,
   }
 ];
 
@@ -114,8 +127,20 @@ export const ExperienciasFormaPlay: React.FC = () => {
               role="button"
             >
               <div className={styles.cardContent}>
-                <h3 className={styles.cardTitle}>{card.title}</h3>
-                <p className={styles.cardText}>{card.text}</p>
+                {card.image && (
+                  <div className={styles.imageContainer}>
+                    <img src={card.image} alt={card.title} className={styles.cardImage} />
+                  </div>
+                )}
+                {card.Icon && (
+                  <div className={styles.iconContainer}>
+                    <card.Icon className={styles.cardIcon} size={48} />
+                  </div>
+                )}
+                <div className={styles.textContent}>
+                  <h3 className={styles.cardTitle}>{card.title}</h3>
+                  <p className={styles.cardText}>{card.text}</p>
+                </div>
               </div>
             </div>
           ))}

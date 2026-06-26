@@ -2,13 +2,14 @@ import React from 'react';
 import styles from './LinhaDeJogos.module.css';
 import { Puzzle, Truck, BookOpen, Crown, Laptop, PenTool } from 'lucide-react';
 import { getWhatsAppOnlineLink, getWhatsAppPersonalizadoLink } from '../constants';
+import { FormaPlayText } from './FormaPlayText';
 
 export const LinhaDeJogos: React.FC = () => {
   return (
     <section id="jogos" className={`section ${styles.linhaDeJogos}`}>
       <div className="container">
         <div className="text-center animate-fade-in-up">
-          <h2 className="section-title">Soluções FormaPlay</h2>
+          <h2 className="section-title">Soluções <FormaPlayText /></h2>
           <p className="section-subtitle">
             Soluções educacionais criadas para tornar o aprendizado mais prático, estratégico e participativo.
           </p>

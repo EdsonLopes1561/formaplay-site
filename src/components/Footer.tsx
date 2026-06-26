@@ -3,6 +3,7 @@ import styles from './Footer.module.css';
 import { Logo } from './Logo';
 import { getWhatsAppLink } from '../constants';
 import { Mail, MessageCircle, ExternalLink } from 'lucide-react';
+import { FormaPlayText } from './FormaPlayText';
 
 export const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -17,7 +18,7 @@ export const Footer: React.FC = () => {
             Atendimento para escolas, instituições, professores e empresas.
           </p>
           <div className={styles.institutionalData}>
-            <p><strong>FormaPlay — Jogos Educacionais</strong></p>
+            <p><strong><FormaPlayText /> — Jogos Educacionais</strong></p>
             <p>CNPJ: 66.710.107/0001-31</p>
             <p>www.formaplayjogos.com.br</p>
           </div>
@@ -62,7 +63,7 @@ export const Footer: React.FC = () => {
       <div className={styles.bottomBar}>
         <div className="container">
           <p className={styles.copyright}>
-            © {currentYear} FormaPlay — Jogos Educacionais. Todos os direitos reservados.
+            © {currentYear} <FormaPlayText /> — Jogos Educacionais. Todos os direitos reservados.
           </p>
         </div>
       </div>

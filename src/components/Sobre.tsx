@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './Sobre.module.css';
 import { Target, Lightbulb, Users } from 'lucide-react';
+import { FormaPlayText } from './FormaPlayText';
 
 export const Sobre: React.FC = () => {
   return (
@@ -12,13 +13,13 @@ export const Sobre: React.FC = () => {
               Jogos educacionais que transformam o aprendizado
             </h2>
             <p className={styles.paragraph}>
-              A FormaPlay nasceu com o propósito de criar jogos educacionais capazes de aproximar teoria e prática de forma leve, interativa e envolvente.
+              A <FormaPlayText /> nasceu com o propósito de criar jogos educacionais capazes de aproximar teoria e prática de forma leve, interativa e envolvente.
             </p>
             <p className={styles.paragraph}>
               Nossos jogos são desenvolvidos para apoiar professores, escolas, instituições de ensino e treinamentos corporativos, trazendo situações reais para dentro da sala de aula por meio da tomada de decisão, estratégia, colaboração e resolução de problemas.
             </p>
             <p className={styles.paragraph}>
-              Mais do que jogar, a proposta da FormaPlay é criar experiências de aprendizagem que despertam participação, raciocínio e protagonismo nos alunos.
+              Mais do que jogar, a proposta da <FormaPlayText /> é criar experiências de aprendizagem que despertam participação, raciocínio e protagonismo nos alunos.
             </p>
             <div className={styles.quoteBox}>
               <p className={styles.quote}>
