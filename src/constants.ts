@@ -1,10 +1,11 @@
-export const WHATSAPP_NUMBER = "5500000000000"; // Placeholder, can be changed later sem .env
-export const WHATSAPP_MESSAGE = "Olá, tudo bem? Tenho interesse em saber mais sobre os jogos educacionais da FormaPlay.";
+export const WHATSAPP_NUMBER = "5514998442917"; 
+export const WHATSAPP_MESSAGE = "Olá, tudo bem? Tenho interesse no Desafio Logístico e gostaria de mais informações.";
 export const WHATSAPP_MESSAGE_ONLINE = "Olá, tudo bem? Quero ser avisado quando o Desafio Online da FormaPlay estiver disponível.";
 export const WHATSAPP_MESSAGE_PERSONALIZADO = "Olá, tudo bem? Tenho interesse em avaliar a criação de um jogo educacional personalizado com a FormaPlay.";
 
-export const getWhatsAppLink = () => {
-  const encodedMessage = encodeURIComponent(WHATSAPP_MESSAGE);
+export const getWhatsAppLink = (customMessage?: string) => {
+  const message = customMessage || WHATSAPP_MESSAGE;
+  const encodedMessage = encodeURIComponent(message);
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodedMessage}`;
 };
 

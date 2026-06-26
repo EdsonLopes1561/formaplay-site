@@ -15,7 +15,8 @@ export const WhatsappFloat: React.FC = () => {
       <div className={styles.iconContainer}>
         <MessageCircle size={28} />
       </div>
-      <span className={styles.text}>Fale conosco</span>
+      <span className={`${styles.text} ${styles.desktopText}`}>Fale conosco</span>
+      <span className={`${styles.text} ${styles.mobileText}`}>WhatsApp</span>
     </a>
   );
 };
