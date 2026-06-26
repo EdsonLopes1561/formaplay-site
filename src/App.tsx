@@ -5,7 +5,6 @@ import { VideoSection } from './components/VideoSection';
 import { Sobre } from './components/Sobre';
 import { ConhecaFormaPlay } from './components/ConhecaFormaPlay';
 import { ExperienciasFormaPlay } from './components/ExperienciasFormaPlay';
-import { LinhaDeJogos } from './components/LinhaDeJogos';
 import { Destaque } from './components/Destaque';
 import { ComoFunciona } from './components/ComoFunciona';
 import { BeneficiosEducacionais } from './components/BeneficiosEducacionais';
@@ -25,7 +24,6 @@ const App: React.FC = () => {
         <Sobre />
         <ConhecaFormaPlay />
         <ExperienciasFormaPlay />
-        <LinhaDeJogos />
         <Destaque />
         <ComoFunciona />
         <BeneficiosEducacionais />

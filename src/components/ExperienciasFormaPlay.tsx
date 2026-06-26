@@ -3,7 +3,7 @@ import styles from './ExperienciasFormaPlay.module.css';
 
 import { Users, Package, Building2 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
-import { FormaPlayText } from './FormaPlayText';
+
 
 interface CardData {
   id: string;
@@ -17,43 +17,43 @@ const cardsData: CardData[] = [
   {
     id: 'main',
     title: 'Desafio Logístico',
-    text: <>O jogo principal da <FormaPlayText /> para desenvolver estratégia, planejamento, custos e tomada de decisão.</>,
+    text: 'O jogo clássico de tabuleiro. Planeje custos, rotas e vença pela estratégia.',
     image: '/desafio-logistico-2.png',
   },
   {
     id: 'premium',
     title: 'Desafio Logístico Premium',
-    text: 'Uma versão especial com apresentação superior, ideal para instituições que buscam uma experiência mais marcante.',
+    text: 'Acabamento superior e apresentação marcante para instituições exigentes.',
     image: '/desafio-premium-2.png',
   },
   {
     id: 'kids',
     title: 'Desafio Kids',
-    text: 'Uma proposta lúdica para trabalhar decisões, rotas e segurança de forma simples e divertida.',
+    text: 'Rotas, decisões e segurança ensinadas de forma lúdica para crianças.',
     image: '/desafio-kids-2.png',
   },
   {
     id: 'teacher',
     title: 'Edição do Professor',
-    text: 'Uma solução pensada para educadores que desejam aplicar o jogo em aulas, dinâmicas e projetos de aprendizagem.',
+    text: 'Guia, dinâmicas e roteiros para aplicar o jogo em sala de aula.',
     image: '/edicao-professor-2.png',
   },
   {
     id: 'class',
     title: 'Aplicação em sala',
-    text: 'Ideal para cursos técnicos, escolas, treinamentos corporativos e atividades práticas de aprendizagem.',
+    text: 'Transforme aulas e treinamentos em experiências práticas e colaborativas.',
     Icon: Users,
   },
   {
     id: 'components',
     title: 'Componentes do jogo',
-    text: 'Tabuleiro, cartas, caminhões, dado, dinheiro fictício e embalagem personalizada para uma experiência completa.',
+    text: 'Tabuleiro, cartas, caminhões, dado, dinheiro fictício e embalagem personalizada.',
     Icon: Package,
   },
   {
     id: 'budget',
     title: 'Orçamento institucional',
-    text: 'Solicite uma proposta para escolas, SENAI, SENAC, empresas e instituições de ensino.',
+    text: 'Solicite uma proposta para escolas, cursos técnicos, empresas e instituições.',
     Icon: Building2,
   }
 ];
