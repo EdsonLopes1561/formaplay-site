@@ -43,7 +43,7 @@ export const Header: React.FC = () => {
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={`container ${styles.headerContainer}`}>
         <a href="#inicio" className={styles.logoLink}>
-          <Logo />
+          <Logo theme="dark" />
         </a>
 
         {/* Desktop Menu */}

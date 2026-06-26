@@ -26,33 +26,31 @@
 .logoLink {
   display: flex;
   align-items: center;
-  background: linear-gradient(180deg, #ffffff 0%, #f1f5f9 100%);
-  padding: 0.6rem 2rem;
+  background-color: #F8FAFC;
+  padding: 0.5rem 1.5rem;
   border-radius: 9999px;
+  border: 1px solid rgba(56, 189, 248, 0.25);
   box-shadow: 
-    0 4px 0 #cbd5e1,
-    0 10px 25px rgba(0,0,0,0.15),
-    inset 0 2px 0 rgba(255,255,255,1);
-  border: 1px solid #e2e8f0;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    0 4px 15px rgba(0, 0, 0, 0.05),
+    0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
   text-decoration: none;
   z-index: 10;
 }
 
 .logoLink:hover {
   transform: translateY(-2px);
+  background-color: #ffffff;
+  border-color: rgba(56, 189, 248, 0.5);
   box-shadow: 
-    0 6px 0 #cbd5e1,
-    0 15px 30px rgba(0,0,0,0.2),
-    inset 0 2px 0 rgba(255,255,255,1);
+    0 8px 25px rgba(56, 189, 248, 0.2),
+    0 2px 10px rgba(56, 189, 248, 0.15);
 }
 
 .logoLink:active {
-  transform: translateY(2px);
+  transform: translateY(1px);
   box-shadow: 
-    0 2px 0 #cbd5e1,
-    0 5px 10px rgba(0,0,0,0.1),
-    inset 0 1px 0 rgba(255,255,255,1);
+    0 2px 8px rgba(56, 189, 248, 0.15);
 }
 
 .desktopNav {
@@ -247,6 +245,6 @@
 
 @media (max-width: 768px) {
   .logoLink {
-    padding: 0.4rem 1.2rem;
+    padding: 0.4rem 1rem;
   }
 }
