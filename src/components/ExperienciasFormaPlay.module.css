@@ -120,12 +120,18 @@
   overflow: hidden;
   position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  background-color: rgba(2, 6, 23, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cardImage {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
+  object-position: center;
+  padding: 0.5rem;
   transition: transform 0.5s ease;
 }
 
