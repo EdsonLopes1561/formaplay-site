@@ -11,32 +11,42 @@ interface CardData {
   text: React.ReactNode;
   image?: string;
   Icon?: LucideIcon;
+  badgeText?: string;
+  badgeType?: 'available' | 'development';
 }
 
 const cardsData: CardData[] = [
   {
     id: 'main',
     title: 'Desafio Logístico',
-    text: 'O jogo clássico de tabuleiro. Planeje custos, rotas e vença pela estratégia.',
+    text: 'O jogo educacional de logística já disponível para comercialização. Planeje custos, enfrente imprevistos, tome decisões estratégicas e vença o desafio.',
     image: '/desafio-logistico-2.png',
+    badgeText: 'DISPONÍVEL PARA COMPRA',
+    badgeType: 'available',
   },
   {
     id: 'premium',
     title: 'Desafio Logístico Premium',
-    text: 'Acabamento superior e apresentação marcante para instituições exigentes.',
+    text: 'Versão premium em desenvolvimento, com acabamento superior, componentes diferenciados e apresentação voltada a instituições e ambientes corporativos.',
     image: '/desafio-premium-2.png',
+    badgeText: 'EM DESENVOLVIMENTO',
+    badgeType: 'development',
   },
   {
     id: 'kids',
     title: 'Desafio Kids',
-    text: 'Rotas, decisões e segurança ensinadas de forma lúdica para crianças.',
+    text: 'Versão infantil em desenvolvimento, com rotas, decisões e conceitos básicos de logística apresentados de forma lúdica para crianças.',
     image: '/desafio-kids-2.png',
+    badgeText: 'EM DESENVOLVIMENTO',
+    badgeType: 'development',
   },
   {
     id: 'teacher',
     title: 'Edição do Professor',
-    text: 'Guia, dinâmicas e roteiros para aplicar o jogo em sala de aula.',
+    text: 'Versão pedagógica em desenvolvimento, com guia, dinâmicas e materiais de apoio para aplicação do jogo em sala de aula.',
     image: '/edicao-professor-2.png',
+    badgeText: 'EM DESENVOLVIMENTO',
+    badgeType: 'development',
   },
   {
     id: 'class',
@@ -110,7 +120,7 @@ export const ExperienciasFormaPlay: React.FC = () => {
         <div className={styles.header}>
           <h2 className={styles.title}>Explore o Desafio Logístico</h2>
           <p className={styles.subtitle}>
-            Veja as versões, aplicações e diferenciais que tornam o jogo uma experiência educacional completa.
+            Conheça o Desafio Logístico, já disponível para comercialização, e acompanhe as novas versões que estão sendo desenvolvidas pela FormaPlay.
           </p>
         </div>
 
@@ -129,6 +139,11 @@ export const ExperienciasFormaPlay: React.FC = () => {
               <div className={styles.cardContent}>
                 {card.image && (
                   <div className={styles.imageContainer}>
+                    {card.badgeText && (
+                      <span className={`${styles.badge} ${styles[`badge_${card.badgeType}`]}`}>
+                        {card.badgeText}
+                      </span>
+                    )}
                     <img src={card.image} alt={card.title} className={styles.cardImage} />
                   </div>
                 )}
@@ -144,6 +159,12 @@ export const ExperienciasFormaPlay: React.FC = () => {
               </div>
             </div>
           ))}
+        </div>
+
+        <div className={styles.disclaimerContainer}>
+          <p className={styles.disclaimerText}>
+            Importante: atualmente, somente o jogo Desafio Logístico está disponível para comercialização. As versões Premium, Kids e Edição do Professor encontram-se em fase de desenvolvimento.
+          </p>
         </div>
       </div>
     </section>
