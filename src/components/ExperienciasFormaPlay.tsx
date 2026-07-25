@@ -3,6 +3,7 @@ import styles from './ExperienciasFormaPlay.module.css';
 
 import { Users, Package, Building2 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { RegistroInteresseModal } from './RegistroInteresseModal';
 
 
 interface CardData {
@@ -13,6 +14,8 @@ interface CardData {
   Icon?: LucideIcon;
   badgeText?: string;
   badgeType?: 'available' | 'development';
+  actionType?: 'orcamento' | 'interesse';
+  buttonText?: string;
 }
 
 const cardsData: CardData[] = [
@@ -23,6 +26,8 @@ const cardsData: CardData[] = [
     image: '/desafio-logistico-2.png',
     badgeText: 'DISPONÍVEL PARA COMPRA',
     badgeType: 'available',
+    actionType: 'orcamento',
+    buttonText: 'Solicitar orçamento',
   },
   {
     id: 'premium',
@@ -31,6 +36,8 @@ const cardsData: CardData[] = [
     image: '/desafio-premium-2.png',
     badgeText: 'EM DESENVOLVIMENTO',
     badgeType: 'development',
+    actionType: 'interesse',
+    buttonText: 'Registrar interesse',
   },
   {
     id: 'kids',
@@ -39,6 +46,8 @@ const cardsData: CardData[] = [
     image: '/desafio-kids-2.png',
     badgeText: 'EM DESENVOLVIMENTO',
     badgeType: 'development',
+    actionType: 'interesse',
+    buttonText: 'Registrar interesse',
   },
   {
     id: 'teacher',
@@ -47,6 +56,8 @@ const cardsData: CardData[] = [
     image: '/edicao-professor-2.png',
     badgeText: 'EM DESENVOLVIMENTO',
     badgeType: 'development',
+    actionType: 'interesse',
+    buttonText: 'Registrar interesse',
   },
   {
     id: 'class',
@@ -70,6 +81,8 @@ const cardsData: CardData[] = [
 
 export const ExperienciasFormaPlay: React.FC = () => {
   const [activeTheme, setActiveTheme] = useState<string>(cardsData[0].id);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [selectedModel, setSelectedModel] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
 
   // Optional: detect center card on scroll for mobile
@@ -113,6 +126,16 @@ export const ExperienciasFormaPlay: React.FC = () => {
     };
   }, [activeTheme]);
 
+  const handleAction = (card: CardData, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (card.actionType === 'orcamento') {
+      window.open('https://formaplay-orcamento.vercel.app/solicitar-orcamento', '_blank');
+    } else if (card.actionType === 'interesse') {
+      setSelectedModel(card.title);
+      setModalOpen(true);
+    }
+  };
+
   return (
     <section id="jogos" className={`${styles.section} ${styles[`theme_${activeTheme}`]}`}>
       <div className={styles.backgroundOverlay}></div>
@@ -120,7 +143,10 @@ export const ExperienciasFormaPlay: React.FC = () => {
         <div className={styles.header}>
           <h2 className={styles.title}>Explore o Desafio Logístico</h2>
           <p className={styles.subtitle}>
-            Conheça o Desafio Logístico, já disponível para comercialização, e acompanhe as novas versões que estão sendo desenvolvidas pela FormaPlay.
+            Conheça o Desafio Logístico, já disponível para comercialização, e acompanhe os novos modelos que estão sendo desenvolvidos pela FormaPlay.
+          </p>
+          <p className={styles.subtitleComplement}>
+            Interessados nos modelos em desenvolvimento podem registrar seu interesse para receber novidades, participar de testes e ter acesso antecipado no lançamento.
           </p>
         </div>
 
@@ -155,6 +181,15 @@ export const ExperienciasFormaPlay: React.FC = () => {
                 <div className={styles.textContent}>
                   <h3 className={styles.cardTitle}>{card.title}</h3>
                   <p className={styles.cardText}>{card.text}</p>
+                  
+                  {card.buttonText && (
+                    <button 
+                      className={`${styles.cardButton} ${card.actionType === 'interesse' ? styles.cardButtonOutline : ''}`}
+                      onClick={(e) => handleAction(card, e)}
+                    >
+                      {card.buttonText}
+                    </button>
+                  )}
                 </div>
               </div>
             </div>
@@ -163,10 +198,16 @@ export const ExperienciasFormaPlay: React.FC = () => {
 
         <div className={styles.disclaimerContainer}>
           <p className={styles.disclaimerText}>
-            Importante: atualmente, somente o jogo Desafio Logístico está disponível para comercialização. As versões Premium, Kids e Edição do Professor encontram-se em fase de desenvolvimento.
+            Importante: atualmente, somente o jogo Desafio Logístico está disponível para comercialização. As versões Premium, Kids e Edição do Professor encontram-se em fase de desenvolvimento. O registro de interesse não representa reserva, compra ou obrigação de pagamento.
           </p>
         </div>
       </div>
+
+      <RegistroInteresseModal 
+        isOpen={modalOpen} 
+        onClose={() => setModalOpen(false)} 
+        modeloSelecionado={selectedModel} 
+      />
     </section>
   );
 };

@@ -68,9 +68,17 @@
 .subtitle {
   font-size: 1.125rem;
   color: rgba(255, 255, 255, 0.8);
-  max-width: 700px;
+  max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
+}
+
+.subtitleComplement {
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.7);
+  max-width: 600px;
+  margin: 1rem auto 0;
+  line-height: 1.5;
 }
 
 .cardsWrapper {
@@ -264,6 +272,43 @@
   font-size: 0.95rem;
   line-height: 1.5;
   margin: 0;
+}
+
+.cardText {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.cardButton {
+  margin-top: 1.5rem;
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  background-color: #00A2FF;
+  color: #ffffff;
+  border: none;
+}
+
+.cardButton:hover {
+  background-color: #0081cc;
+}
+
+.cardButtonOutline {
+  background-color: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+}
+
+.cardButtonOutline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #ffffff;
 }
 
 @media (min-width: 768px) {
