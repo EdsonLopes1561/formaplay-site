@@ -9,14 +9,15 @@ export const Sobre: React.FC = () => {
       <div className="container">
         <div className={styles.grid}>
           <div className={`${styles.textContent} animate-fade-in-up`}>
+            <div className={styles.labelSection}>Propósito FormaPlay</div>
             <h2 className="section-title">
-              Da sala de aula para uma experiência real de aprendizagem
+              Quando a teoria encontra a experiência, o aprendizado ganha vida.
             </h2>
             <p className={styles.paragraph}>
-              A <FormaPlayText /> nasceu para aproximar teoria e prática por meio de jogos educacionais que colocam o aluno no centro da experiência.
+              A <FormaPlayText /> cria experiências educacionais que ajudam escolas, professores e instituições a aproximar conteúdo, participação e prática.
             </p>
             <p className={styles.paragraph}>
-              Com o Desafio Logístico, conceitos como custos, rotas, imprevistos e tomada de decisão deixam de ser apenas teoria e passam a ser vivenciados em uma dinâmica envolvente e colaborativa.
+              Por meio do jogo, o conhecimento deixa de ser apenas explicado e passa também a ser experimentado, discutido e colocado em ação.
             </p>
           </div>
           
@@ -26,23 +27,23 @@ export const Sobre: React.FC = () => {
                 <Lightbulb className={styles.icon} />
               </div>
               <h3>Aprender fazendo</h3>
-              <p>Conectamos o aprendizado de sala de aula com a realidade do mercado.</p>
+              <p>Transformar conceitos em experiências.</p>
             </div>
             
             <div className={`${styles.card} glass`}>
               <div className={styles.iconWrapper}>
                 <Target className={styles.icon} />
               </div>
-              <h3>Decidir em equipe</h3>
-              <p>Desenvolvemos a capacidade de planejamento e tomada de decisão.</p>
+              <h3>Participar e decidir</h3>
+              <p>Estimular estratégia, colaboração e tomada de decisão.</p>
             </div>
             
             <div className={`${styles.card} glass`}>
               <div className={styles.iconWrapper}>
                 <Users className={styles.icon} />
               </div>
-              <h3>Transformar teoria em prática</h3>
-              <p>Estimulamos o trabalho em equipe, negociação e resolução conjunta.</p>
+              <h3>Dar sentido ao aprendizado</h3>
+              <p>Aproximar conhecimento de situações que fazem parte da realidade.</p>
             </div>
           </div>
         </div>

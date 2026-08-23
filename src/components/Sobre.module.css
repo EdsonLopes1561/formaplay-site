@@ -14,12 +14,25 @@
 .grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 4rem;
+  gap: 3rem;
   align-items: center;
 }
 
 .textContent {
   max-width: 600px;
+}
+
+.labelSection {
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--secondary, #f97316);
+  font-weight: 700;
+  margin-bottom: 1rem;
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  background-color: rgba(249, 115, 22, 0.1);
+  border-radius: 999px;
 }
 
 .paragraph {
@@ -91,5 +104,14 @@
 @media (min-width: 1024px) {
   .grid {
     grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+  }
+
+  .card:nth-child(2) {
+    margin-left: 1.5rem;
+  }
+
+  .card:nth-child(3) {
+    margin-left: 3rem;
   }
 }

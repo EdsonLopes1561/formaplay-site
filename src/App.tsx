@@ -4,7 +4,6 @@ import { Hero } from './components/Hero';
 import { IndicadoresTracao } from './components/IndicadoresTracao';
 import { VideoSection } from './components/VideoSection';
 import { Sobre } from './components/Sobre';
-import { ConhecaFormaPlay } from './components/ConhecaFormaPlay';
 import { ExperienciasFormaPlay } from './components/ExperienciasFormaPlay';
 import { Destaque } from './components/Destaque';
 import { ParaQuemEIndicado } from './components/ParaQuemEIndicado';
@@ -21,7 +20,6 @@ const App: React.FC = () => {
         <Hero />
         <IndicadoresTracao />
         <Sobre />
-        <ConhecaFormaPlay />
         <ExperienciasFormaPlay />
         <Destaque />
         <ParaQuemEIndicado />
