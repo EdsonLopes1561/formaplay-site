@@ -5,7 +5,7 @@ import { CheckCircle2 } from 'lucide-react';
 export const Destaque: React.FC = () => {
   const destaques = [
     "Indicado para jovens e adultos",
-    "Ideal para cursos técnicos, escolas e treinamentos",
+    "Ideal para cursos técnicos, escolas e oficinas",
     "Trabalha estratégia, planejamento e tomada de decisão",
     "Estimula participação ativa em sala de aula",
     "Pode ser aplicado em dinâmicas individuais ou em grupo"

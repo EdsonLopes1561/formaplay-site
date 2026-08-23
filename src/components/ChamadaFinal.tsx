@@ -12,7 +12,7 @@ export const ChamadaFinal: React.FC = () => {
             Leve o Desafio Logístico para sua instituição
           </h2>
           <p className={styles.description}>
-            Transforme suas aulas, treinamentos ou projetos em uma experiência prática de decisão, estratégia e aprendizagem.
+            Transforme suas aulas, projetos ou oficinas em uma experiência prática de decisão, estratégia e aprendizagem.
           </p>
           <p className={styles.description}>
             Solicite um orçamento e conheça as possibilidades de aplicação do Desafio Logístico na sua instituição.

@@ -32,7 +32,7 @@ export const BeneficiosEducacionais: React.FC = () => {
     {
       icon: <Briefcase />,
       title: "Aplicação em projetos",
-      description: "Pode ser utilizado em aulas, feiras, projetos integradores, treinamentos e atividades práticas."
+      description: "Pode ser utilizado em aulas, feiras, projetos integradores, laboratórios e atividades práticas."
     }
   ];
 

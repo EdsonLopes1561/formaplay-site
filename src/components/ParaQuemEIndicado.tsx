@@ -11,7 +11,7 @@ export const ParaQuemEIndicado: React.FC = () => {
     },
     {
       icon: <Landmark />,
-      title: "SENAI, SENAC e instituições de ensino",
+      title: "Escolas e instituições de ensino",
       description: "Uma ferramenta didática para enriquecer aulas, dinâmicas e projetos educacionais."
     },
     {
@@ -26,8 +26,8 @@ export const ParaQuemEIndicado: React.FC = () => {
     },
     {
       icon: <Building2 />,
-      title: "Empresas e treinamentos",
-      description: "Pode ser utilizado em dinâmicas de integração, capacitação e desenvolvimento de equipes."
+      title: "Famílias, pais e responsáveis",
+      description: "Oportunidade para os adultos utilizarem experiências infantis, como o Desafio Kids, para conversar, orientar e aprender com as crianças."
     }
   ];
 
@@ -35,7 +35,7 @@ export const ParaQuemEIndicado: React.FC = () => {
     <section id="para-quem-e" className={`section ${styles.indicado}`}>
       <div className="container">
         <div className="text-center animate-fade-in-up">
-          <h2 className="section-title">Indicado para instituições que valorizam aprendizagem prática</h2>
+          <h2 className="section-title">Diferentes experiências para diferentes contextos de aprendizagem</h2>
         </div>
 
         <div className={styles.grid}>

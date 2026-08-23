@@ -36,7 +36,7 @@ export const ConhecaFormaPlay: React.FC = () => {
             <div className={styles.dot}></div>
             <div className={styles.timelineContent}>
               <h4>Propósito</h4>
-              <p>Ajudar escolas, cursos técnicos, empresas e educadores a criarem experiências de aprendizagem mais envolventes.</p>
+              <p>Ajudar escolas, cursos técnicos, professores e educadores a criarem experiências de aprendizagem mais envolventes.</p>
             </div>
           </div>
         </div>

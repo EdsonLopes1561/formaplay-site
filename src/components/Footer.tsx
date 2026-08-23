@@ -15,7 +15,7 @@ export const Footer: React.FC = () => {
         <div className={styles.column}>
           <Logo />
           <p className={styles.tagline}>
-            Atendimento para escolas, instituições, professores e empresas.
+            Atendimento para escolas, instituições e professores.
           </p>
           <div className={styles.institutionalData}>
             <p><strong><FormaPlayText /> — Jogos Educacionais</strong></p>

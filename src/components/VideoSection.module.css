@@ -33,33 +33,6 @@
   line-height: 1.6;
 }
 
-.senacBadge {
-  display: inline-block;
-  padding: 0.35rem 1rem;
-  background-color: rgba(59, 130, 246, 0.15);
-  color: #bfdbfe;
-  border: 1px solid rgba(59, 130, 246, 0.3);
-  border-radius: 9999px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  margin-bottom: 1.5rem;
-}
-
-.senacHighlight {
-  background-color: rgba(255, 255, 255, 0.05);
-  border-left: 3px solid var(--secondary);
-  padding: 1rem 1.5rem;
-  border-radius: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.senacHighlight p {
-  color: #e2e8f0;
-  font-size: 1rem;
-  margin: 0;
-  line-height: 1.5;
-}
-
 .actions {
   display: flex;
   flex-direction: column;

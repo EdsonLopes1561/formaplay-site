@@ -8,22 +8,14 @@ export const VideoSection: React.FC = () => {
       <div className="container">
         <div className={styles.grid}>
           <div className={`${styles.textContent} animate-fade-in-up`}>
-            <div className={styles.badgeWrapper}>
-              <span className={styles.senacBadge}>
-                Aprovado para a 2ª fase do Empreenda Senac
-              </span>
-            </div>
+
             <h2 className="section-title">
               Conheça o Desafio Logístico em 1 minuto
             </h2>
             <p className="section-subtitle">
               Veja como o Desafio Logístico transforma o aprendizado em uma experiência prática, estratégica e envolvente.
             </p>
-            <div className={styles.senacHighlight}>
-              <p>
-                Este vídeo foi apresentado na avaliação do Empreenda Senac, etapa em que o projeto foi aprovado para avançar à segunda fase do programa.
-              </p>
-            </div>
+
             <p className={styles.description}>
               Um jogo educacional criado para aproximar teoria e prática, estimulando planejamento, tomada de decisão, negociação e raciocínio logístico.
             </p>

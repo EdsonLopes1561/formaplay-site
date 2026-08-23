@@ -22,7 +22,7 @@ const cardsData: CardData[] = [
   {
     id: 'main',
     title: 'Desafio Logístico',
-    text: 'O jogo educacional de logística já disponível para comercialização. Planeje custos, enfrente imprevistos, tome decisões estratégicas e vença o desafio.',
+    text: 'Estratégia, planejamento e tomada de decisão aplicados à logística. Uma experiência prática em que cada escolha influencia o resultado da jornada.',
     image: '/desafio-logistico-2.png',
     badgeText: 'DISPONÍVEL PARA COMPRA',
     badgeType: 'available',
@@ -32,7 +32,7 @@ const cardsData: CardData[] = [
   {
     id: 'premium',
     title: 'Desafio Logístico Premium',
-    text: 'Versão premium em desenvolvimento, com acabamento superior, componentes diferenciados e apresentação voltada a instituições e ambientes corporativos.',
+    text: 'Em desenvolvimento. A experiência de nível avançado do Desafio Logístico, pensada para quem busca desafios intensos, com situações logísticas complexas, perguntas mais exigentes e decisões que colocam o conhecimento à prova. A proposta contará também com acabamento diferenciado.',
     image: '/desafio-premium-2.png',
     badgeText: 'EM DESENVOLVIMENTO',
     badgeType: 'development',
@@ -42,7 +42,7 @@ const cardsData: CardData[] = [
   {
     id: 'kids',
     title: 'Desafio Kids',
-    text: 'Versão infantil em desenvolvimento, com rotas, decisões e conceitos básicos de logística apresentados de forma lúdica para crianças.',
+    text: 'Em desenvolvimento. Uma jornada da casa até a escola, repleta de situações do cotidiano. Proposta pensada para unir crianças e famílias no aprendizado sobre cidadania, segurança e convivência.',
     image: '/desafio-kids-2.png',
     badgeText: 'EM DESENVOLVIMENTO',
     badgeType: 'development',
@@ -52,7 +52,7 @@ const cardsData: CardData[] = [
   {
     id: 'teacher',
     title: 'Edição do Professor',
-    text: 'Versão pedagógica em desenvolvimento, com guia, dinâmicas e materiais de apoio para aplicação do jogo em sala de aula.',
+    text: 'Em desenvolvimento. Dinâmica redesenhada para o formato coletivo. O professor atua como mediador em uma experiência de equipes, competição saudável e participação ativa da turma.',
     image: '/edicao-professor-2.png',
     badgeText: 'EM DESENVOLVIMENTO',
     badgeType: 'development',
@@ -62,7 +62,7 @@ const cardsData: CardData[] = [
   {
     id: 'class',
     title: 'Aplicação em sala',
-    text: 'Transforme aulas e treinamentos em experiências práticas e colaborativas.',
+    text: 'Transforme aulas e oficinas em experiências práticas e colaborativas.',
     Icon: Users,
   },
   {
@@ -74,7 +74,7 @@ const cardsData: CardData[] = [
   {
     id: 'budget',
     title: 'Orçamento institucional',
-    text: 'Solicite uma proposta para escolas, cursos técnicos, empresas e instituições.',
+    text: 'Solicite uma proposta para escolas, cursos técnicos e instituições de ensino.',
     Icon: Building2,
   }
 ];
@@ -141,12 +141,12 @@ export const ExperienciasFormaPlay: React.FC = () => {
       <div className={styles.backgroundOverlay}></div>
       <div className={`container ${styles.container}`}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Explore o Desafio Logístico</h2>
+          <h2 className={styles.title}>Uma marca. Diferentes formas de aprender jogando.</h2>
           <p className={styles.subtitle}>
-            Conheça o Desafio Logístico, já disponível para comercialização, e acompanhe os novos modelos que estão sendo desenvolvidos pela FormaPlay.
+            Conheça o nosso ecossistema de experiências. Cada produto possui uma proposta, dinâmica e contexto próprios para transformar a aprendizagem.
           </p>
           <p className={styles.subtitleComplement}>
-            Interessados nos modelos em desenvolvimento podem registrar seu interesse para receber novidades, participar de testes e ter acesso antecipado no lançamento.
+            Interessados nas experiências em desenvolvimento podem registrar seu interesse para acompanhar novidades e ter acesso antecipado no lançamento.
           </p>
         </div>
 

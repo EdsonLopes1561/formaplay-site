@@ -240,7 +240,7 @@ export const RegistroInteresseModal: React.FC<RegistroInteresseModalProps> = ({
                   className={styles.input}
                   value={formData.finalidade_uso}
                   onChange={handleChange}
-                  placeholder="Ex: Treinamento corporativo, aula de logística..."
+                  placeholder="Ex: Aula de logística, dinâmica escolar..."
                 />
               </div>
 
