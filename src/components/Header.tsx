@@ -13,7 +13,7 @@ export const Header: React.FC = () => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
-      const sections = ['inicio', 'jogos', 'como-funciona', 'beneficios', 'para-quem-e'];
+      const sections = ['inicio', 'jogos', 'desafio-logistico', 'para-quem-e', 'validacao', 'contato'];
       let current = 'inicio';
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -33,10 +33,11 @@ export const Header: React.FC = () => {
 
   const menuItems = [
     { label: 'Início', href: '#inicio' },
-    { label: 'Jogos', href: '#jogos' },
-    { label: 'Como Funciona', href: '#como-funciona' },
-    { label: 'Benefícios', href: '#beneficios' },
-    { label: 'Para Quem é', href: '#para-quem-e' },
+    { label: 'Experiências', href: '#jogos' },
+    { label: 'Desafio Logístico', href: '#desafio-logistico' },
+    { label: 'Para Quem', href: '#para-quem-e' },
+    { label: 'Validação', href: '#validacao' },
+    { label: 'Contato', href: '#contato' },
   ];
 
   return (
