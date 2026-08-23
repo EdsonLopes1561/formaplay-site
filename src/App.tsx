@@ -1,6 +1,7 @@
 import React from 'react';
 import { Header } from './components/Header';
 import { Hero } from './components/Hero';
+import { IndicadoresTracao } from './components/IndicadoresTracao';
 import { VideoSection } from './components/VideoSection';
 import { Sobre } from './components/Sobre';
 import { ConhecaFormaPlay } from './components/ConhecaFormaPlay';
@@ -18,6 +19,7 @@ const App: React.FC = () => {
       <Header />
       <main>
         <Hero />
+        <IndicadoresTracao />
         <Sobre />
         <ConhecaFormaPlay />
         <ExperienciasFormaPlay />

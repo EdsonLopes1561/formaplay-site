@@ -1,0 +1,137 @@
+.section {
+  background-color: var(--bg-white, #ffffff);
+  padding: 5rem 1.5rem;
+  position: relative;
+  z-index: 2;
+  border-bottom: 1px solid var(--border, #e2e8f0);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .grid {
+    gap: 1.5rem;
+  }
+}
+
+/* Mobile (2x2 as requested) */
+@media (max-width: 768px) {
+  .section {
+    padding: 3.5rem 1.25rem;
+  }
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem 1rem;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-radius: 16px;
+  background-color: var(--bg-white, #ffffff);
+  border: 1px solid var(--border, #e2e8f0);
+  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -1px rgba(15, 23, 42, 0.03);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+}
+
+/* Subtle highlight when active */
+.card.active {
+  border-color: rgba(255, 90, 0, 0.3); /* FormaPlay Orange base */
+  box-shadow: 0 10px 25px -5px rgba(255, 90, 0, 0.08), 0 8px 10px -6px rgba(255, 90, 0, 0.04);
+  transform: translateY(-4px);
+}
+
+.numberWrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+  transition: color 0.4s ease;
+}
+
+/* Fallback colors matching FormaPlay's dark blue & orange if vars aren't mapped */
+.number {
+  font-size: 3.5rem;
+  font-weight: 900;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--secondary, #0f172a);
+  transition: color 0.4s ease;
+}
+
+.suffix {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-top: 0.2rem;
+  margin-left: 0.15rem;
+  color: var(--secondary, #0f172a);
+  transition: color 0.4s ease;
+}
+
+/* Color shift to orange while active */
+.active .number, .active .suffix {
+  color: #f97316; /* Laranja discreto / FormaPlay */
+}
+
+.label {
+  color: var(--primary, #334155);
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0;
+}
+
+.descricao {
+  color: #64748b;
+  font-size: 0.875rem;
+  margin: 0.75rem 0 0 0;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .card {
+    padding: 1.5rem 1rem;
+  }
+  .number {
+    font-size: 2.5rem;
+  }
+  .suffix {
+    font-size: 1.5rem;
+  }
+  .label {
+    font-size: 0.95rem;
+  }
+  .descricao {
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+  }
+}
+
+.updateInfo {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.updateInfo p {
+  font-size: 0.75rem;
+  color: var(--text-light, #94a3b8);
+  margin: 0;
+  font-weight: 500;
+  opacity: 0.8;
+}
