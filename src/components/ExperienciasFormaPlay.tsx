@@ -83,9 +83,12 @@ export const ExperienciasFormaPlay: React.FC = () => {
   const [activeTheme, setActiveTheme] = useState<string>(cardsData[0].id);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedModel, setSelectedModel] = useState('');
+  const [hasInteracted, setHasInteracted] = useState(false);
+  const [visibleIndex, setVisibleIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
 
-  // Optional: detect center card on scroll for mobile
+  // Monitora o scroll para atualizar o tema e o dot ativo
   useEffect(() => {
     const handleScroll = () => {
       if (!scrollRef.current) return;
@@ -94,6 +97,7 @@ export const ExperienciasFormaPlay: React.FC = () => {
       const centerPosition = scrollLeft + containerWidth / 2;
 
       const cards = scrollRef.current.children;
+      let closestIndex = visibleIndex;
       let closestCardId = activeTheme;
       let minDistance = Infinity;
 
@@ -104,9 +108,14 @@ export const ExperienciasFormaPlay: React.FC = () => {
         
         if (distance < minDistance) {
           minDistance = distance;
+          closestIndex = i;
           const id = card.getAttribute('data-id');
           if (id) closestCardId = id;
         }
+      }
+
+      if (closestIndex !== visibleIndex) {
+        setVisibleIndex(closestIndex);
       }
 
       if (closestCardId !== activeTheme && minDistance < containerWidth / 3) {
@@ -117,6 +126,8 @@ export const ExperienciasFormaPlay: React.FC = () => {
     const scrollContainer = scrollRef.current;
     if (scrollContainer) {
       scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+      // Call once to set initial
+      handleScroll();
     }
 
     return () => {
@@ -124,7 +135,55 @@ export const ExperienciasFormaPlay: React.FC = () => {
         scrollContainer.removeEventListener('scroll', handleScroll);
       }
     };
-  }, [activeTheme]);
+  }, [activeTheme, visibleIndex]);
+
+  // Autoplay Logic
+  useEffect(() => {
+    // Respeita prefers-reduced-motion
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
+    // Se usuário interagiu, paramos definitivamente o autoplay para não disputar controle
+    if (hasInteracted) return;
+
+    let isSectionVisible = false;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        isSectionVisible = entries[0].isIntersecting;
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    const interval = setInterval(() => {
+      if (document.visibilityState === 'hidden' || !isSectionVisible) return;
+
+      // Carrossel horizontal só existe abaixo de 768px
+      if (window.innerWidth >= 768) return;
+
+      setVisibleIndex((prev) => {
+        // Se já viu os 4 principais produtos, recomeça do primeiro (índice 0)
+        // Isso atende à regra: Desafio -> Premium -> Kids -> Professor -> Desafio
+        const nextIndex = prev >= 3 ? 0 : prev + 1;
+
+        if (scrollRef.current) {
+          const cards = scrollRef.current.children;
+          if (cards[nextIndex]) {
+            cards[nextIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          }
+        }
+        return nextIndex;
+      });
+    }, 4500); // 4.5s por produto, tempo confortável para leitura
+
+    return () => {
+      clearInterval(interval);
+      observer.disconnect();
+    };
+  }, [hasInteracted]);
 
   const handleAction = (card: CardData, e: React.MouseEvent) => {
     e.stopPropagation();
@@ -136,8 +195,29 @@ export const ExperienciasFormaPlay: React.FC = () => {
     }
   };
 
+  const handleUserInteraction = () => {
+    setHasInteracted(true);
+  };
+
+  const scrollToCard = (index: number) => {
+    handleUserInteraction();
+    if (!scrollRef.current) return;
+    const cards = scrollRef.current.children;
+    if (cards[index]) {
+      cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  };
+
+  // Os dots representam apenas os 4 produtos principais (ou todos se preferir, mas o requisito foca nos 4)
+  // Como temos 7 cards e o autoplay gira nos 4, criaremos dots apenas para os 4 produtos (índices 0 a 3)
+  const productCards = cardsData.slice(0, 4);
+
   return (
-    <section id="jogos" className={`${styles.section} ${styles[`theme_${activeTheme}`]}`}>
+    <section
+      id="jogos"
+      ref={sectionRef}
+      className={`${styles.section} ${styles[`theme_${activeTheme}`]}`}
+    >
       <div className={styles.backgroundOverlay}></div>
       <div className={`container ${styles.container}`}>
         <div className={styles.header}>
@@ -150,14 +230,26 @@ export const ExperienciasFormaPlay: React.FC = () => {
           </p>
         </div>
 
-        <div className={styles.cardsWrapper} ref={scrollRef}>
+        <div
+          className={styles.cardsWrapper}
+          ref={scrollRef}
+          onTouchStart={handleUserInteraction}
+          onPointerDown={handleUserInteraction}
+          onWheel={handleUserInteraction}
+        >
           {cardsData.map((card) => (
             <div
               key={card.id}
               data-id={card.id}
               className={`${styles.card} ${activeTheme === card.id ? styles.active : ''}`}
-              onMouseEnter={() => setActiveTheme(card.id)}
-              onFocus={() => setActiveTheme(card.id)}
+              onMouseEnter={() => {
+                setActiveTheme(card.id);
+                handleUserInteraction();
+              }}
+              onFocus={() => {
+                setActiveTheme(card.id);
+                handleUserInteraction();
+              }}
               onClick={() => setActiveTheme(card.id)}
               tabIndex={0}
               role="button"
@@ -193,6 +285,18 @@ export const ExperienciasFormaPlay: React.FC = () => {
                 </div>
               </div>
             </div>
+          ))}
+        </div>
+
+        <div className={styles.dotsContainer} aria-hidden="true">
+          {productCards.map((card, index) => (
+            <button
+              key={`dot-${card.id}`}
+              className={`${styles.dot} ${visibleIndex === index ? styles.dotActive : ''}`}
+              onClick={() => scrollToCard(index)}
+              aria-label={`Ir para ${card.title}`}
+              title={`Ir para ${card.title}`}
+            />
           ))}
         </div>
 
