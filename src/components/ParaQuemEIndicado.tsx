@@ -27,7 +27,7 @@ export const ParaQuemEIndicado: React.FC = () => {
     {
       icon: <Building2 />,
       title: "Famílias, pais e responsáveis",
-      description: "Oportunidade para os adultos utilizarem experiências infantis, como o Desafio Kids, para conversar, orientar e aprender com as crianças."
+      description: "Com o Desafio Kids, adultos e crianças podem brincar juntos enquanto aprendem. Durante a jornada do jogo, pais e responsáveis têm a oportunidade de orientar, conversar e ensinar sobre cidadania, segurança, convivência e atitudes do dia a dia."
     }
   ];
 

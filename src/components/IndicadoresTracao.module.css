@@ -1,9 +1,9 @@
 .section {
-  background-color: var(--bg-white, #ffffff);
+  background: linear-gradient(180deg, #070e1b 0%, #0b172a 100%);
   padding: 5rem 1.5rem;
   position: relative;
   z-index: 2;
-  border-bottom: 1px solid var(--border, #e2e8f0);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .container {
@@ -40,20 +40,23 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
-  padding: 2rem 1.5rem;
-  border-radius: 16px;
-  background-color: var(--bg-white, #ffffff);
-  border: 1px solid var(--border, #e2e8f0);
-  box-shadow: 0 4px 6px -1px rgba(15, 23, 42, 0.05), 0 2px 4px -1px rgba(15, 23, 42, 0.03);
+  padding: 2.25rem 1.5rem;
+  border-radius: 18px;
+  background-color: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
 }
 
 /* Subtle highlight when active */
 .card.active {
-  border-color: rgba(255, 90, 0, 0.3); /* FormaPlay Orange base */
-  box-shadow: 0 10px 25px -5px rgba(255, 90, 0, 0.08), 0 8px 10px -6px rgba(255, 90, 0, 0.04);
+  border-color: rgba(249, 115, 22, 0.5); /* FormaPlay Orange base */
+  box-shadow: 0 12px 30px -5px rgba(249, 115, 22, 0.18), 0 0 20px rgba(249, 115, 22, 0.1);
   transform: translateY(-4px);
+  background-color: rgba(26, 37, 60, 0.85);
 }
 
 .numberWrapper {
@@ -64,13 +67,12 @@
   transition: color 0.4s ease;
 }
 
-/* Fallback colors matching FormaPlay's dark blue & orange if vars aren't mapped */
 .number {
   font-size: 3.5rem;
   font-weight: 900;
   line-height: 1;
   font-variant-numeric: tabular-nums;
-  color: var(--secondary, #0f172a);
+  color: #f97316; /* Laranja FormaPlay permanente */
   transition: color 0.4s ease;
 }
 
@@ -79,17 +81,12 @@
   font-weight: 800;
   margin-top: 0.2rem;
   margin-left: 0.15rem;
-  color: var(--secondary, #0f172a);
+  color: #f97316;
   transition: color 0.4s ease;
 }
 
-/* Color shift to orange while active */
-.active .number, .active .suffix {
-  color: #f97316; /* Laranja discreto / FormaPlay */
-}
-
 .label {
-  color: var(--primary, #334155);
+  color: #f8fafc;
   font-size: 1.125rem;
   font-weight: 700;
   line-height: 1.35;
@@ -97,7 +94,7 @@
 }
 
 .descricao {
-  color: #64748b;
+  color: #94a3b8;
   font-size: 0.875rem;
   margin: 0.75rem 0 0 0;
   line-height: 1.4;
@@ -129,9 +126,9 @@
 }
 
 .updateInfo p {
-  font-size: 0.75rem;
-  color: var(--text-light, #94a3b8);
+  font-size: 0.8rem;
+  color: #94a3b8;
   margin: 0;
   font-weight: 500;
-  opacity: 0.8;
+  opacity: 0.9;
 }

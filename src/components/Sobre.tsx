@@ -22,7 +22,7 @@ export const Sobre: React.FC = () => {
           </div>
           
           <div className={`${styles.cardsGrid} animate-fade-in-up`} style={{ animationDelay: '0.2s' }}>
-            <div className={`${styles.card} glass`}>
+            <div className={styles.card}>
               <div className={styles.iconWrapper}>
                 <Lightbulb className={styles.icon} />
               </div>
@@ -30,7 +30,7 @@ export const Sobre: React.FC = () => {
               <p>Transformar conceitos em experiências.</p>
             </div>
             
-            <div className={`${styles.card} glass`}>
+            <div className={styles.card}>
               <div className={styles.iconWrapper}>
                 <Target className={styles.icon} />
               </div>
@@ -38,7 +38,7 @@ export const Sobre: React.FC = () => {
               <p>Estimular estratégia, colaboração e tomada de decisão.</p>
             </div>
             
-            <div className={`${styles.card} glass`}>
+            <div className={styles.card}>
               <div className={styles.iconWrapper}>
                 <Users className={styles.icon} />
               </div>
