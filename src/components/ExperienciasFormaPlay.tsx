@@ -137,6 +137,29 @@ export const ExperienciasFormaPlay: React.FC = () => {
     };
   }, [activeTheme, visibleIndex]);
 
+  // Sincroniza navegação via hash (#desafio-kids)
+  useEffect(() => {
+    const handleHashCheck = () => {
+      if (window.location.hash === '#desafio-kids') {
+        setActiveTheme('kids');
+        setHasInteracted(true);
+        const kidsIndex = cardsData.findIndex((c) => c.id === 'kids');
+        if (kidsIndex !== -1 && scrollRef.current) {
+          const cards = scrollRef.current.children;
+          if (cards[kidsIndex]) {
+            cards[kidsIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+          }
+        }
+      }
+    };
+
+    handleHashCheck();
+    window.addEventListener('hashchange', handleHashCheck);
+    return () => {
+      window.removeEventListener('hashchange', handleHashCheck);
+    };
+  }, []);
+
   // Autoplay Logic
   useEffect(() => {
     // Respeita prefers-reduced-motion
@@ -243,6 +266,7 @@ export const ExperienciasFormaPlay: React.FC = () => {
           {cardsData.map((card) => (
             <div
               key={card.id}
+              id={card.id === 'kids' ? 'desafio-kids' : undefined}
               data-id={card.id}
               className={`${styles.card} ${
                 card.image ? styles.productCard : styles.infoCard
