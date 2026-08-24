@@ -115,6 +115,69 @@
   outline: none;
 }
 
+.productCard {
+  --accent-rgb: 56, 189, 248;
+  --surface-rgb: 5, 24, 43;
+  --identity-opacity: 0;
+  --card-lift: 0px;
+  --image-scale: 1;
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  --image-background: rgba(2, 6, 23, 0.6);
+  --image-border: rgba(255, 255, 255, 0.05);
+  --button-background: rgba(255, 255, 255, 0.03);
+  --button-border: rgba(255, 255, 255, 0.3);
+  --button-color: #ffffff;
+  --active-button-background: rgba(var(--accent-rgb), 0.14);
+  --active-button-color: rgb(var(--accent-rgb));
+
+  transform: translateY(var(--card-lift));
+  border-color: var(--card-border);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+  transition:
+    transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+    background-color 0.4s ease,
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
+}
+
+.productCard[data-id='main'] {
+  --accent-rgb: 34, 197, 94;
+  --surface-rgb: 2, 40, 28;
+  --active-button-background: #159447;
+  --active-button-color: #ffffff;
+}
+
+.productCard[data-id='premium'] {
+  --accent-rgb: 245, 184, 36;
+  --surface-rgb: 12, 11, 7;
+}
+
+.productCard[data-id='kids'] {
+  --accent-rgb: 14, 165, 233;
+  --surface-rgb: 3, 35, 64;
+}
+
+.productCard[data-id='teacher'] {
+  --accent-rgb: 139, 92, 246;
+  --surface-rgb: 25, 19, 48;
+}
+
+.productCard::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background:
+    radial-gradient(circle at 50% 14%, rgba(var(--accent-rgb), 0.22) 0%, transparent 45%),
+    linear-gradient(160deg, rgba(var(--surface-rgb), 0.96) 0%, rgba(4, 10, 20, 0.97) 100%);
+  opacity: var(--identity-opacity);
+  pointer-events: none;
+  transition: opacity 0.45s ease;
+}
+
 .cardContent {
   position: relative;
   z-index: 2;
@@ -129,7 +192,8 @@
   overflow: hidden;
   position: relative;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-  background-color: rgba(2, 6, 23, 0.6);
+  border-color: var(--image-border, rgba(255, 255, 255, 0.05));
+  background-color: var(--image-background, rgba(2, 6, 23, 0.6));
   display: flex;
   align-items: center;
   justify-content: center;
@@ -141,11 +205,8 @@
   object-fit: contain;
   object-position: center;
   padding: 0.5rem;
+  transform: scale(var(--image-scale, 1));
   transition: transform 0.5s ease;
-}
-
-.card:hover .cardImage, .card:focus .cardImage, .card.active .cardImage {
-  transform: scale(1.05);
 }
 
 .iconContainer {
@@ -184,20 +245,45 @@
 }
 
 /* Hover and Active states */
-.card:hover, .card:focus, .card.active {
+.infoCard:hover, .infoCard:focus, .infoCard.active {
   transform: translateY(-8px);
   background-color: rgba(30, 41, 59, 0.9);
   border-color: rgba(56, 189, 248, 0.5); /* Borda neon azul suave */
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(56, 189, 248, 0.15);
 }
 
-.card.active {
+.infoCard.active {
   border-color: rgba(56, 189, 248, 0.8);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 25px rgba(56, 189, 248, 0.25);
 }
 
+@media (max-width: 767px) {
+  .productCard.active {
+    --identity-opacity: 1;
+    --card-lift: -8px;
+    --image-scale: 1.05;
+    --card-border: rgba(var(--accent-rgb), 0.72);
+    --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.42), 0 0 24px rgba(var(--accent-rgb), 0.22);
+    --image-background: rgba(var(--surface-rgb), 0.9);
+    --image-border: rgba(var(--accent-rgb), 0.28);
+    --button-background: var(--active-button-background);
+    --button-border: rgba(var(--accent-rgb), 0.88);
+    --button-color: var(--active-button-color);
+  }
+}
+
 /* Desktop layout */
 @media (min-width: 768px) {
+  .section.theme_main,
+  .section.theme_premium,
+  .section.theme_kids,
+  .section.theme_teacher,
+  .section.theme_class,
+  .section.theme_components,
+  .section.theme_budget {
+    background-color: #0b192c;
+  }
+
   .title {
     font-size: 3rem;
   }
@@ -214,6 +300,19 @@
   .card {
     flex: 0 0 calc(33.333% - 1.35rem);
     max-width: none;
+  }
+
+  .productCard:is(:hover, :focus-visible, :focus-within) {
+    --identity-opacity: 1;
+    --card-lift: -8px;
+    --image-scale: 1.05;
+    --card-border: rgba(var(--accent-rgb), 0.72);
+    --card-shadow: 0 20px 40px rgba(0, 0, 0, 0.42), 0 0 24px rgba(var(--accent-rgb), 0.22);
+    --image-background: rgba(var(--surface-rgb), 0.9);
+    --image-border: rgba(var(--accent-rgb), 0.28);
+    --button-background: var(--active-button-background);
+    --button-border: rgba(var(--accent-rgb), 0.88);
+    --button-color: var(--active-button-color);
   }
 }
 
@@ -290,25 +389,26 @@
   font-weight: 600;
   font-size: 0.95rem;
   cursor: pointer;
-  transition: all 0.2s;
-  background-color: #00A2FF;
-  color: #ffffff;
-  border: none;
+  transition: background-color 0.25s ease, border-color 0.25s ease, color 0.25s ease, filter 0.2s ease, transform 0.2s ease;
+  background-color: var(--button-background, #00A2FF);
+  color: var(--button-color, #ffffff);
+  border: 1px solid var(--button-border, transparent);
 }
 
 .cardButton:hover {
-  background-color: #0081cc;
+  filter: brightness(1.15);
+  transform: translateY(-1px);
 }
 
 .cardButtonOutline {
-  background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: #ffffff;
+  background-color: var(--button-background, transparent);
+  border-color: var(--button-border, rgba(255, 255, 255, 0.3));
+  color: var(--button-color, #ffffff);
 }
 
 .cardButtonOutline:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: #ffffff;
+  background-color: var(--button-background, rgba(255, 255, 255, 0.1));
+  border-color: var(--button-border, #ffffff);
 }
 
 /* Dots navigation (Mobile/Tablet only) */
@@ -348,5 +448,29 @@
 @media (min-width: 768px) {
   .dotsContainer {
     display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .section,
+  .productCard,
+  .productCard::before,
+  .cardImage,
+  .cardButton,
+  .dot {
+    transition: none;
+  }
+
+  .productCard,
+  .infoCard:hover,
+  .infoCard:focus,
+  .infoCard.active,
+  .cardButton:hover {
+    transform: none;
+  }
+
+  .productCard {
+    --card-lift: 0px;
+    --image-scale: 1;
   }
 }

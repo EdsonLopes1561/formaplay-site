@@ -204,7 +204,10 @@ export const ExperienciasFormaPlay: React.FC = () => {
     if (!scrollRef.current) return;
     const cards = scrollRef.current.children;
     if (cards[index]) {
-      cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+        ? 'auto'
+        : 'smooth';
+      cards[index].scrollIntoView({ behavior, block: 'nearest', inline: 'center' });
     }
   };
 
@@ -241,7 +244,11 @@ export const ExperienciasFormaPlay: React.FC = () => {
             <div
               key={card.id}
               data-id={card.id}
-              className={`${styles.card} ${activeTheme === card.id ? styles.active : ''}`}
+              className={`${styles.card} ${
+                card.image ? styles.productCard : styles.infoCard
+              } ${
+                activeTheme === card.id ? styles.active : ''
+              }`}
               onMouseEnter={() => {
                 setActiveTheme(card.id);
                 handleUserInteraction();
