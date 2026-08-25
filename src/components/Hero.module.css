@@ -123,8 +123,8 @@
 
 .productStatus {
   display: inline-block;
-  background-color: var(--secondary);
-  color: var(--primary);
+  background-color: #15803d;
+  color: #ffffff;
   font-size: 0.75rem;
   font-weight: 700;
   text-transform: uppercase;
