@@ -24,6 +24,7 @@ export const PresencaValidacao: React.FC = () => {
   const [hasStarted, setHasStarted] = useState(false);
   const [hasFinished, setHasFinished] = useState(false);
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [isTerritoryActive, setIsTerritoryActive] = useState(false);
   const [isMapModalOpen, setIsMapModalOpen] = useState(false);
 
   // Animated counters state
@@ -130,6 +131,7 @@ export const PresencaValidacao: React.FC = () => {
     const animateTerritory = () => {
       let tStart: number | null = null;
       const tDuration = 600;
+      setIsTerritoryActive(true);
 
       const stepTerritory = (tTimestamp: number) => {
         if (!tStart) tStart = tTimestamp;
@@ -143,6 +145,7 @@ export const PresencaValidacao: React.FC = () => {
           animationFrameId = requestAnimationFrame(stepTerritory);
         } else {
           setCidadesAnimated(targetCidades);
+          setIsTerritoryActive(false);
           setHasFinished(true);
         }
       };
@@ -291,8 +294,12 @@ export const PresencaValidacao: React.FC = () => {
               </button>
             </div>
 
-            {/* Card Territorial da Esquerda com Número Animado */}
-            <div className={styles.territoryCard}>
+            {/* Card Territorial da Esquerda com Número Animado e Destaque */}
+            <div
+              className={`${styles.territoryCard} ${
+                isTerritoryActive ? styles.territoryCardActive : ''
+              }`}
+            >
               <div className={styles.pinIconCircle}>
                 <MapPin size={22} />
               </div>
