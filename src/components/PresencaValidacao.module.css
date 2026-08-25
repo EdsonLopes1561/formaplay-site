@@ -1,0 +1,384 @@
+.section {
+  position: relative;
+  background: radial-gradient(circle at 50% 30%, #0c182c 0%, #070d18 100%);
+  padding: 5rem 0 6rem 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.container {
+  position: relative;
+  z-index: 2;
+}
+
+/* 3-Column Desktop Layout */
+.mainGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+@media (min-width: 1024px) {
+  .mainGrid {
+    grid-template-columns: 310px 1fr 320px;
+    gap: 2rem;
+    align-items: center;
+  }
+}
+
+@media (min-width: 1280px) {
+  .mainGrid {
+    grid-template-columns: 340px 1fr 340px;
+    gap: 3rem;
+  }
+}
+
+/* Left Column */
+.leftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #22c55e;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.title {
+  font-size: clamp(2.2rem, 1.8rem + 1.6vw, 3.1rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.12;
+  margin: 0;
+  text-wrap: balance;
+}
+
+.highlightGreen {
+  color: #22c55e;
+}
+
+.description {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* Legend Grid (2x2) */
+.legendGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.legendPill {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: #cbd5e1;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  background: transparent;
+  border: none;
+  padding: 0;
+  text-align: left;
+}
+
+.legendPill:hover {
+  opacity: 0.85;
+  transform: translateX(2px);
+}
+
+.legendPillActive {
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.dotGreen {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.6);
+  flex-shrink: 0;
+}
+
+.dotOrange {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #f97316;
+  box-shadow: 0 0 8px rgba(249, 115, 22, 0.6);
+  flex-shrink: 0;
+}
+
+.dotBlue {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #3b82f6;
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.6);
+  flex-shrink: 0;
+}
+
+.dotPurple {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #a855f7;
+  box-shadow: 0 0 8px rgba(168, 85, 247, 0.6);
+  flex-shrink: 0;
+}
+
+/* Territorial Card on Left */
+.territoryCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 1rem 1.25rem;
+  margin-top: 0.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.pinIconCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(34, 197, 94, 0.12);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #22c55e;
+  flex-shrink: 0;
+}
+
+.territoryTexts {
+  display: flex;
+  flex-direction: column;
+}
+
+.territoryLabel {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  font-weight: 500;
+}
+
+.territoryValue {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #22c55e;
+  line-height: 1.2;
+}
+
+.territorySub {
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+/* Center Column (Map) */
+.centerCol {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+/* Right Column (Nossos Números) */
+.rightCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.875rem;
+}
+
+.rightHeader {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.metricCard {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  border-radius: 0.875rem;
+  padding: 1rem 1.15rem;
+  transition: transform 0.25s ease, border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.metricCard:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(20, 30, 50, 0.8);
+}
+
+/* Sequential Active Card Highlight States */
+.cardActiveVendas {
+  border-color: rgba(34, 197, 94, 0.6) !important;
+  background: rgba(34, 197, 94, 0.08) !important;
+  box-shadow: 0 0 20px rgba(34, 197, 94, 0.18), 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  transform: translateY(-2px);
+}
+
+.cardActiveOrcamentos {
+  border-color: rgba(249, 115, 22, 0.6) !important;
+  background: rgba(249, 115, 22, 0.08) !important;
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.18), 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  transform: translateY(-2px);
+}
+
+.cardActiveSolicitacoes {
+  border-color: rgba(59, 130, 246, 0.6) !important;
+  background: rgba(59, 130, 246, 0.08) !important;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.18), 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  transform: translateY(-2px);
+}
+
+.cardActiveInteresses {
+  border-color: rgba(168, 85, 247, 0.6) !important;
+  background: rgba(168, 85, 247, 0.08) !important;
+  box-shadow: 0 0 20px rgba(168, 85, 247, 0.18), 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+  transform: translateY(-2px);
+}
+
+.metricIconCircle {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.iconVendas {
+  background: rgba(34, 197, 94, 0.12);
+  color: #22c55e;
+  border: 1px solid rgba(34, 197, 94, 0.25);
+}
+
+.iconOrcamentos {
+  background: rgba(249, 115, 22, 0.12);
+  color: #f97316;
+  border: 1px solid rgba(249, 115, 22, 0.25);
+}
+
+.iconSolicitacoes {
+  background: rgba(59, 130, 246, 0.12);
+  color: #3b82f6;
+  border: 1px solid rgba(59, 130, 246, 0.25);
+}
+
+.iconInteresses {
+  background: rgba(168, 85, 247, 0.12);
+  color: #a855f7;
+  border: 1px solid rgba(168, 85, 247, 0.25);
+}
+
+.metricTexts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.metricNumber {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.numVendas { color: #22c55e; }
+.numOrcamentos { color: #f97316; }
+.numSolicitacoes { color: #3b82f6; }
+.numInteresses { color: #a855f7; }
+
+.metricTitle {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.metricDesc {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  line-height: 1.3;
+  margin: 0;
+}
+
+.updatedFooter {
+  font-size: 0.75rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+  text-align: right;
+}
+
+/* Tablet Layout */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .mainGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .centerCol {
+    grid-column: 1 / -1;
+    order: 3;
+  }
+
+  .rightCol {
+    order: 2;
+  }
+
+  .leftCol {
+    order: 1;
+  }
+}
+
+/* Mobile Layout */
+@media (max-width: 767px) {
+  .section {
+    padding: 3.5rem 0 4rem 0;
+  }
+
+  .mainGrid {
+    gap: 2rem;
+  }
+
+  .legendGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+  }
+
+  .rightCol {
+    gap: 0.75rem;
+  }
+
+  .updatedFooter {
+    text-align: center;
+  }
+}

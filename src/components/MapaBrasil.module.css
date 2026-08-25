@@ -1,0 +1,338 @@
+.mapWrapper {
+  position: relative;
+  width: 100%;
+  height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  overflow: visible;
+}
+
+.mapWrapper.isModal {
+  height: 100%;
+  max-height: 100%;
+}
+
+.mapAmbientGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  max-width: 500px;
+  max-height: 500px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.12) 0%, rgba(6, 78, 59, 0.08) 45%, transparent 70%);
+  filter: blur(60px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.mapSvg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: grab;
+  position: relative;
+  z-index: 1;
+}
+
+.mapSvg:active {
+  cursor: grabbing;
+}
+
+/* Brazil States Geometry */
+.statePath {
+  fill: #0c3124;
+  stroke: #17543e;
+  stroke-width: 0.65;
+  vector-effect: non-scaling-stroke;
+  transition: fill 0.25s ease, stroke 0.25s ease;
+}
+
+.statePath:hover {
+  fill: #134533;
+  stroke: #22c55e;
+  stroke-width: 1;
+}
+
+.statePathActive {
+  fill: #0f3d2d;
+  stroke: #22c55e;
+  stroke-width: 0.85;
+}
+
+/* State Labels */
+.stateLabel {
+  fill: rgba(167, 243, 208, 0.45);
+  font-size: 10px;
+  font-weight: 700;
+  text-anchor: middle;
+  dominant-baseline: central;
+  pointer-events: none;
+  letter-spacing: 0.05em;
+  font-family: inherit;
+}
+
+/* Marker Styles */
+.markerGroup {
+  cursor: pointer;
+}
+
+.markerOuterHalo {
+  animation: markerPulse 3s infinite ease-in-out;
+  pointer-events: none;
+}
+
+.markerConcentricRing {
+  fill: none;
+  stroke-width: 1;
+  stroke-opacity: 0.6;
+}
+
+.markerCore {
+  stroke: #ffffff;
+  stroke-width: 1.5;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.2s ease;
+  vector-effect: non-scaling-stroke;
+}
+
+.markerGroup:hover .markerCore,
+.markerActive .markerCore {
+  transform: scale(1.35);
+  stroke: #ffffff;
+  stroke-width: 2;
+  filter: drop-shadow(0 0 8px currentColor);
+}
+
+@keyframes markerPulse {
+  0%, 100% {
+    r: 10;
+    opacity: 0.35;
+  }
+  50% {
+    r: 16;
+    opacity: 0.1;
+  }
+}
+
+/* Zoom Controls Pill */
+.zoomControls {
+  position: absolute;
+  top: 30%;
+  left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  background: rgba(10, 20, 35, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  z-index: 10;
+}
+
+.zoomBtn {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #e2e8f0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.zoomBtn:hover {
+  background: rgba(30, 41, 59, 0.8);
+  color: #38bdf8;
+}
+
+.zoomDivider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  width: 100%;
+}
+
+/* Handwritten / Playful Hint with Arrow */
+.interactiveHint {
+  position: absolute;
+  right: 0.5rem;
+  top: 48%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  pointer-events: none;
+  z-index: 5;
+  animation: fadeInHint 1s ease-out;
+}
+
+.hintText {
+  color: #34d399;
+  font-size: 0.825rem;
+  font-weight: 600;
+  line-height: 1.25;
+  text-align: right;
+  text-shadow: 0 0 10px rgba(52, 211, 153, 0.4);
+  font-family: 'Caveat', 'Segoe Print', 'Comic Sans MS', cursive, sans-serif;
+  max-width: 110px;
+}
+
+.hintArrowSvg {
+  width: 40px;
+  height: 35px;
+  stroke: #34d399;
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  margin-top: 2px;
+  margin-right: 20px;
+  transform: rotate(-10deg);
+}
+
+@keyframes fadeInHint {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Bottom Action Button */
+.expandMapBtn {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  background: rgba(10, 20, 35, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #e2e8f0;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.4rem 0.75rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+  z-index: 10;
+}
+
+.expandMapBtn:hover {
+  background: rgba(30, 41, 59, 0.95);
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+/* Tooltip Card */
+.tooltip {
+  position: absolute;
+  z-index: 30;
+  background: rgba(8, 15, 28, 0.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  border-radius: 0.75rem;
+  padding: 0.875rem 1rem;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7), 0 0 25px rgba(56, 189, 248, 0.15);
+  min-width: 210px;
+  pointer-events: none;
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.tooltipHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.tooltipCity {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.tooltipState {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.12);
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+.tooltipTotalRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.tooltipTotalLabel {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+
+.tooltipTotalVal {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: #22c55e;
+}
+
+.tooltipList {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.tooltipItem {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+
+.itemVendas { color: #22c55e; }
+.itemOrcamentos { color: #f97316; }
+.itemSolicitacoes { color: #3b82f6; }
+.itemInteresses { color: #a855f7; }
+
+@media (max-width: 767px) {
+  .mapWrapper {
+    height: 420px;
+  }
+
+  .interactiveHint {
+    display: none;
+  }
+
+  .zoomControls {
+    top: 15%;
+    left: 0.25rem;
+  }
+
+  .zoomBtn {
+    width: 28px;
+    height: 28px;
+  }
+
+  .expandMapBtn {
+    bottom: 0.25rem;
+    right: 0.25rem;
+    font-size: 0.7rem;
+    padding: 0.35rem 0.6rem;
+  }
+}
