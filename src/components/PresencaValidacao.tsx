@@ -101,14 +101,13 @@ export const PresencaValidacao: React.FC = () => {
         if (progress < 1) {
           animationFrameId = requestAnimationFrame(animateCard);
         } else {
-          // Snap final exact value for this card
           setMetricCounts((prev) => {
             const next = [...prev];
             next[idx] = target;
             return next;
           });
 
-          setActiveIndex(null); // Turn off highlight during pause
+          setActiveIndex(null);
           currentIndex++;
 
           if (currentIndex < targetMetrics.length) {
@@ -118,7 +117,6 @@ export const PresencaValidacao: React.FC = () => {
               animationFrameId = requestAnimationFrame(animateCard);
             }, pauseBetweenCardsMs);
           } else {
-            // Animate territory card after the 4 main metrics
             timeoutId = window.setTimeout(() => {
               startTime = null;
               animateTerritory();
@@ -223,7 +221,7 @@ export const PresencaValidacao: React.FC = () => {
   };
 
   return (
-    <section id="validacao" ref={sectionRef} className={styles.section}>
+    <section id="validacao" ref={sectionRef} className={styles.section} aria-label="Presença e validação nacional FormaPlay">
       <div className={`container ${styles.container}`}>
         <div className={styles.mainGrid}>
           {/* Coluna Esquerda: Identificação, Título, Descrição e Legenda */}
@@ -240,12 +238,13 @@ export const PresencaValidacao: React.FC = () => {
 
             <p className={styles.description}>
               O Desafio Logístico já chegou a diferentes cidades do Brasil, impactando alunos,
-              professores e instituições por meio do aprendizado prático e da diversão.
+              professores e instituições por meio do aprendizado prático e da inovação pedagógica.
             </p>
 
             {/* Legenda de Categorias (Interativa) */}
             <div className={styles.legendGrid}>
               <button
+                type="button"
                 className={`${styles.legendPill} ${
                   activeMetric === 'vendas' ? styles.legendPillActive : ''
                 }`}
@@ -258,6 +257,7 @@ export const PresencaValidacao: React.FC = () => {
               </button>
 
               <button
+                type="button"
                 className={`${styles.legendPill} ${
                   activeMetric === 'orcamentos' ? styles.legendPillActive : ''
                 }`}
@@ -270,6 +270,7 @@ export const PresencaValidacao: React.FC = () => {
               </button>
 
               <button
+                type="button"
                 className={`${styles.legendPill} ${
                   activeMetric === 'solicitacoes' ? styles.legendPillActive : ''
                 }`}
@@ -282,6 +283,7 @@ export const PresencaValidacao: React.FC = () => {
               </button>
 
               <button
+                type="button"
                 className={`${styles.legendPill} ${
                   activeMetric === 'interesses' ? styles.legendPillActive : ''
                 }`}
@@ -299,13 +301,16 @@ export const PresencaValidacao: React.FC = () => {
               className={`${styles.territoryCard} ${
                 isTerritoryActive ? styles.territoryCardActive : ''
               }`}
+              data-cidades={totalCidadesAtuacao}
             >
               <div className={styles.pinIconCircle}>
                 <MapPin size={22} />
               </div>
               <div className={styles.territoryTexts}>
                 <span className={styles.territoryLabel}>Atuação em</span>
-                <span className={styles.territoryValue}>{cidadesAnimated} cidades</span>
+                <data value={totalCidadesAtuacao} className={styles.territoryValue}>
+                  {cidadesAnimated} cidades
+                </data>
                 <span className={styles.territorySub}>em diferentes estados</span>
               </div>
             </div>
@@ -325,26 +330,31 @@ export const PresencaValidacao: React.FC = () => {
           <div className={styles.rightCol}>
             <div className={styles.rightHeader}>NOSSOS NÚMEROS</div>
 
-            {indicadoresPresencaReal.map((item, index) => (
-              <div
-                key={item.id}
-                className={`${styles.metricCard} ${getActiveClass(index, item.tipo)}`}
-              >
-                <div className={`${styles.metricIconCircle} ${getIconClass(item.tipo)}`}>
-                  {getMetricIcon(item.tipo)}
+            {indicadoresPresencaReal.map((item, index) => {
+              return (
+                <div
+                  key={item.id}
+                  className={`${styles.metricCard} ${getActiveClass(index, item.tipo)}`}
+                  data-metric={item.tipo}
+                  data-value={item.valor}
+                  data-suffix={item.sufixo}
+                >
+                  <div className={`${styles.metricIconCircle} ${getIconClass(item.tipo)}`}>
+                    {getMetricIcon(item.tipo)}
+                  </div>
+                  <div className={styles.metricTexts}>
+                    <data value={item.valor} className={`${styles.metricNumber} ${getNumClass(item.tipo)}`}>
+                      {metricCounts[index]}
+                      {metricCounts[index] === item.valor ? item.sufixo : ''}
+                    </data>
+                    <span className={styles.metricTitle}>{item.titulo}</span>
+                    <p className={styles.metricDesc}>{item.descricao}</p>
+                  </div>
                 </div>
-                <div className={styles.metricTexts}>
-                  <span className={`${styles.metricNumber} ${getNumClass(item.tipo)}`}>
-                    {metricCounts[index]}
-                    {metricCounts[index] === item.valor ? item.sufixo : ''}
-                  </span>
-                  <span className={styles.metricTitle}>{item.titulo}</span>
-                  <p className={styles.metricDesc}>{item.descricao}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
 
-            <div className={styles.updatedFooter}>Dados atualizados em 24/08/2026</div>
+            <div className={styles.updatedFooter}>Dados consolidados da operação FormaPlay</div>
           </div>
         </div>
       </div>

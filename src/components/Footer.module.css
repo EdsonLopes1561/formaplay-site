@@ -17,10 +17,16 @@
   gap: 1.5rem;
 }
 
+.logoLinkFooter {
+  display: inline-block;
+  text-decoration: none;
+}
+
 .tagline {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 1.125rem;
-  max-width: 300px;
+  font-size: 0.95rem;
+  max-width: 320px;
+  line-height: 1.5;
 }
 
 .institutionalData {

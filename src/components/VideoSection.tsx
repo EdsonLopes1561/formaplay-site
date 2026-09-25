@@ -35,7 +35,8 @@ export const VideoSection: React.FC = () => {
             <iframe 
               className={styles.iframe}
               src="https://www.youtube.com/embed/fs2an3x7TXs" 
-              title="Apresentação Desafio Logístico FormaPlay" 
+              title="Apresentação do jogo Desafio Logístico FormaPlay" 
+              loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowFullScreen>
             </iframe>

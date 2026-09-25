@@ -1,35 +1,23 @@
 import React from 'react';
-import { Header } from './components/Header';
-import { Hero } from './components/Hero';
-import { VideoSection } from './components/VideoSection';
-import { Sobre } from './components/Sobre';
-import { ExperienciasFormaPlay } from './components/ExperienciasFormaPlay';
-import { Destaque } from './components/Destaque';
-import { ParaQuemEIndicado } from './components/ParaQuemEIndicado';
-import { PresencaValidacao } from './components/PresencaValidacao';
-import { ProvaSocial } from './components/ProvaSocial';
-import { ChamadaFinal } from './components/ChamadaFinal';
-import { Footer } from './components/Footer';
-import { WhatsappFloat } from './components/WhatsappFloat';
+import { RouterProvider, useRouter } from './router/RouterContext';
+import { HomePage } from './pages/HomePage';
+import { DesafioLogisticoPage } from './pages/DesafioLogisticoPage';
+
+const AppRoutes: React.FC = () => {
+  const { currentPath } = useRouter();
+
+  if (currentPath === '/desafio-logistico') {
+    return <DesafioLogisticoPage />;
+  }
+
+  return <HomePage />;
+};
 
 const App: React.FC = () => {
   return (
-    <>
-      <Header />
-      <main>
-        <Hero />
-        <Sobre />
-        <ExperienciasFormaPlay />
-        <Destaque />
-        <ParaQuemEIndicado />
-        <PresencaValidacao />
-        <ProvaSocial />
-        <VideoSection />
-        <ChamadaFinal />
-      </main>
-      <WhatsappFloat />
-      <Footer />
-    </>
+    <RouterProvider>
+      <AppRoutes />
+    </RouterProvider>
   );
 };
 

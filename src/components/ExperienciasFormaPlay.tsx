@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from './ExperienciasFormaPlay.module.css';
-
-import { Users, Package, Building2 } from 'lucide-react';
+import { Users, Package, Building2, ArrowRight } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { RegistroInteresseModal } from './RegistroInteresseModal';
-
+import { Link } from '../router/RouterContext';
 
 interface CardData {
   id: string;
@@ -16,6 +15,7 @@ interface CardData {
   badgeType?: 'available' | 'development';
   actionType?: 'orcamento' | 'interesse';
   buttonText?: string;
+  productUrl?: string;
 }
 
 const cardsData: CardData[] = [
@@ -28,6 +28,7 @@ const cardsData: CardData[] = [
     badgeType: 'available',
     actionType: 'orcamento',
     buttonText: 'Solicitar orçamento',
+    productUrl: '/desafio-logistico',
   },
   {
     id: 'premium',
@@ -126,7 +127,6 @@ export const ExperienciasFormaPlay: React.FC = () => {
     const scrollContainer = scrollRef.current;
     if (scrollContainer) {
       scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
-      // Call once to set initial
       handleScroll();
     }
 
@@ -162,11 +162,8 @@ export const ExperienciasFormaPlay: React.FC = () => {
 
   // Autoplay Logic
   useEffect(() => {
-    // Respeita prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
-
-    // Se usuário interagiu, paramos definitivamente o autoplay para não disputar controle
     if (hasInteracted) return;
 
     let isSectionVisible = false;
@@ -183,15 +180,10 @@ export const ExperienciasFormaPlay: React.FC = () => {
 
     const interval = setInterval(() => {
       if (document.visibilityState === 'hidden' || !isSectionVisible) return;
-
-      // Carrossel horizontal só existe abaixo de 768px
       if (window.innerWidth >= 768) return;
 
       setVisibleIndex((prev) => {
-        // Se já viu os 4 principais produtos, recomeça do primeiro (índice 0)
-        // Isso atende à regra: Desafio -> Premium -> Kids -> Professor -> Desafio
         const nextIndex = prev >= 3 ? 0 : prev + 1;
-
         if (scrollRef.current) {
           const cards = scrollRef.current.children;
           if (cards[nextIndex]) {
@@ -200,7 +192,7 @@ export const ExperienciasFormaPlay: React.FC = () => {
         }
         return nextIndex;
       });
-    }, 4500); // 4.5s por produto, tempo confortável para leitura
+    }, 4500);
 
     return () => {
       clearInterval(interval);
@@ -234,8 +226,6 @@ export const ExperienciasFormaPlay: React.FC = () => {
     }
   };
 
-  // Os dots representam apenas os 4 produtos principais (ou todos se preferir, mas o requisito foca nos 4)
-  // Como temos 7 cards e o autoplay gira nos 4, criaremos dots apenas para os 4 produtos (índices 0 a 3)
   const productCards = cardsData.slice(0, 4);
 
   return (
@@ -243,6 +233,7 @@ export const ExperienciasFormaPlay: React.FC = () => {
       id="jogos"
       ref={sectionRef}
       className={`${styles.section} ${styles[`theme_${activeTheme}`]}`}
+      aria-label="Linha de experiências FormaPlay"
     >
       <div className={styles.backgroundOverlay}></div>
       <div className={`container ${styles.container}`}>
@@ -293,7 +284,7 @@ export const ExperienciasFormaPlay: React.FC = () => {
                         {card.badgeText}
                       </span>
                     )}
-                    <img src={card.image} alt={card.title} className={styles.cardImage} />
+                    <img src={card.image} alt={card.title} className={styles.cardImage} loading="lazy" />
                   </div>
                 )}
                 {card.Icon && (
@@ -305,14 +296,25 @@ export const ExperienciasFormaPlay: React.FC = () => {
                   <h3 className={styles.cardTitle}>{card.title}</h3>
                   <p className={styles.cardText}>{card.text}</p>
                   
-                  {card.buttonText && (
-                    <button 
-                      className={`${styles.cardButton} ${card.actionType === 'interesse' ? styles.cardButtonOutline : ''}`}
-                      onClick={(e) => handleAction(card, e)}
-                    >
-                      {card.buttonText}
-                    </button>
-                  )}
+                  <div className={styles.buttonGroup}>
+                    {card.productUrl && (
+                      <Link 
+                        href={card.productUrl} 
+                        className={styles.cardLinkProduct}
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        Conhecer o jogo <ArrowRight size={14} />
+                      </Link>
+                    )}
+                    {card.buttonText && (
+                      <button 
+                        className={`${styles.cardButton} ${card.actionType === 'interesse' ? styles.cardButtonOutline : ''}`}
+                        onClick={(e) => handleAction(card, e)}
+                      >
+                        {card.buttonText}
+                      </button>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>

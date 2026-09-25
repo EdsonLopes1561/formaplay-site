@@ -381,8 +381,38 @@
   flex-grow: 1;
 }
 
-.cardButton {
+.buttonGroup {
   margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+
+.cardLinkProduct {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cardLinkProduct:hover {
+  background: rgba(56, 189, 248, 0.25);
+  color: #7dd3fc;
+  border-color: #38bdf8;
+  transform: translateY(-1px);
+}
+
+.cardButton {
+  margin-top: 0;
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 8px;

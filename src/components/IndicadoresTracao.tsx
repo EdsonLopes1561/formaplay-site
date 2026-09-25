@@ -9,7 +9,7 @@ export const IndicadoresTracao: React.FC = () => {
   const [hasStarted, setHasStarted] = useState(false);
   const [hasFinished, setHasFinished] = useState(false);
 
-  // Observer to trigger animation when visible
+  // Observer to trigger animation when section enters viewport
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -20,7 +20,7 @@ export const IndicadoresTracao: React.FC = () => {
           }
         }
       },
-      { threshold: 0.15 } // Trigger when 15% of section is visible
+      { threshold: 0.15 }
     );
 
     if (sectionRef.current) {
@@ -30,44 +30,42 @@ export const IndicadoresTracao: React.FC = () => {
     return () => observer.disconnect();
   }, [hasStarted]);
 
-  // Animation logic
+  // Sequential counter animation: counts from 0 to actual value smoothly
   useEffect(() => {
     if (!hasStarted || hasFinished) return;
 
-    // Accessibility check
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const targets = indicadoresTracao.map(i => i.valor);
+    const targets = indicadoresTracao.map((i) => i.valor);
+    let animationFrameId: number;
+    let timeoutId: number;
 
     if (prefersReducedMotion) {
-      setCounts([...targets]);
-      setActiveIndex(null);
-      setHasFinished(true);
-      return;
+      animationFrameId = requestAnimationFrame(() => {
+        setCounts([...targets]);
+        setActiveIndex(null);
+        setHasFinished(true);
+      });
+
+      return () => cancelAnimationFrame(animationFrameId);
     }
 
     let currentIndex = 0;
     let startTime: number | null = null;
-    let animationFrameId: number;
-    let timeoutId: number;
-    
-    // Timing configuration (requested: 650ms duration, 150ms delay)
     const durationPerItemMs = 650;
     const delayBetweenItemsMs = 150;
 
     const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp;
       const progress = timestamp - startTime;
-      
+
       const percent = Math.min(progress / durationPerItemMs, 1);
       const easing = percent * (2 - percent);
-      
+
       const currentTarget = targets[currentIndex];
       const currentValue = Math.floor(easing * currentTarget);
-      
-      // We must capture the index synchronously to avoid React state batching closure bugs
       const indexToUpdate = currentIndex;
-      
-      setCounts(prev => {
+
+      setCounts((prev) => {
         const next = [...prev];
         next[indexToUpdate] = currentValue;
         return next;
@@ -76,30 +74,31 @@ export const IndicadoresTracao: React.FC = () => {
       if (percent < 1) {
         animationFrameId = requestAnimationFrame(animate);
       } else {
-        // Guarantee final exact value
-        setCounts(prev => {
+        setCounts((prev) => {
           const next = [...prev];
           next[indexToUpdate] = currentTarget;
           return next;
         });
-        
-        setActiveIndex(null); // Turn off glow for current
-        currentIndex++; // Move to next
-        
+
+        setActiveIndex(null);
+        currentIndex++;
+
         if (currentIndex < targets.length) {
-          timeoutId = setTimeout(() => {
+          timeoutId = window.setTimeout(() => {
             setActiveIndex(currentIndex);
-            startTime = null; 
+            startTime = null;
             animationFrameId = requestAnimationFrame(animate);
           }, delayBetweenItemsMs);
         } else {
-          setHasFinished(true); 
+          setHasFinished(true);
         }
       }
     };
 
-    setActiveIndex(0);
-    animationFrameId = requestAnimationFrame(animate);
+    animationFrameId = requestAnimationFrame((timestamp) => {
+      setActiveIndex(0);
+      animate(timestamp);
+    });
 
     return () => {
       cancelAnimationFrame(animationFrameId);
@@ -108,44 +107,33 @@ export const IndicadoresTracao: React.FC = () => {
   }, [hasStarted, hasFinished]);
 
   return (
-    <section className={styles.section} ref={sectionRef} id="indicadores-tracao">
+    <section className={styles.section} ref={sectionRef} id="indicadores-tracao" aria-label="Indicadores de impacto FormaPlay">
       <div className={styles.container}>
         <div className={styles.grid}>
           {indicadoresTracao.map((ind, index) => {
             const isActive = activeIndex === index;
-            
-            // Construir o texto estático de acessibilidade
-            let a11yText = `${ind.valor}${ind.sufixo === '+' ? ' ou mais' : ''} ${ind.label}`;
-            if (ind.descricao) {
-              a11yText += ` considerando ${ind.descricao.replace('presença considerando ', '')}`;
-            }
 
             return (
-              <div 
-                key={ind.id} 
+              <div
+                key={ind.id}
                 className={`${styles.card} ${isActive ? styles.active : ''}`}
-                aria-label={a11yText}
+                data-value={ind.valor}
+                data-suffix={ind.sufixo}
               >
-                <div className={styles.numberWrapper} aria-hidden="true">
-                   <span className={styles.number}>
-                     {counts[index]}
-                   </span>
-                   {/* Mostra o sufixo desde o começo, conforme exigência */}
-                   {ind.sufixo && (
-                     <span className={styles.suffix}>{ind.sufixo}</span>
-                   )}
-                </div>
-                <h3 className={styles.label} aria-hidden="true">{ind.label}</h3>
-                {ind.descricao && (
-                  <p className={styles.descricao} aria-hidden="true">{ind.descricao}</p>
-                )}
+                <data value={ind.valor} className={styles.numberWrapper}>
+                  <span className={styles.number}>{counts[index]}</span>
+                  {ind.sufixo && <span className={styles.suffix}>{ind.sufixo}</span>}
+                </data>
+
+                <h3 className={styles.label}>{ind.label}</h3>
+                {ind.descricao && <p className={styles.descricao}>{ind.descricao}</p>}
               </div>
             );
           })}
         </div>
-        
+
         <div className={styles.updateInfo}>
-          <p>Dados atualizados em agosto de 2026</p>
+          <p>Dados consolidados da operação FormaPlay</p>
         </div>
       </div>
     </section>

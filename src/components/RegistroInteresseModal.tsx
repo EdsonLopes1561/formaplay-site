@@ -91,8 +91,10 @@ export const RegistroInteresseModal: React.FC<RegistroInteresseModalProps> = ({
       }
 
       setSuccess(true);
-    } catch (err: any) {
-      setError(err.message || 'Erro ao registrar interesse.');
+    } catch (err: unknown) {
+      setError(
+        err instanceof Error ? err.message : 'Erro ao registrar interesse.',
+      );
     } finally {
       setLoading(false);
     }

@@ -1,7 +1,7 @@
 {
   "name": "FormaPlay — Jogos Educacionais",
   "short_name": "FormaPlay",
-  "description": "Jogos educacionais para aprender brincando",
+  "description": "Jogos educacionais que transformam conhecimento em experiências práticas de aprendizagem",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",
