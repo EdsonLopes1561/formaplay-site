@@ -40,30 +40,19 @@ export const DesafioLogisticoPage: React.FC = () => {
     setOpenFaq((prev) => (prev === index ? null : index));
   };
 
-  // Valid, authentic Product schema without fabricated prices, reviews, or fake GTIN
-  const productSchema = {
+  // WebPage structured data (preserves valid BreadcrumbList and VideoObject without incomplete Product)
+  const webPageSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Product',
-    name: 'Desafio Logístico',
-    image: [
-      'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.png',
-      'https://www.formaplayjogos.com.br/desafio-logistico-2.png'
-    ],
-    description: 'Jogo de tabuleiro educacional que transforma conceitos de logística em uma experiência prática de planejamento, estratégia e tomada de decisão.',
-    brand: {
-      '@type': 'Brand',
-      name: 'FormaPlay'
-    },
-    manufacturer: {
+    '@type': 'WebPage',
+    name: 'Desafio Logístico | Jogo Educacional de Logística – FormaPlay',
+    description: 'Conheça o Desafio Logístico, jogo de tabuleiro educacional que transforma o ensino de logística em uma experiência prática de planejamento e tomada de decisão.',
+    url: 'https://www.formaplayjogos.com.br/desafio-logistico',
+    inLanguage: 'pt-BR',
+    publisher: {
       '@type': 'Organization',
       name: 'FormaPlay – Jogos Educacionais',
-      url: 'https://www.formaplayjogos.com.br'
-    },
-    category: 'Jogos Educacionais / Material Didático',
-    audience: {
-      '@type': 'EducationalAudience',
-      educationalRole: 'teacher',
-      audienceType: 'Professores, estudantes de cursos técnicos e instituições de ensino'
+      url: 'https://www.formaplayjogos.com.br',
+      logo: 'https://www.formaplayjogos.com.br/icone.png'
     }
   };
 
@@ -207,8 +196,8 @@ export const DesafioLogisticoPage: React.FC = () => {
         description="Conheça o Desafio Logístico, jogo de tabuleiro educacional que transforma o ensino de logística em uma experiência prática de planejamento e tomada de decisão."
         canonicalUrl="https://www.formaplayjogos.com.br/desafio-logistico"
         ogImage="https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.png"
-        ogType="product"
-        schema={[productSchema, breadcrumbSchema, videoSchema]}
+        ogType="website"
+        schema={[webPageSchema, breadcrumbSchema, videoSchema]}
       />
 
       <Header />

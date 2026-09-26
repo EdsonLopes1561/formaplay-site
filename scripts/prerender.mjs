@@ -60,29 +60,18 @@ fs.writeFileSync(path.join(distDir, 'index.html'), homeHtml);
 console.log('[+] dist/index.html updated with JSON-LD Organization Schema');
 
 // 2. DESAFIO LOGISTICO SCHEMAS & PRE-RENDERED HTML
-const productSchema = {
+const webPageSchema = {
   '@context': 'https://schema.org',
-  '@type': 'Product',
-  name: 'Desafio Logístico',
-  image: [
-    'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.png',
-    'https://www.formaplayjogos.com.br/desafio-logistico-2.png'
-  ],
-  description: 'Jogo de tabuleiro educacional que transforma conceitos de logística em uma experiência prática de planejamento, estratégia e tomada de decisão.',
-  brand: {
-    '@type': 'Brand',
-    name: 'FormaPlay'
-  },
-  manufacturer: {
+  '@type': 'WebPage',
+  name: 'Desafio Logístico | Jogo Educacional de Logística – FormaPlay',
+  description: 'Conheça o Desafio Logístico, jogo de tabuleiro educacional que transforma o ensino de logística em uma experiência prática de planejamento e tomada de decisão.',
+  url: 'https://www.formaplayjogos.com.br/desafio-logistico',
+  inLanguage: 'pt-BR',
+  publisher: {
     '@type': 'Organization',
     name: 'FormaPlay – Jogos Educacionais',
-    url: 'https://www.formaplayjogos.com.br'
-  },
-  category: 'Jogos Educacionais / Material Didático',
-  audience: {
-    '@type': 'EducationalAudience',
-    educationalRole: 'teacher',
-    audienceType: 'Professores, estudantes de cursos técnicos e instituições de ensino'
+    url: 'https://www.formaplayjogos.com.br',
+    logo: 'https://www.formaplayjogos.com.br/icone.png'
   }
 };
 
@@ -116,7 +105,7 @@ const videoSchema = {
   contentUrl: 'https://youtu.be/fs2an3x7TXs'
 };
 
-const productSchemasScript = `<script id="json-ld-schema" type="application/ld+json">${JSON.stringify([productSchema, breadcrumbSchema, videoSchema])}</script>`;
+const desafioSchemasScript = `<script id="json-ld-schema" type="application/ld+json">${JSON.stringify([webPageSchema, breadcrumbSchema, videoSchema])}</script>`;
 
 let desafioHtml = baseHtml;
 desafioHtml = desafioHtml.replace(
@@ -165,9 +154,9 @@ desafioHtml = desafioHtml.replace(
 );
 
 if (desafioHtml.includes('id="json-ld-schema"')) {
-  desafioHtml = desafioHtml.replace(/<script id="json-ld-schema".*?<\/script>/s, productSchemasScript);
+  desafioHtml = desafioHtml.replace(/<script id="json-ld-schema".*?<\/script>/s, desafioSchemasScript);
 } else {
-  desafioHtml = desafioHtml.replace('</head>', `  ${productSchemasScript}\n  </head>`);
+  desafioHtml = desafioHtml.replace('</head>', `  ${desafioSchemasScript}\n  </head>`);
 }
 
 // Inserir fallback semântico de noscript específico para a página do produto
@@ -189,4 +178,4 @@ if (!fs.existsSync(desafioDir)) {
 }
 
 fs.writeFileSync(path.join(desafioDir, 'index.html'), desafioHtml);
-console.log('[+] dist/desafio-logistico/index.html generated with dedicated SEO tags and Product Schema');
+console.log('[+] dist/desafio-logistico/index.html generated with dedicated SEO tags, WebPage, BreadcrumbList and VideoObject');
