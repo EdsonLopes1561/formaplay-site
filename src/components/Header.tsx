@@ -67,9 +67,8 @@ export const Header: React.FC = () => {
     { label: 'Início', href: '/' },
     { label: 'Desafio Logístico', href: '/desafio-logistico' },
     { label: 'Para Educadores', href: '/logistica-em-sala-de-aula' },
-    { label: 'Sobre a FormaPlay', href: '/#sobre' },
-    { label: 'Linha de Jogos', href: '/#jogos' },
-    { label: 'Presença no Brasil', href: '/#validacao' },
+    { label: 'Conteúdos', href: '/conteudos' },
+    { label: 'Sobre', href: '/#sobre' },
     { label: 'Contato', href: '/#contato' },
   ];
 
@@ -78,15 +77,15 @@ export const Header: React.FC = () => {
     { label: 'O Jogo', href: '#o-jogo' },
     { label: 'Como Funciona', href: '#como-funciona' },
     { label: 'Para Educadores', href: '/logistica-em-sala-de-aula' },
+    { label: 'Conteúdos', href: '/conteudos' },
     { label: 'Componentes', href: '#componentes' },
-    { label: 'Para Escolas', href: '#para-escolas' },
     { label: 'FAQ', href: '#faq' },
   ];
 
   const educadoresMenuItems = [
     { label: 'Início', href: '/' },
     { label: 'Atividades Práticas', href: '#atividades-praticas' },
-    { label: 'Dinâmica em Grupo', href: '#como-trabalhar' },
+    { label: 'Conteúdos', href: '/conteudos' },
     { label: 'O Professor', href: '#papel-professor' },
     { label: 'Desafio Logístico', href: '/desafio-logistico' },
     { label: 'FAQ', href: '#faq' },
@@ -112,7 +111,8 @@ export const Header: React.FC = () => {
             {menuItems.map((item) => {
               const isCurrentRoute = (item.href === '/' && currentPath === '/') || 
                                      (item.href === '/desafio-logistico' && currentPath === '/desafio-logistico') ||
-                                     (item.href === '/logistica-em-sala-de-aula' && currentPath === '/logistica-em-sala-de-aula');
+                                     (item.href === '/logistica-em-sala-de-aula' && currentPath === '/logistica-em-sala-de-aula') ||
+                                     (item.href === '/conteudos' && currentPath.startsWith('/conteudos'));
               const isCurrentSection = item.href.startsWith('#') && activeSection === item.href.substring(1);
               const isActive = isCurrentRoute || isCurrentSection;
 

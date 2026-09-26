@@ -6,6 +6,7 @@ import { Footer } from '../components/Footer';
 import { WhatsappFloat } from '../components/WhatsappFloat';
 import { getWhatsAppLink } from '../constants';
 import { Link } from '../router/RouterContext';
+import { ARTICLES } from '../data/articles';
 import {
   GraduationCap,
   Users,
@@ -681,6 +682,44 @@ export const LogisticaSalaDeAulaPage: React.FC = () => {
                   loading="lazy"
                 />
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* CONTEÚDOS E ARTIGOS PARA PROFESSORES */}
+        <section className={styles.articlesSectionBlock} aria-label="Artigos e Conteúdos Pedagógicos">
+          <div className="container">
+            <div className={styles.sectionHeader}>
+              <span className={styles.subTitleBadge}>BIBLIOTECA PEDAGÓGICA</span>
+              <h2 className={styles.sectionTitle}>Conteúdos e guias para professores de logística</h2>
+              <p className={styles.sectionLead}>
+                Aprofunde seus conhecimentos em gamificação, metodologias ativas e tomada de decisão com nossos artigos e reflexões didáticas.
+              </p>
+            </div>
+
+            <div className={styles.teacherArticlesGrid}>
+              {ARTICLES.map((art) => (
+                <Link key={art.slug} href={art.url} className={styles.teacherArticleCard}>
+                  <div className={styles.teacherArticleImgWrapper}>
+                    <img src={art.image} alt={art.imageAlt} className={styles.teacherArticleImg} loading="lazy" />
+                    <span className={styles.teacherCategoryBadge}>{art.category}</span>
+                  </div>
+                  <div className={styles.teacherArticleBody}>
+                    <h3 className={styles.teacherArticleTitle}>{art.title}</h3>
+                    <p className={styles.teacherArticleDesc}>{art.excerpt}</p>
+                    <span className={styles.teacherArticleReadMore}>
+                      Ler conteúdo completo <ArrowRight size={14} />
+                    </span>
+                  </div>
+                </Link>
+              ))}
+            </div>
+
+            <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+              <Link href="/conteudos" className={styles.allConteudosBtn}>
+                <span>Acessar a Central de Conteúdos da FormaPlay</span>
+                <ArrowRight size={18} />
+              </Link>
             </div>
           </div>
         </section>
