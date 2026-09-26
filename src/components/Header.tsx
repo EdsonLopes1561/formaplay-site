@@ -11,13 +11,27 @@ export const Header: React.FC = () => {
   const [activeSection, setActiveSection] = useState('inicio');
 
   const isDesafioLogistico = currentPath === '/desafio-logistico';
+  const isLogisticaEducadores = currentPath === '/logistica-em-sala-de-aula';
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
 
       if (isDesafioLogistico) {
-        const sections = ['hero', 'o-jogo', 'como-funciona', 'componentes', 'metodologia', 'faq'];
+        const sections = ['hero', 'o-jogo', 'como-funciona', 'aprendizado', 'componentes', 'para-escolas', 'faq'];
+        let current = 'hero';
+        for (const section of sections) {
+          const element = document.getElementById(section);
+          if (element) {
+            const rect = element.getBoundingClientRect();
+            if (rect.top <= 160) {
+              current = section;
+            }
+          }
+        }
+        setActiveSection(current);
+      } else if (isLogisticaEducadores) {
+        const sections = ['hero', 'desafio-teoria-pratica', 'competencias', 'atividades-praticas', 'como-trabalhar', 'papel-professor', 'desafio-logistico-destaque', 'faq'];
         let current = 'hero';
         for (const section of sections) {
           const element = document.getElementById(section);
@@ -47,11 +61,12 @@ export const Header: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isDesafioLogistico]);
+  }, [isDesafioLogistico, isLogisticaEducadores]);
 
   const homeMenuItems = [
     { label: 'Início', href: '/' },
     { label: 'Desafio Logístico', href: '/desafio-logistico' },
+    { label: 'Para Educadores', href: '/logistica-em-sala-de-aula' },
     { label: 'Sobre a FormaPlay', href: '/#sobre' },
     { label: 'Linha de Jogos', href: '/#jogos' },
     { label: 'Presença no Brasil', href: '/#validacao' },
@@ -62,13 +77,27 @@ export const Header: React.FC = () => {
     { label: 'Início', href: '/' },
     { label: 'O Jogo', href: '#o-jogo' },
     { label: 'Como Funciona', href: '#como-funciona' },
-    { label: 'Aprendizado', href: '#aprendizado' },
+    { label: 'Para Educadores', href: '/logistica-em-sala-de-aula' },
     { label: 'Componentes', href: '#componentes' },
     { label: 'Para Escolas', href: '#para-escolas' },
     { label: 'FAQ', href: '#faq' },
   ];
 
-  const menuItems = isDesafioLogistico ? productMenuItems : homeMenuItems;
+  const educadoresMenuItems = [
+    { label: 'Início', href: '/' },
+    { label: 'Atividades Práticas', href: '#atividades-praticas' },
+    { label: 'Dinâmica em Grupo', href: '#como-trabalhar' },
+    { label: 'O Professor', href: '#papel-professor' },
+    { label: 'Desafio Logístico', href: '/desafio-logistico' },
+    { label: 'FAQ', href: '#faq' },
+  ];
+
+  let menuItems = homeMenuItems;
+  if (isDesafioLogistico) {
+    menuItems = productMenuItems;
+  } else if (isLogisticaEducadores) {
+    menuItems = educadoresMenuItems;
+  }
 
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ''}`} aria-label="Cabeçalho do site">
@@ -82,7 +111,8 @@ export const Header: React.FC = () => {
           <ul className={styles.navList}>
             {menuItems.map((item) => {
               const isCurrentRoute = (item.href === '/' && currentPath === '/') || 
-                                     (item.href === '/desafio-logistico' && currentPath === '/desafio-logistico');
+                                     (item.href === '/desafio-logistico' && currentPath === '/desafio-logistico') ||
+                                     (item.href === '/logistica-em-sala-de-aula' && currentPath === '/logistica-em-sala-de-aula');
               const isCurrentSection = item.href.startsWith('#') && activeSection === item.href.substring(1);
               const isActive = isCurrentRoute || isCurrentSection;
 

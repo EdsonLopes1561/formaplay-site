@@ -56,6 +56,7 @@ export const Footer: React.FC = () => {
           <ul className={styles.linkList}>
             <li><Link href="/" className={styles.link}>Início (FormaPlay)</Link></li>
             <li><Link href="/desafio-logistico" className={styles.link}>Desafio Logístico (Produto)</Link></li>
+            <li><Link href="/logistica-em-sala-de-aula" className={styles.link}>Logística em Sala de Aula (Para Educadores)</Link></li>
             <li><Link href="/#jogos" className={styles.link}>Linha de Jogos & Ecossistema</Link></li>
             <li><Link href="/#validacao" className={styles.link}>Presença no Brasil</Link></li>
             <li>

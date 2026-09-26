@@ -5,6 +5,7 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { WhatsappFloat } from '../components/WhatsappFloat';
 import { getWhatsAppLink } from '../constants';
+import { Link } from '../router/RouterContext';
 import {
   Users,
   Clock,
@@ -426,6 +427,24 @@ export const DesafioLogisticoPage: React.FC = () => {
                       <p>Excelente recurso para semanas acadêmicas, oficinas temáticas e avaliações práticas de desempenho.</p>
                     </div>
                   </div>
+                </div>
+
+                <div style={{ marginTop: '1.75rem' }}>
+                  <Link
+                    href="/logistica-em-sala-de-aula"
+                    style={{
+                      color: '#38bdf8',
+                      fontWeight: 600,
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.5rem',
+                      textDecoration: 'none',
+                      fontSize: '0.98rem'
+                    }}
+                  >
+                    <span>Veja ideias e atividades para trabalhar logística em sala de aula</span>
+                    <ArrowRight size={18} />
+                  </Link>
                 </div>
               </div>
 
