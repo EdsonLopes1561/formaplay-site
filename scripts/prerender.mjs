@@ -134,15 +134,26 @@ const desafioBreadcrumbSchema = {
   ]
 };
 
-const desafioVideoSchema = {
+const video1Schema = {
   '@context': 'https://schema.org',
   '@type': 'VideoObject',
-  name: 'Apresentação do Desafio Logístico – FormaPlay',
-  description: 'Conheça o Desafio Logístico em 1 minuto: jogo educacional de logística para aprender na prática.',
+  name: 'Desafio Logístico: Da ideia à validação (1ª fase do Empreenda Senac)',
+  description: 'Vídeo utilizado na etapa inicial do Empreenda Senac para apresentar o problema, a solução e a proposta do Desafio Logístico.',
   thumbnailUrl: 'https://img.youtube.com/vi/fs2an3x7TXs/hqdefault.jpg',
   uploadDate: '2024-06-01T00:00:00Z',
   embedUrl: 'https://www.youtube.com/embed/fs2an3x7TXs',
   contentUrl: 'https://youtu.be/fs2an3x7TXs'
+};
+
+const video2Schema = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: 'Desafio Logístico: Evolução do projeto (2ª fase do Empreenda Senac)',
+  description: 'Vídeo desenvolvido para a etapa de avaliação da 2ª fase do Empreenda Senac.',
+  thumbnailUrl: 'https://img.youtube.com/vi/Y1DsO5okIPU/hqdefault.jpg',
+  uploadDate: '2024-08-01T00:00:00Z',
+  embedUrl: 'https://www.youtube.com/embed/Y1DsO5okIPU',
+  contentUrl: 'https://youtu.be/Y1DsO5okIPU'
 };
 
 createPrerenderedPage({
@@ -152,7 +163,7 @@ createPrerenderedPage({
   canonicalUrl: 'https://www.formaplayjogos.com.br/desafio-logistico',
   ogImage: 'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.webp',
   ogType: 'website',
-  schemas: [desafioWebPageSchema, desafioBreadcrumbSchema, desafioVideoSchema],
+  schemas: [desafioWebPageSchema, desafioBreadcrumbSchema, video1Schema, video2Schema],
   noscriptContent: `
     <h1>Desafio Logístico: jogo educacional de logística para aprender na prática</h1>
     <p>Jogo de tabuleiro educacional desenvolvido pela FormaPlay para 2 a 4 jogadores, simulando planejamento de rotas, custos e tomadas de decisão.</p>

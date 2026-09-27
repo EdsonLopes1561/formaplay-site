@@ -36,12 +36,13 @@ import {
 
 export const DesafioLogisticoPage: React.FC = () => {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
+  const [playingVideo, setPlayingVideo] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
     setOpenFaq((prev) => (prev === index ? null : index));
   };
 
-  // WebPage structured data (preserves valid BreadcrumbList and VideoObject without incomplete Product)
+  // WebPage structured data (preserves valid BreadcrumbList and VideoObjects)
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -53,7 +54,7 @@ export const DesafioLogisticoPage: React.FC = () => {
       '@type': 'Organization',
       name: 'FormaPlay – Jogos Educacionais',
       url: 'https://www.formaplayjogos.com.br',
-      logo: 'https://www.formaplayjogos.com.br/icone.png'
+      logo: 'https://www.formaplayjogos.com.br/icone.webp'
     }
   };
 
@@ -76,15 +77,26 @@ export const DesafioLogisticoPage: React.FC = () => {
     ]
   };
 
-  const videoSchema = {
+  const video1Schema = {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',
-    name: 'Apresentação do Desafio Logístico – FormaPlay',
-    description: 'Conheça o Desafio Logístico em 1 minuto: jogo educacional de logística para aprender na prática.',
+    name: 'Desafio Logístico: Da ideia à validação (1ª fase do Empreenda Senac)',
+    description: 'Vídeo utilizado na etapa inicial do Empreenda Senac para apresentar o problema, a solução e a proposta do Desafio Logístico.',
     thumbnailUrl: 'https://img.youtube.com/vi/fs2an3x7TXs/hqdefault.jpg',
     uploadDate: '2024-06-01T00:00:00Z',
     embedUrl: 'https://www.youtube.com/embed/fs2an3x7TXs',
     contentUrl: 'https://youtu.be/fs2an3x7TXs'
+  };
+
+  const video2Schema = {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: 'Desafio Logístico: Evolução do projeto (2ª fase do Empreenda Senac)',
+    description: 'Vídeo desenvolvido para a etapa de avaliação da 2ª fase do Empreenda Senac.',
+    thumbnailUrl: 'https://img.youtube.com/vi/Y1DsO5okIPU/hqdefault.jpg',
+    uploadDate: '2024-08-01T00:00:00Z',
+    embedUrl: 'https://www.youtube.com/embed/Y1DsO5okIPU',
+    contentUrl: 'https://youtu.be/Y1DsO5okIPU'
   };
 
   const steps = [
@@ -198,7 +210,7 @@ export const DesafioLogisticoPage: React.FC = () => {
         canonicalUrl="https://www.formaplayjogos.com.br/desafio-logistico"
         ogImage="https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.webp"
         ogType="website"
-        schema={[webPageSchema, breadcrumbSchema, videoSchema]}
+        schema={[webPageSchema, breadcrumbSchema, video1Schema, video2Schema]}
       />
 
       <Header />
@@ -565,8 +577,8 @@ export const DesafioLogisticoPage: React.FC = () => {
           </div>
         </section>
 
-        {/* VÍDEO E VALIDAÇÃO REAL */}
-        <section className={styles.videoValidationSection} aria-label="Vídeo e validação real">
+        {/* TRAJETÓRIA NO EMPREENDA SENAC E VÍDEOS */}
+        <section id="origem-validacao" className={styles.videoValidationSection} aria-label="Trajetória no Empreenda Senac e validação real">
           <div className="container">
             
             {/* FOTO REAL: GRUPO + PRODUTO COMPLETO */}
@@ -587,56 +599,135 @@ export const DesafioLogisticoPage: React.FC = () => {
               </div>
             </div>
 
-            <div className={styles.videoValGrid}>
-              <div className={styles.valTextCol}>
-                <div className={styles.badgeSuccess}>
-                  <Award size={18} />
-                  <span>RECONHECIMENTO & VALIDAÇÃO</span>
-                </div>
-                <h2 className={styles.valTitle}>Criado e validado em ambiente educacional real</h2>
-                <p className={styles.valDesc}>
-                  O Desafio Logístico nasceu da vivência pedagógica de estudantes e professores de logística, buscando solucionar a falta de dinamismo no ensino de conceitos complexos.
-                </p>
-                <p className={styles.valDesc}>
-                  O projeto foi testado com turmas reais e foi classificado para a <strong>2ª fase do programa Empreenda Senac</strong>, consolidando-se como uma ferramenta de aprendizagem prática.
-                </p>
+            {/* CABEÇALHO DA SEÇÃO DE TRAJETÓRIA */}
+            <div className={styles.empreendaHeader}>
+              <div className={styles.badgeSuccess}>
+                <Award size={18} />
+                <span>VALIDAÇÃO INSTITUCIONAL</span>
+              </div>
+              <h2 className={styles.valTitle}>Trajetória no Empreenda Senac</h2>
+              <p className={styles.valDesc}>
+                O Desafio Logístico evoluiu ao longo das etapas do Empreenda Senac, passando da apresentação inicial da proposta para uma nova etapa de validação e desenvolvimento do projeto.
+              </p>
+              <p className={styles.valDescHighlight}>
+                O Desafio Logístico está participando do Empreenda Senac 2026 e atualmente está na 2ª fase do programa, em processo de avaliação da consistência do projeto para possível avanço à etapa final.
+              </p>
+            </div>
 
-                <div className={styles.valActions}>
-                  <a
-                    href="https://formaplay-orcamento.vercel.app/solicitar-orcamento"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`btn btn-primary ${styles.btnPrimary}`}
-                  >
-                    Solicitar Proposta para sua Escola
-                  </a>
-                  <a
-                    href={getWhatsAppLink()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`btn btn-outline ${styles.btnOutline}`}
-                  >
-                    <MessageCircle size={18} />
-                    Falar com Consultor
-                  </a>
+            {/* GRID DOS DOIS VÍDEOS SIMULTÂNEOS */}
+            <div className={styles.videosDualGrid}>
+              
+              {/* VÍDEO 1 - 1ª FASE */}
+              <div className={styles.videoCard}>
+                <div className={styles.videoCardHeader}>
+                  <span className={styles.videoBadge}>1ª fase do Empreenda Senac</span>
+                  <h3 className={styles.videoCardTitle}>Da ideia à validação</h3>
+                  <p className={styles.videoCardDesc}>
+                    Vídeo utilizado na etapa inicial do Empreenda Senac para apresentar o problema, a solução e a proposta do Desafio Logístico.
+                  </p>
+                </div>
+
+                <div className={styles.videoPlayerWrapper}>
+                  {playingVideo === 1 ? (
+                    <iframe
+                      className={styles.videoIframe}
+                      src="https://www.youtube.com/embed/fs2an3x7TXs?autoplay=1"
+                      title="1ª fase do Empreenda Senac: Da ideia à validação"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <button
+                      type="button"
+                      className={styles.videoThumbnailBtn}
+                      onClick={() => setPlayingVideo(1)}
+                      aria-label="Assistir ao vídeo da 1ª fase do Empreenda Senac: Da ideia à validação"
+                    >
+                      <img
+                        src="https://img.youtube.com/vi/fs2an3x7TXs/hqdefault.jpg"
+                        alt="Thumbnail do vídeo da 1ª fase do Empreenda Senac"
+                        className={styles.videoThumbImg}
+                        loading="lazy"
+                        width="480"
+                        height="360"
+                      />
+                      <div className={styles.playOverlay}>
+                        <div className={styles.playButtonCircle}>
+                          <PlayCircle size={44} className={styles.playIcon} />
+                        </div>
+                        <span className={styles.playText}>Assistir apresentação</span>
+                      </div>
+                    </button>
+                  )}
                 </div>
               </div>
 
-              <div className={styles.videoCol}>
-                <div className={styles.videoFrameWrapper}>
-                  <iframe
-                    className={styles.videoIframe}
-                    src="https://www.youtube.com/embed/fs2an3x7TXs"
-                    title="Apresentação do jogo Desafio Logístico FormaPlay"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    loading="lazy"
-                  />
+              {/* VÍDEO 2 - 2ª FASE */}
+              <div className={styles.videoCard}>
+                <div className={styles.videoCardHeader}>
+                  <span className={styles.videoBadge}>2ª fase do Empreenda Senac</span>
+                  <h3 className={styles.videoCardTitle}>Evolução do projeto</h3>
+                  <p className={styles.videoCardDesc}>
+                    Vídeo desenvolvido para a etapa de avaliação da 2ª fase do Empreenda Senac.
+                  </p>
                 </div>
-                <p className={styles.videoCaption}>
-                  <PlayCircle size={16} /> Apresentação rápida do jogo e demonstração dos componentes
-                </p>
+
+                <div className={styles.videoPlayerWrapper}>
+                  {playingVideo === 2 ? (
+                    <iframe
+                      className={styles.videoIframe}
+                      src="https://www.youtube.com/embed/Y1DsO5okIPU?autoplay=1"
+                      title="2ª fase do Empreenda Senac: Evolução do projeto"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                  ) : (
+                    <button
+                      type="button"
+                      className={styles.videoThumbnailBtn}
+                      onClick={() => setPlayingVideo(2)}
+                      aria-label="Assistir ao vídeo da 2ª fase do Empreenda Senac: Evolução do projeto"
+                    >
+                      <img
+                        src="https://img.youtube.com/vi/Y1DsO5okIPU/hqdefault.jpg"
+                        alt="Thumbnail do vídeo da 2ª fase do Empreenda Senac"
+                        className={styles.videoThumbImg}
+                        loading="lazy"
+                        width="480"
+                        height="360"
+                      />
+                      <div className={styles.playOverlay}>
+                        <div className={styles.playButtonCircle}>
+                          <PlayCircle size={44} className={styles.playIcon} />
+                        </div>
+                        <span className={styles.playText}>Assistir apresentação</span>
+                      </div>
+                    </button>
+                  )}
+                </div>
               </div>
+
+            </div>
+
+            {/* CTAS DA SEÇÃO */}
+            <div className={styles.valActionsCenter}>
+              <a
+                href="https://formaplay-orcamento.vercel.app/solicitar-orcamento"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`btn btn-primary ${styles.btnPrimary}`}
+              >
+                Solicitar Proposta para sua Escola
+              </a>
+              <a
+                href={getWhatsAppLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`btn btn-outline ${styles.btnOutline}`}
+              >
+                <MessageCircle size={18} />
+                Falar com Consultor
+              </a>
             </div>
           </div>
         </section>
