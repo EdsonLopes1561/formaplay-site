@@ -4,6 +4,7 @@ import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
 import { IndicadoresTracao } from '../components/IndicadoresTracao';
 import { Destaque } from '../components/Destaque';
+import { DesafioLogisticoSalaDeAula } from '../components/DesafioLogisticoSalaDeAula';
 import { Sobre } from '../components/Sobre';
 import { ParaQuemEIndicado } from '../components/ParaQuemEIndicado';
 import { PresencaValidacao } from '../components/PresencaValidacao';
@@ -22,8 +23,8 @@ export const HomePage: React.FC = () => {
     name: 'FormaPlay – Jogos Educacionais',
     legalName: 'FormaPlay Jogos Educacionais',
     url: 'https://www.formaplayjogos.com.br',
-    logo: 'https://www.formaplayjogos.com.br/icone.png',
-    image: 'https://www.formaplayjogos.com.br/hero.png',
+    logo: 'https://www.formaplayjogos.com.br/icone.webp',
+    image: 'https://www.formaplayjogos.com.br/hero.webp',
     description: 'Empresa especializada no desenvolvimento de jogos educacionais físicos e experiências práticas de aprendizagem para escolas, professores e instituições de ensino.',
     email: 'contato@formaplayjogos.com.br',
     telephone: '+55-14-99844-2917',
@@ -54,7 +55,7 @@ export const HomePage: React.FC = () => {
         title="FormaPlay | Jogos Educacionais para Aprender na Prática"
         description="Conheça a FormaPlay, criadora do Desafio Logístico. Desenvolvemos jogos educacionais que transformam o conhecimento em experiências práticas e envolventes."
         canonicalUrl="https://www.formaplayjogos.com.br/"
-        ogImage="https://www.formaplayjogos.com.br/hero.png"
+        ogImage="https://www.formaplayjogos.com.br/hero.webp"
         ogType="website"
         schema={[organizationSchema, websiteSchema]}
       />
@@ -63,6 +64,7 @@ export const HomePage: React.FC = () => {
         <Hero />
         <IndicadoresTracao />
         <Destaque />
+        <DesafioLogisticoSalaDeAula />
         <Sobre />
         <ParaQuemEIndicado />
         <PresencaValidacao />

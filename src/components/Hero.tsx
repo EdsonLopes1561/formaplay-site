@@ -62,7 +62,7 @@ export const Hero: React.FC = () => {
             </Link>
           </div>
           <img 
-            src="/desafio-logistico-produto-mesa.png" 
+            src="/desafio-logistico-produto-mesa.webp" 
             alt="Jogo de tabuleiro educacional Desafio Logístico da FormaPlay montado na mesa" 
             className={styles.heroImage}
             loading="eager"

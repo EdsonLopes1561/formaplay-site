@@ -647,6 +647,31 @@
   margin-bottom: 0;
 }
 
+.teacherMediaShowcase {
+  margin-top: 3.5rem;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.teacherMediaImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.teacherMediaCaption {
+  padding: 1rem 1.5rem;
+  background: rgba(15, 23, 42, 0.9);
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 /* ---------------- DESTAQUE DESAFIO LOGÍSTICO ---------------- */
 .productHighlightSection {
   padding: 6rem 0;

@@ -38,7 +38,7 @@ export const ConhecaFormaPlay: React.FC = () => {
             <div className={styles.dot}></div>
             <div className={styles.timelineContent}>
               <h4>Validação & Empreenda Senac</h4>
-              <p>O jogo foi aplicado com turmas reais, validado por professores e conquistou aprovação para a 2ª fase do renomado programa Empreenda Senac.</p>
+              <p>O jogo foi aplicado com turmas reais, validado por professores e avançou para a 2ª fase do programa Empreenda Senac.</p>
             </div>
           </div>
 

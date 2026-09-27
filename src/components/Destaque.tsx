@@ -23,7 +23,7 @@ export const Destaque: React.FC = () => {
                 <span>Jogo Físico de Tabuleiro</span>
               </div>
               <img 
-                src="/desafio-logistico-2.png" 
+                src="/desafio-logistico-2.webp" 
                 alt="Jogo de tabuleiro educacional Desafio Logístico em detalhes" 
                 className={styles.image}
                 loading="lazy"

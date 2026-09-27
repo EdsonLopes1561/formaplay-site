@@ -71,7 +71,7 @@ export const ConteudosHubPage: React.FC = () => {
         title="Conteúdos sobre Logística, Educação e Aprendizagem | FormaPlay"
         description="Conteúdos sobre ensino de logística, atividades práticas, gamificação, metodologias ativas e aprendizagem para professores e instituições."
         canonicalUrl="https://www.formaplayjogos.com.br/conteudos"
-        ogImage="https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.png"
+        ogImage="https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.webp"
         ogType="website"
         schema={[webPageSchema, breadcrumbSchema]}
       />
@@ -130,8 +130,9 @@ export const ConteudosHubPage: React.FC = () => {
                       alt={article.imageAlt}
                       className={styles.cardImage}
                       loading="lazy"
+                      decoding="async"
                       width="400"
-                      height="220"
+                      height="225"
                     />
                     <span className={styles.categoryTag}>{article.category}</span>
                   </div>

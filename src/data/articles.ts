@@ -29,8 +29,8 @@ export const ARTICLES: Article[] = [
     readTime: '6 min de leitura',
     publishedDate: '2026-09-25',
     formattedDate: '25 de setembro de 2026',
-    image: '/hero.png',
-    imageAlt: 'Alunos participando de dinâmica gamificada de logística em sala de aula',
+    image: '/galeria-sala-de-aula/alunos-jogando-desafio-logistico-horizontal.webp',
+    imageAlt: 'Alunos participando de atividade prática gamificada com o Desafio Logístico',
     excerpt: 'Como elementos de jogos — regras, objetivos, consequências e pontuações — podem transformar conceitos teóricos de logística em experiências dinâmicas de tomada de decisão.',
     author: 'FormaPlay – Jogos Educacionais'
   },
@@ -46,8 +46,8 @@ export const ARTICLES: Article[] = [
     readTime: '7 min de leitura',
     publishedDate: '2026-09-25',
     formattedDate: '25 de setembro de 2026',
-    image: '/desafio-logistico-2.png',
-    imageAlt: 'Materiais e componentes práticos para aplicação em aulas e dinâmicas de logística',
+    image: '/galeria-sala-de-aula/atividade-pratica-logistica-desafio-logistico.webp',
+    imageAlt: 'Participantes utilizando tabuleiro, cartas e recursos em atividade prática de logística',
     excerpt: 'Sugestões originais e aplicáveis de exercícios práticos para cursos técnicos e superiores: simulação de rotas, gestão de imprevistos, orçamento limitado e estudos de caso.',
     author: 'FormaPlay – Jogos Educacionais'
   },
@@ -63,8 +63,8 @@ export const ARTICLES: Article[] = [
     readTime: '6 min de leitura',
     publishedDate: '2026-09-25',
     formattedDate: '25 de setembro de 2026',
-    image: '/desafio-logistico-produto-mesa.png',
-    imageAlt: 'Jogo de estratégia logística utilizado para simular decisões de rotas e custos',
+    image: '/galeria-sala-de-aula/tomada-de-decisao-desafio-logistico-horizontal.webp',
+    imageAlt: 'Participante tomando decisão durante uma partida do Desafio Logístico',
     excerpt: 'Por que a tomada de decisão sob incerteza é o núcleo da competência logística e como estruturar critérios de avaliação formativa através de justificativas e trade-offs.',
     author: 'FormaPlay – Jogos Educacionais'
   }

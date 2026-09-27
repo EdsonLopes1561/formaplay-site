@@ -360,6 +360,91 @@
   line-height: 1.5;
 }
 
+.howItWorksMediaCard {
+  margin-top: 3rem;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.howItWorksImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.howItWorksCaption {
+  padding: 1rem 1.5rem;
+  background: rgba(15, 23, 42, 0.9);
+  color: #94a3b8;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.componentsShowcase {
+  margin-top: 2.5rem;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.componentsShowcaseImgWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.componentsShowcaseImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.componentsShowcaseOverlay {
+  padding: 1rem 1.5rem;
+  background: rgba(15, 23, 42, 0.9);
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.fullProductShowcase {
+  margin-bottom: 3.5rem;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.fullProductImgWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.fullProductImg {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.fullProductCaption {
+  padding: 1rem 1.5rem;
+  background: rgba(15, 23, 42, 0.9);
+  color: #cbd5e1;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
 /* ---------------- COMPETENCIAS ---------------- */
 .skillsSection {
   padding: 5.5rem 0;
@@ -493,14 +578,64 @@
 
 .classroomMedia {
   position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.classroomImgWrapper {
+  position: relative;
+  width: 100%;
+  max-width: 440px;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(56, 189, 248, 0.1);
+  background: #0f172a;
+}
+
+.classroomBadge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 0.5rem;
+  background: rgba(15, 23, 42, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: #f8fafc;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  z-index: 2;
+}
+
+.livePulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22c55e;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.8);
+  animation: pulseLive 2s infinite ease-in-out;
+}
+
+@keyframes pulseLive {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.3); opacity: 0.6; }
 }
 
 .classroomImg {
   width: 100%;
   height: auto;
-  border-radius: 1.25rem;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: block;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.classroomImgWrapper:hover .classroomImg {
+  transform: scale(1.02);
 }
 
 /* ---------------- TARGET SECTION ---------------- */

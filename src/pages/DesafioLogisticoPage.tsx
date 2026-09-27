@@ -196,7 +196,7 @@ export const DesafioLogisticoPage: React.FC = () => {
         title="Desafio Logístico | Jogo Educacional de Logística – FormaPlay"
         description="Conheça o Desafio Logístico, jogo de tabuleiro educacional que transforma o ensino de logística em uma experiência prática de planejamento e tomada de decisão."
         canonicalUrl="https://www.formaplayjogos.com.br/desafio-logistico"
-        ogImage="https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.png"
+        ogImage="https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.webp"
         ogType="website"
         schema={[webPageSchema, breadcrumbSchema, videoSchema]}
       />
@@ -278,7 +278,7 @@ export const DesafioLogisticoPage: React.FC = () => {
               <div className={styles.imageCard}>
                 <div className={styles.statusPill}>Disponível para Envio</div>
                 <img
-                  src="/desafio-logistico-produto-mesa.png"
+                  src="/desafio-logistico-produto-mesa.webp"
                   alt="Jogo de tabuleiro educacional Desafio Logístico da FormaPlay completo sobre a mesa"
                   className={styles.productImg}
                   width="600"
@@ -356,6 +356,22 @@ export const DesafioLogisticoPage: React.FC = () => {
                 </div>
               ))}
             </div>
+
+            {/* FOTO REAL: DINÂMICA DA PARTIDA / CAMINHÕES NA CHEGADA */}
+            <div className={styles.howItWorksMediaCard}>
+              <img
+                src="/galeria-sala-de-aula/caminhoes-chegada-desafio-logistico.webp"
+                alt="Caminhões do Desafio Logístico na chegada durante uma partida do jogo"
+                className={styles.howItWorksImg}
+                loading="lazy"
+                decoding="async"
+                width="1600"
+                height="747"
+              />
+              <div className={styles.howItWorksCaption}>
+                <span>Dinâmica em tempo real: caminhões avançando pela malha logística, enfrentando eventos e disputando as melhores entregas durante a partida.</span>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -384,15 +400,15 @@ export const DesafioLogisticoPage: React.FC = () => {
           </div>
         </section>
 
-        {/* COMO UTILIZAR EM SALA DE AULA */}
-        <section id="sala-de-aula" className={styles.classroomSection} aria-label="Aplicação em sala de aula">
+        {/* APLICAÇÃO PRÁTICA EM SALA DE AULA */}
+        <section id="sala-de-aula" className={styles.classroomSection} aria-label="Aplicação prática em sala de aula">
           <div className="container">
             <div className={styles.classroomGrid}>
               <div className={styles.classroomText}>
                 <span className={styles.subTitleBadge}>PARA PROFESSORES E COORDENADORES</span>
-                <h2 className={styles.sectionTitle}>Como utilizar o jogo em sala de aula</h2>
+                <h2 className={styles.sectionTitle}>Aplicação prática em sala de aula</h2>
                 <p className={styles.classroomParagraph}>
-                  O Desafio Logístico foi pensado para ser flexível e se adaptar com facilidade à rotina escolar e aos planos de aula de cursos técnicos e superiores.
+                  O Desafio Logístico pode ser utilizado como complemento em atividades de logística, permitindo que os participantes discutam decisões, custos, imprevistos e estratégias durante a partida.
                 </p>
 
                 <div className={styles.featuresList}>
@@ -449,14 +465,21 @@ export const DesafioLogisticoPage: React.FC = () => {
               </div>
 
               <div className={styles.classroomMedia}>
-                <img
-                  src="/desafio-logistico-2.png"
-                  alt="Cartas e tabuleiro do jogo educacional Desafio Logístico em detalhes"
-                  className={styles.classroomImg}
-                  loading="lazy"
-                  width="550"
-                  height="420"
-                />
+                <div className={styles.classroomImgWrapper}>
+                  <div className={styles.classroomBadge}>
+                    <span className={styles.livePulse} />
+                    <span>Ambiente Educacional Real</span>
+                  </div>
+                  <img
+                    src="/galeria-sala-de-aula/desafio-logistico-em-sala-de-aula.webp"
+                    alt="Desafio Logístico sendo utilizado em atividade prática em sala de aula"
+                    className={styles.classroomImg}
+                    loading="lazy"
+                    decoding="async"
+                    width="746"
+                    height="1328"
+                  />
+                </div>
               </div>
             </div>
           </div>
@@ -512,7 +535,25 @@ export const DesafioLogisticoPage: React.FC = () => {
               </p>
             </div>
 
-            <div className={styles.componentsGrid}>
+            {/* FOTO REAL: CAMINHÕES - COMPONENTES */}
+            <div className={styles.componentsShowcase}>
+              <div className={styles.componentsShowcaseImgWrapper}>
+                <img
+                  src="/galeria-sala-de-aula/caminhoes-desafio-logistico-componentes.webp"
+                  alt="Quatro caminhões utilizados como peças no jogo de tabuleiro Desafio Logístico"
+                  className={styles.componentsShowcaseImg}
+                  loading="lazy"
+                  decoding="async"
+                  width="1280"
+                  height="720"
+                />
+                <div className={styles.componentsShowcaseOverlay}>
+                  <span>Quatro caminhões utilizados como peças de movimentação na malha logística do jogo</span>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.componentsGrid} style={{ marginTop: '2rem' }}>
               {componentes.map((comp, idx) => (
                 <div key={idx} className={styles.compBox}>
                   <div className={styles.compBoxIcon}>{comp.icon}</div>
@@ -527,6 +568,25 @@ export const DesafioLogisticoPage: React.FC = () => {
         {/* VÍDEO E VALIDAÇÃO REAL */}
         <section className={styles.videoValidationSection} aria-label="Vídeo e validação real">
           <div className="container">
+            
+            {/* FOTO REAL: GRUPO + PRODUTO COMPLETO */}
+            <div className={styles.fullProductShowcase}>
+              <div className={styles.fullProductImgWrapper}>
+                <img
+                  src="/galeria-sala-de-aula/grupo-desafio-logistico-produto-completo.webp"
+                  alt="Grupo com o jogo Desafio Logístico completo, incluindo tabuleiro, caixa e componentes"
+                  className={styles.fullProductImg}
+                  loading="lazy"
+                  decoding="async"
+                  width="1600"
+                  height="1200"
+                />
+                <div className={styles.fullProductCaption}>
+                  <span>Evidência visual: grupo de desenvolvimento com o jogo Desafio Logístico completo — tabuleiro, caixa personalizada e todos os componentes.</span>
+                </div>
+              </div>
+            </div>
+
             <div className={styles.videoValGrid}>
               <div className={styles.valTextCol}>
                 <div className={styles.badgeSuccess}>
@@ -538,7 +598,7 @@ export const DesafioLogisticoPage: React.FC = () => {
                   O Desafio Logístico nasceu da vivência pedagógica de estudantes e professores de logística, buscando solucionar a falta de dinamismo no ensino de conceitos complexos.
                 </p>
                 <p className={styles.valDesc}>
-                  O projeto foi testado com turmas reais e conquistou aprovação para a <strong>2ª fase do programa Empreenda Senac</strong>, consolidando-se como uma ferramenta inovadora de aprendizagem prática.
+                  O projeto foi testado com turmas reais e foi classificado para a <strong>2ª fase do programa Empreenda Senac</strong>, consolidando-se como uma ferramenta de aprendizagem prática.
                 </p>
 
                 <div className={styles.valActions}>

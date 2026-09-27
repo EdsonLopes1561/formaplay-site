@@ -222,7 +222,7 @@ export const LogisticaSalaDeAulaPage: React.FC = () => {
         title="Logística em Sala de Aula | Atividades Práticas para Professores"
         description="Conheça atividades práticas, dinâmicas e jogos educacionais para tornar o ensino de logística mais participativo e próximo de situações reais de tomada de decisão."
         canonicalUrl="https://www.formaplayjogos.com.br/logistica-em-sala-de-aula"
-        ogImage="https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.png"
+        ogImage="https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.webp"
         ogType="website"
         schema={[webPageSchema, breadcrumbSchema]}
       />
@@ -292,7 +292,7 @@ export const LogisticaSalaDeAulaPage: React.FC = () => {
               <div className={styles.imageCard}>
                 <div className={styles.statusPill}>Prática Docente</div>
                 <img
-                  src="/hero.png"
+                  src="/hero.webp"
                   alt="Alunos participando de atividade prática de logística com jogo educacional em sala de aula"
                   className={styles.heroImg}
                   width="600"
@@ -513,6 +513,22 @@ export const LogisticaSalaDeAulaPage: React.FC = () => {
               </div>
 
             </div>
+
+            {/* FOTO REAL: PROFESSOR MEDIANDO / GRUPO EM SALA */}
+            <div className={styles.teacherMediaShowcase}>
+              <img
+                src="/galeria-sala-de-aula/professor-mediando-desafio-logistico-em-aula.webp"
+                alt="Participantes em atividade prática em grupo com o jogo Desafio Logístico"
+                className={styles.teacherMediaImg}
+                loading="lazy"
+                decoding="async"
+                width="1600"
+                height="1200"
+              />
+              <div className={styles.teacherMediaCaption}>
+                <span>Mediação e prática: participantes reunidos ao redor do tabuleiro, analisando rotas, custos e tomando decisões em grupo durante a aula.</span>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -580,7 +596,7 @@ export const LogisticaSalaDeAulaPage: React.FC = () => {
               <div className={styles.productHighlightMedia}>
                 <div className={styles.productMediaCard}>
                   <img
-                    src="/desafio-logistico-produto-mesa.png"
+                    src="/desafio-logistico-produto-mesa.webp"
                     alt="Desafio Logístico utilizado como atividade prática em aula sobre a mesa"
                     className={styles.productMediaImg}
                     width="600"
@@ -641,7 +657,7 @@ export const LogisticaSalaDeAulaPage: React.FC = () => {
               <div className={styles.appMedia}>
                 <div className={styles.appMediaCard}>
                   <img
-                    src="/desafio-logistico-2.png"
+                    src="/desafio-logistico-2.webp"
                     alt="Componentes e cartas do jogo educacional Desafio Logístico da FormaPlay"
                     className={styles.appMediaImg}
                     width="550"
@@ -668,13 +684,13 @@ export const LogisticaSalaDeAulaPage: React.FC = () => {
                   A proposta do Desafio Logístico nasceu diretamente da necessidade sentida por estudantes e educadores de tornar as aulas de logística mais interativas, práticas e conectadas aos desafios do mercado.
                 </p>
                 <p className={styles.validationText}>
-                  O projeto foi testado em ambiente educacional com turmas reais e conquistou aprovação para a <strong>2ª fase do programa Empreenda Senac</strong>, comprovando sua relevância como recurso didático para a formação técnica e profissional.
+                  O projeto foi testado em ambiente educacional com turmas reais e avançou para a <strong>2ª fase do programa Empreenda Senac</strong>, comprovando sua relevância como recurso didático para a formação técnica e profissional.
                 </p>
               </div>
 
               <div className={styles.validationImageWrapper}>
                 <img
-                  src="/hero.png"
+                  src="/galeria-sala-de-aula/alunos-jogando-desafio-logistico-horizontal.webp"
                   alt="Alunos de logística interagindo com o jogo educacional em sala de aula"
                   className={styles.validationImg}
                   width="500"

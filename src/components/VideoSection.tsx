@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './VideoSection.module.css';
-import { PlayCircle } from 'lucide-react';
+import { PlayCircle, Award } from 'lucide-react';
 
 export const VideoSection: React.FC = () => {
   return (
@@ -8,12 +8,16 @@ export const VideoSection: React.FC = () => {
       <div className="container">
         <div className={styles.grid}>
           <div className={`${styles.textContent} animate-fade-in-up`}>
+            <div className={styles.badge}>
+              <Award size={16} />
+              <span>2ª fase do Empreenda Senac</span>
+            </div>
 
             <h2 className="section-title">
               Conheça o Desafio Logístico em 1 minuto
             </h2>
             <p className="section-subtitle">
-              Veja como o Desafio Logístico transforma o aprendizado em uma experiência prática, estratégica e envolvente.
+              Vídeo desenvolvido para a etapa de avaliação da 2ª fase do Empreenda Senac, demonstrando como o jogo transforma o aprendizado em uma experiência prática e participativa.
             </p>
 
             <p className={styles.description}>

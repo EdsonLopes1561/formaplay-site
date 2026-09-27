@@ -19,7 +19,7 @@ function createPrerenderedPage({
   title,
   description,
   canonicalUrl,
-  ogImage = 'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.png',
+  ogImage = 'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.webp',
   ogType = 'website',
   schemas,
   noscriptContent
@@ -73,8 +73,8 @@ const homeOrganizationSchema = {
   name: 'FormaPlay – Jogos Educacionais',
   legalName: 'FormaPlay Jogos Educacionais',
   url: 'https://www.formaplayjogos.com.br',
-  logo: 'https://www.formaplayjogos.com.br/icone.png',
-  image: 'https://www.formaplayjogos.com.br/hero.png',
+  logo: 'https://www.formaplayjogos.com.br/icone.webp',
+  image: 'https://www.formaplayjogos.com.br/hero.webp',
   description: 'Empresa especializada no desenvolvimento de jogos educacionais físicos e experiências práticas de aprendizagem para escolas, professores e instituições de ensino.',
   email: 'contato@formaplayjogos.com.br',
   telephone: '+55-14-99844-2917',
@@ -104,7 +104,7 @@ createPrerenderedPage({
   title: 'FormaPlay | Jogos Educacionais para Aprender na Prática',
   description: 'Jogos educacionais que transformam o aprendizado em experiências práticas. Ferramentas didáticas que estimulam estratégia, tomada de decisão e trabalho em equipe.',
   canonicalUrl: 'https://www.formaplayjogos.com.br/',
-  ogImage: 'https://www.formaplayjogos.com.br/hero.png',
+  ogImage: 'https://www.formaplayjogos.com.br/hero.webp',
   ogType: 'website',
   schemas: [homeOrganizationSchema, homeWebsiteSchema]
 });
@@ -121,7 +121,7 @@ const desafioWebPageSchema = {
     '@type': 'Organization',
     name: 'FormaPlay – Jogos Educacionais',
     url: 'https://www.formaplayjogos.com.br',
-    logo: 'https://www.formaplayjogos.com.br/icone.png'
+    logo: 'https://www.formaplayjogos.com.br/icone.webp'
   }
 };
 
@@ -150,7 +150,7 @@ createPrerenderedPage({
   title: 'Desafio Logístico | Jogo Educacional de Logística – FormaPlay',
   description: 'Conheça o Desafio Logístico, jogo de tabuleiro educacional que transforma o ensino de logística em uma experiência prática de planejamento e tomada de decisão.',
   canonicalUrl: 'https://www.formaplayjogos.com.br/desafio-logistico',
-  ogImage: 'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.png',
+  ogImage: 'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.webp',
   ogType: 'website',
   schemas: [desafioWebPageSchema, desafioBreadcrumbSchema, desafioVideoSchema],
   noscriptContent: `
@@ -173,7 +173,7 @@ const educadoresWebPageSchema = {
     '@type': 'Organization',
     name: 'FormaPlay – Jogos Educacionais',
     url: 'https://www.formaplayjogos.com.br',
-    logo: 'https://www.formaplayjogos.com.br/icone.png'
+    logo: 'https://www.formaplayjogos.com.br/icone.webp'
   }
 };
 
@@ -191,7 +191,7 @@ createPrerenderedPage({
   title: 'Logística em Sala de Aula | Atividades Práticas para Professores',
   description: 'Conheça atividades práticas, dinâmicas e jogos educacionais para tornar o ensino de logística mais participativo e próximo de situações reais de tomada de decisão.',
   canonicalUrl: 'https://www.formaplayjogos.com.br/logistica-em-sala-de-aula',
-  ogImage: 'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.png',
+  ogImage: 'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.webp',
   ogType: 'website',
   schemas: [educadoresWebPageSchema, educadoresBreadcrumbSchema],
   noscriptContent: `
@@ -214,7 +214,7 @@ const conteudosWebPageSchema = {
     '@type': 'Organization',
     name: 'FormaPlay – Jogos Educacionais',
     url: 'https://www.formaplayjogos.com.br',
-    logo: 'https://www.formaplayjogos.com.br/icone.png'
+    logo: 'https://www.formaplayjogos.com.br/icone.webp'
   }
 };
 
@@ -232,7 +232,7 @@ createPrerenderedPage({
   title: 'Conteúdos sobre Logística, Educação e Aprendizagem | FormaPlay',
   description: 'Conteúdos sobre ensino de logística, atividades práticas, gamificação, metodologias ativas e aprendizagem para professores e instituições.',
   canonicalUrl: 'https://www.formaplayjogos.com.br/conteudos',
-  ogImage: 'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.png',
+  ogImage: 'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.webp',
   ogType: 'website',
   schemas: [conteudosWebPageSchema, conteudosBreadcrumbSchema],
   noscriptContent: `
@@ -250,7 +250,7 @@ const art1Schema = {
   '@type': 'Article',
   headline: 'Gamificação no Ensino de Logística: Como Aplicar em Sala de Aula',
   description: 'Entenda como a gamificação pode ser usada no ensino de logística com desafios, decisões, interação e atividades práticas em sala de aula.',
-  image: 'https://www.formaplayjogos.com.br/hero.png',
+  image: 'https://www.formaplayjogos.com.br/galeria-sala-de-aula/alunos-jogando-desafio-logistico-horizontal.webp',
   datePublished: '2026-09-25T10:00:00Z',
   dateModified: '2026-09-25T10:00:00Z',
   mainEntityOfPage: {
@@ -268,7 +268,7 @@ const art1Schema = {
     url: 'https://www.formaplayjogos.com.br',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://www.formaplayjogos.com.br/icone.png'
+      url: 'https://www.formaplayjogos.com.br/icone.webp'
     }
   }
 };
@@ -288,7 +288,7 @@ createPrerenderedPage({
   title: 'Gamificação no Ensino de Logística: Como Aplicar em Sala de Aula',
   description: 'Entenda como a gamificação pode ser usada no ensino de logística com desafios, decisões, interação e atividades práticas em sala de aula.',
   canonicalUrl: 'https://www.formaplayjogos.com.br/conteudos/gamificacao-no-ensino-de-logistica',
-  ogImage: 'https://www.formaplayjogos.com.br/hero.png',
+  ogImage: 'https://www.formaplayjogos.com.br/galeria-sala-de-aula/alunos-jogando-desafio-logistico-horizontal.webp',
   ogType: 'article',
   schemas: [art1Schema, art1Breadcrumb],
   noscriptContent: `
@@ -304,7 +304,7 @@ const art2Schema = {
   '@type': 'Article',
   headline: '5 Atividades Práticas para Aulas de Logística',
   description: 'Veja cinco ideias de atividades práticas para trabalhar planejamento, custos, rotas, imprevistos e tomada de decisão em aulas de logística.',
-  image: 'https://www.formaplayjogos.com.br/desafio-logistico-2.png',
+  image: 'https://www.formaplayjogos.com.br/galeria-sala-de-aula/atividade-pratica-logistica-desafio-logistico.webp',
   datePublished: '2026-09-25T10:00:00Z',
   dateModified: '2026-09-25T10:00:00Z',
   mainEntityOfPage: {
@@ -322,7 +322,7 @@ const art2Schema = {
     url: 'https://www.formaplayjogos.com.br',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://www.formaplayjogos.com.br/icone.png'
+      url: 'https://www.formaplayjogos.com.br/icone.webp'
     }
   }
 };
@@ -342,7 +342,7 @@ createPrerenderedPage({
   title: '5 Atividades Práticas para Aulas de Logística',
   description: 'Veja cinco ideias de atividades práticas para trabalhar planejamento, custos, rotas, imprevistos e tomada de decisão em aulas de logística.',
   canonicalUrl: 'https://www.formaplayjogos.com.br/conteudos/atividades-praticas-para-aulas-de-logistica',
-  ogImage: 'https://www.formaplayjogos.com.br/desafio-logistico-2.png',
+  ogImage: 'https://www.formaplayjogos.com.br/galeria-sala-de-aula/atividade-pratica-logistica-desafio-logistico.webp',
   ogType: 'article',
   schemas: [art2Schema, art2Breadcrumb],
   noscriptContent: `
@@ -358,7 +358,7 @@ const art3Schema = {
   '@type': 'Article',
   headline: 'Tomada de Decisão em Logística: Como Trabalhar em Cursos e Aulas',
   description: 'Veja formas práticas de trabalhar tomada de decisão em logística usando cenários, custos, riscos, prioridades e atividades em grupo.',
-  image: 'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.png',
+  image: 'https://www.formaplayjogos.com.br/galeria-sala-de-aula/tomada-de-decisao-desafio-logistico-horizontal.webp',
   datePublished: '2026-09-25T10:00:00Z',
   dateModified: '2026-09-25T10:00:00Z',
   mainEntityOfPage: {
@@ -376,7 +376,7 @@ const art3Schema = {
     url: 'https://www.formaplayjogos.com.br',
     logo: {
       '@type': 'ImageObject',
-      url: 'https://www.formaplayjogos.com.br/icone.png'
+      url: 'https://www.formaplayjogos.com.br/icone.webp'
     }
   }
 };
@@ -396,7 +396,7 @@ createPrerenderedPage({
   title: 'Tomada de Decisão em Logística: Como Trabalhar em Cursos e Aulas',
   description: 'Veja formas práticas de trabalhar tomada de decisão em logística usando cenários, custos, riscos, prioridades e atividades em grupo.',
   canonicalUrl: 'https://www.formaplayjogos.com.br/conteudos/tomada-de-decisao-em-logistica',
-  ogImage: 'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.png',
+  ogImage: 'https://www.formaplayjogos.com.br/galeria-sala-de-aula/tomada-de-decisao-desafio-logistico-horizontal.webp',
   ogType: 'article',
   schemas: [art3Schema, art3Breadcrumb],
   noscriptContent: `
