@@ -199,6 +199,20 @@ export const presencaCidadesData: PresencaCidade[] = [
     totalSinais: 1
   },
   {
+    key: 'BR|SP|Matao',
+    cidade: 'Matão',
+    estado: 'SP',
+    lat: -21.6033,
+    lng: -48.3656,
+    primaryType: 'vendas',
+    vendas: 1,
+    unidadesVendidas: 2,
+    orcamentos: 1,
+    solicitacoes: 1,
+    interesses: 0,
+    totalSinais: 2
+  },
+  {
     key: 'BR|BA|Salvador',
     cidade: 'Salvador',
     estado: 'BA',
@@ -229,7 +243,7 @@ export interface IndicadorPresenca {
 export const indicadoresPresencaReal: IndicadorPresenca[] = [
   {
     id: 'vendas',
-    valor: 16,
+    valor: 24,
     sufixo: '',
     titulo: 'Vendas realizadas',
     descricao: 'Unidades do jogo comercializadas',

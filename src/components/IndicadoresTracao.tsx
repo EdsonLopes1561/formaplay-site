@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './IndicadoresTracao.module.css';
-import { indicadoresTracao } from '../data/indicadores';
+import { usePublicIndicadores } from '../hooks/usePublicIndicadores';
 
 export const IndicadoresTracao: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
-  const [counts, setCounts] = useState<number[]>(indicadoresTracao.map(() => 0));
+  const { indicadores } = usePublicIndicadores();
+  const [counts, setCounts] = useState<number[]>(indicadores.map(() => 0));
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
   const [hasStarted, setHasStarted] = useState(false);
   const [hasFinished, setHasFinished] = useState(false);
@@ -35,7 +36,7 @@ export const IndicadoresTracao: React.FC = () => {
     if (!hasStarted || hasFinished) return;
 
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const targets = indicadoresTracao.map((i) => i.valor);
+    const targets = indicadores.map((i) => i.valor);
     let animationFrameId: number;
     let timeoutId: number;
 
@@ -104,13 +105,13 @@ export const IndicadoresTracao: React.FC = () => {
       cancelAnimationFrame(animationFrameId);
       clearTimeout(timeoutId);
     };
-  }, [hasStarted, hasFinished]);
+  }, [hasStarted, hasFinished, indicadores]);
 
   return (
     <section className={styles.section} ref={sectionRef} id="indicadores-tracao" aria-label="Indicadores de impacto FormaPlay">
       <div className={styles.container}>
         <div className={styles.grid}>
-          {indicadoresTracao.map((ind, index) => {
+          {indicadores.map((ind, index) => {
             const isActive = activeIndex === index;
 
             return (

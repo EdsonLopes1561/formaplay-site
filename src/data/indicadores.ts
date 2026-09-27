@@ -6,16 +6,16 @@ export interface Indicador {
   descricao?: string;
 }
 
-export const indicadoresTracao: Indicador[] = [
+export const fallbackIndicadoresTracao: Indicador[] = [
   { 
     id: 'vendas', 
-    valor: 16, 
+    valor: 24, 
     sufixo: '+', 
     label: 'Unidades comercializadas' 
   },
   { 
     id: 'cidades_vendas', 
-    valor: 6, 
+    valor: 7, 
     sufixo: '', 
     label: 'Cidades com vendas realizadas' 
   },
@@ -33,3 +33,6 @@ export const indicadoresTracao: Indicador[] = [
     label: 'Orçamentos emitidos' 
   }
 ];
+
+export const indicadoresTracao = fallbackIndicadoresTracao;
+
