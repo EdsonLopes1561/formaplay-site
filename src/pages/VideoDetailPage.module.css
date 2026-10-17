@@ -1,0 +1,571 @@
+.pageWrapper {
+  min-height: 100vh;
+  background-color: #0b1324;
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+.mainContent {
+  flex: 1;
+  padding-top: 100px;
+  padding-bottom: 5rem;
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.875rem;
+  color: #94a3b8;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.breadcrumbLink {
+  color: #94a3b8;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.breadcrumbLink:hover {
+  color: #f97316;
+}
+
+.breadcrumbSeparator {
+  color: #475569;
+}
+
+.breadcrumbCurrent {
+  color: #f8fafc;
+  font-weight: 500;
+}
+
+/* Video Hero Section - Central Focus */
+.videoHeroSection {
+  margin-bottom: 3.5rem;
+}
+
+.videoCardContainer {
+  background: #111827;
+  border: 1px solid rgba(249, 115, 22, 0.25);
+  border-radius: 1.25rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 30px rgba(249, 115, 22, 0.1);
+  overflow: hidden;
+  margin-bottom: 2rem;
+}
+
+.playerWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000000;
+}
+
+.playerIframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.videoHeaderInfo {
+  padding: 2rem;
+}
+
+.badgeRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.badgePrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: rgba(249, 115, 22, 0.15);
+  color: #f97316;
+  border: 1px solid rgba(249, 115, 22, 0.35);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+
+.badgeSecondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  background: rgba(148, 163, 184, 0.1);
+  color: #cbd5e1;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  font-size: 0.8125rem;
+  font-weight: 500;
+}
+
+.videoTitle {
+  font-size: 2.25rem;
+  font-weight: 800;
+  line-height: 1.2;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  letter-spacing: -0.02em;
+}
+
+.videoLead {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #cbd5e1;
+  margin-bottom: 1.75rem;
+  max-width: 900px;
+}
+
+.videoMetaBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.metaInfoGroup {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  font-size: 0.875rem;
+  color: #94a3b8;
+  flex-wrap: wrap;
+}
+
+.metaItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.actionsGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btnActionPrimary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: #f97316;
+  color: #ffffff;
+  padding: 0.65rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btnActionPrimary:hover {
+  background-color: #ea580c;
+  transform: translateY(-1px);
+}
+
+.btnActionOutline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.65rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btnActionOutline:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+/* Pedagogical and Context Section */
+.contentSection {
+  margin-bottom: 4rem;
+}
+
+.sectionHeader {
+  margin-bottom: 2rem;
+}
+
+.sectionPretitle {
+  color: #f97316;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.sectionTitle {
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+}
+
+.cardsGrid2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.pedagogicalCard {
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.cardIconHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.cardIconBadge {
+  width: 40px;
+  height: 40px;
+  border-radius: 0.5rem;
+  background: rgba(249, 115, 22, 0.15);
+  color: #f97316;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.cardBodyText {
+  color: #cbd5e1;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+}
+
+.competenciesList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.competencyItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  color: #cbd5e1;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+.competencyIcon {
+  color: #22c55e;
+  flex-shrink: 0;
+  margin-top: 0.2rem;
+}
+
+/* Institutional & Trajectory Box */
+.institutionalBox {
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.7), rgba(15, 23, 42, 0.9));
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.institutionalTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.institutionalText {
+  color: #cbd5e1;
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+}
+
+.destaquesList {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.destaqueItem {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.5rem;
+  padding: 0.875rem 1rem;
+  color: #e2e8f0;
+  font-size: 0.875rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.destaqueDot {
+  width: 6px;
+  height: 6px;
+  background: #f97316;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* Ficha Técnica */
+.technicalSheet {
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 4rem;
+}
+
+.techTitle {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.techGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.techField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.techLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.techValue {
+  font-size: 0.9375rem;
+  color: #f8fafc;
+  font-weight: 500;
+}
+
+/* Related Videos Section */
+.relatedSection {
+  margin-top: 4rem;
+  padding-top: 3rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.relatedTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.relatedGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.relatedCard {
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.75rem;
+  overflow: hidden;
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+}
+
+.relatedCard:hover {
+  transform: translateY(-4px);
+  border-color: rgba(249, 115, 22, 0.4);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+}
+
+.relatedThumbWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  overflow: hidden;
+}
+
+.relatedThumbImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.relatedCard:hover .relatedThumbImg {
+  transform: scale(1.05);
+}
+
+.relatedThumbOverlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playIconWrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(249, 115, 22, 0.9);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.relatedCard:hover .playIconWrapper {
+  transform: scale(1.1);
+}
+
+.relatedCardBody {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.relatedBadge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #f97316;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.relatedCardTitle {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.4;
+  margin-bottom: 0.5rem;
+}
+
+.relatedCardExcerpt {
+  font-size: 0.8125rem;
+  color: #94a3b8;
+  line-height: 1.5;
+  margin-top: auto;
+}
+
+/* Call to Action Banner */
+.ctaBanner {
+  background: linear-gradient(135deg, #1e293b, #0f172a);
+  border: 1px solid rgba(249, 115, 22, 0.4);
+  border-radius: 1rem;
+  padding: 3rem 2rem;
+  text-align: center;
+  margin-top: 3rem;
+}
+
+.ctaTitle {
+  font-size: 1.875rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.ctaSlogan {
+  color: #f97316;
+  font-weight: 600;
+  font-size: 1.125rem;
+  margin-bottom: 1rem;
+}
+
+.ctaText {
+  color: #cbd5e1;
+  font-size: 1rem;
+  max-width: 650px;
+  margin: 0 auto 2rem;
+  line-height: 1.6;
+}
+
+.ctaActions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .videoTitle {
+    font-size: 1.625rem;
+  }
+  
+  .videoHeaderInfo {
+    padding: 1.25rem;
+  }
+  
+  .cardsGrid2 {
+    grid-template-columns: 1fr;
+  }
+  
+  .videoMetaBar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .actionsGroup {
+    width: 100%;
+  }
+  
+  .btnActionPrimary,
+  .btnActionOutline {
+    flex: 1;
+    justify-content: center;
+  }
+}

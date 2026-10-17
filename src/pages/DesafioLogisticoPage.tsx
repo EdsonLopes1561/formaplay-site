@@ -42,7 +42,7 @@ export const DesafioLogisticoPage: React.FC = () => {
     setOpenFaq((prev) => (prev === index ? null : index));
   };
 
-  // WebPage structured data (preserves valid BreadcrumbList and VideoObjects)
+  // WebPage structured data (preserves valid BreadcrumbList)
   const webPageSchema = {
     '@context': 'https://schema.org',
     '@type': 'WebPage',
@@ -75,28 +75,6 @@ export const DesafioLogisticoPage: React.FC = () => {
         item: 'https://www.formaplayjogos.com.br/desafio-logistico'
       }
     ]
-  };
-
-  const video1Schema = {
-    '@context': 'https://schema.org',
-    '@type': 'VideoObject',
-    name: 'Desafio Logístico: Da ideia à validação (1ª fase do Empreenda Senac)',
-    description: 'Vídeo utilizado na etapa inicial do Empreenda Senac para apresentar o problema, a solução e a proposta do Desafio Logístico.',
-    thumbnailUrl: 'https://img.youtube.com/vi/fs2an3x7TXs/hqdefault.jpg',
-    uploadDate: '2024-06-01T00:00:00Z',
-    embedUrl: 'https://www.youtube.com/embed/fs2an3x7TXs',
-    contentUrl: 'https://youtu.be/fs2an3x7TXs'
-  };
-
-  const video2Schema = {
-    '@context': 'https://schema.org',
-    '@type': 'VideoObject',
-    name: 'Desafio Logístico: Evolução do projeto (2ª fase do Empreenda Senac)',
-    description: 'Vídeo desenvolvido para a etapa de avaliação da 2ª fase do Empreenda Senac.',
-    thumbnailUrl: 'https://img.youtube.com/vi/Y1DsO5okIPU/hqdefault.jpg',
-    uploadDate: '2024-08-01T00:00:00Z',
-    embedUrl: 'https://www.youtube.com/embed/Y1DsO5okIPU',
-    contentUrl: 'https://youtu.be/Y1DsO5okIPU'
   };
 
   const steps = [
@@ -210,7 +188,7 @@ export const DesafioLogisticoPage: React.FC = () => {
         canonicalUrl="https://www.formaplayjogos.com.br/desafio-logistico"
         ogImage="https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.webp"
         ogType="website"
-        schema={[webPageSchema, breadcrumbSchema, video1Schema, video2Schema]}
+        schema={[webPageSchema, breadcrumbSchema]}
       />
 
       <Header />
@@ -660,6 +638,23 @@ export const DesafioLogisticoPage: React.FC = () => {
                     </button>
                   )}
                 </div>
+                <div style={{ marginTop: '0.875rem', textAlign: 'center' }}>
+                  <Link
+                    href="/videos/apresentacao-desafio-logistico"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.375rem',
+                      color: '#f97316',
+                      fontSize: '0.875rem',
+                      fontWeight: 600,
+                      textDecoration: 'none'
+                    }}
+                  >
+                    <span>Ver página dedicada e contexto pedagógico</span>
+                    <ArrowRight size={14} />
+                  </Link>
+                </div>
               </div>
 
               {/* VÍDEO 2 - 2ª FASE */}
@@ -705,6 +700,23 @@ export const DesafioLogisticoPage: React.FC = () => {
                     </button>
                   )}
                 </div>
+                <div style={{ marginTop: '0.875rem', textAlign: 'center' }}>
+                  <Link
+                    href="/videos/semifinal-empreenda-senac"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: '0.375rem',
+                      color: '#f97316',
+                      fontSize: '0.875rem',
+                      fontWeight: 600,
+                      textDecoration: 'none'
+                    }}
+                  >
+                    <span>Ver página dedicada e contexto pedagógico</span>
+                    <ArrowRight size={14} />
+                  </Link>
+                </div>
               </div>
 
             </div>
@@ -719,6 +731,14 @@ export const DesafioLogisticoPage: React.FC = () => {
               >
                 Solicitar Proposta para sua Escola
               </a>
+              <Link
+                href="/videos"
+                className={`btn btn-outline ${styles.btnOutline}`}
+                style={{ color: '#ffffff', borderColor: 'rgba(255,255,255,0.25)' }}
+              >
+                <PlayCircle size={18} />
+                Ver Todos os Vídeos da FormaPlay
+              </Link>
               <a
                 href={getWhatsAppLink()}
                 target="_blank"

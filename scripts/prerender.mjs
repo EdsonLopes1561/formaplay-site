@@ -134,28 +134,6 @@ const desafioBreadcrumbSchema = {
   ]
 };
 
-const video1Schema = {
-  '@context': 'https://schema.org',
-  '@type': 'VideoObject',
-  name: 'Desafio Logístico: Da ideia à validação (1ª fase do Empreenda Senac)',
-  description: 'Vídeo utilizado na etapa inicial do Empreenda Senac para apresentar o problema, a solução e a proposta do Desafio Logístico.',
-  thumbnailUrl: 'https://img.youtube.com/vi/fs2an3x7TXs/hqdefault.jpg',
-  uploadDate: '2024-06-01T00:00:00Z',
-  embedUrl: 'https://www.youtube.com/embed/fs2an3x7TXs',
-  contentUrl: 'https://youtu.be/fs2an3x7TXs'
-};
-
-const video2Schema = {
-  '@context': 'https://schema.org',
-  '@type': 'VideoObject',
-  name: 'Desafio Logístico: Evolução do projeto (2ª fase do Empreenda Senac)',
-  description: 'Vídeo desenvolvido para a etapa de avaliação da 2ª fase do Empreenda Senac.',
-  thumbnailUrl: 'https://img.youtube.com/vi/Y1DsO5okIPU/hqdefault.jpg',
-  uploadDate: '2024-08-01T00:00:00Z',
-  embedUrl: 'https://www.youtube.com/embed/Y1DsO5okIPU',
-  contentUrl: 'https://youtu.be/Y1DsO5okIPU'
-};
-
 createPrerenderedPage({
   subPath: 'desafio-logistico',
   title: 'Desafio Logístico | Jogo Educacional de Logística – FormaPlay',
@@ -163,7 +141,7 @@ createPrerenderedPage({
   canonicalUrl: 'https://www.formaplayjogos.com.br/desafio-logistico',
   ogImage: 'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.webp',
   ogType: 'website',
-  schemas: [desafioWebPageSchema, desafioBreadcrumbSchema, video1Schema, video2Schema],
+  schemas: [desafioWebPageSchema, desafioBreadcrumbSchema],
   noscriptContent: `
     <h1>Desafio Logístico: jogo educacional de logística para aprender na prática</h1>
     <p>Jogo de tabuleiro educacional desenvolvido pela FormaPlay para 2 a 4 jogadores, simulando planejamento de rotas, custos e tomadas de decisão.</p>
@@ -417,4 +395,147 @@ createPrerenderedPage({
   `
 });
 
-console.log('[✓] All 7 static pre-rendered routes generated successfully.');
+
+
+// 8. CENTRAL DE VÍDEOS (HUB)
+const videosHubWebPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'CollectionPage',
+  name: 'Vídeos sobre Jogos Educacionais e Logística | FormaPlay',
+  description: 'Assista aos vídeos oficiais da FormaPlay: apresentação do Desafio Logístico, trajetória e validação na 1ª fase e semifinal do Empreenda Senac 2026.',
+  url: 'https://www.formaplayjogos.com.br/videos',
+  inLanguage: 'pt-BR',
+  publisher: {
+    '@type': 'Organization',
+    name: 'FormaPlay – Jogos Educacionais',
+    url: 'https://www.formaplayjogos.com.br',
+    logo: 'https://www.formaplayjogos.com.br/icone.webp'
+  }
+};
+
+const videosHubBreadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://www.formaplayjogos.com.br/' },
+    { '@type': 'ListItem', position: 2, name: 'Vídeos', item: 'https://www.formaplayjogos.com.br/videos' }
+  ]
+};
+
+createPrerenderedPage({
+  subPath: 'videos',
+  title: 'Vídeos sobre Jogos Educacionais e Logística | FormaPlay',
+  description: 'Assista aos vídeos oficiais da FormaPlay: apresentação do Desafio Logístico, trajetória e validação na 1ª fase e semifinal do Empreenda Senac 2026.',
+  canonicalUrl: 'https://www.formaplayjogos.com.br/videos',
+  ogImage: 'https://www.formaplayjogos.com.br/desafio-logistico-produto-mesa.webp',
+  ogType: 'website',
+  schemas: [videosHubWebPageSchema, videosHubBreadcrumbSchema],
+  noscriptContent: `
+    <h1>Vídeos da FormaPlay: aprendizagem prática e jogos educacionais</h1>
+    <p>Assista aos vídeos oficiais do Desafio Logístico, conheça a proposta pedagógica de gamificação e acompanhe a trajetória de validação no Empreenda Senac 2026.</p>
+    <p><a href="https://www.formaplayjogos.com.br/videos/apresentacao-desafio-logistico" style="color: #f97316;">Apresentação Oficial e 1ª Fase do Empreenda Senac</a></p>
+    <p><a href="https://www.formaplayjogos.com.br/videos/semifinal-empreenda-senac" style="color: #f97316;">Semifinal do Empreenda Senac 2026: Evolução do Projeto</a></p>
+  `
+});
+
+// 9. VÍDEO DEDICADO 1: APRESENTAÇÃO DO DESAFIO LOGÍSTICO (CONSOLIDADO COM 1ª FASE)
+const vidApresentacaoSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: 'Desafio Logístico: Apresentação Oficial e 1ª Fase do Empreenda Senac',
+  description: 'Assista à apresentação do Desafio Logístico em 1 minuto. Conheça a concepção do jogo de tabuleiro didático da FormaPlay, a proposta submetida na 1ª fase do Empreenda Senac e como a dinâmica transforma a teoria logística em tomadas de decisão participativas.',
+  thumbnailUrl: 'https://img.youtube.com/vi/fs2an3x7TXs/hqdefault.jpg',
+  uploadDate: '2024-06-01T00:00:00Z',
+  duration: 'PT1M',
+  embedUrl: 'https://www.youtube.com/embed/fs2an3x7TXs',
+  contentUrl: 'https://youtu.be/fs2an3x7TXs',
+  inLanguage: 'pt-BR',
+  publisher: {
+    '@type': 'Organization',
+    name: 'FormaPlay – Jogos Educacionais',
+    url: 'https://www.formaplayjogos.com.br',
+    logo: 'https://www.formaplayjogos.com.br/icone.webp'
+  }
+};
+
+const vidApresentacaoBreadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://www.formaplayjogos.com.br/' },
+    { '@type': 'ListItem', position: 2, name: 'Vídeos', item: 'https://www.formaplayjogos.com.br/videos' },
+    { '@type': 'ListItem', position: 3, name: 'Apresentação Oficial e 1ª Fase', item: 'https://www.formaplayjogos.com.br/videos/apresentacao-desafio-logistico' }
+  ]
+};
+
+createPrerenderedPage({
+  subPath: 'videos/apresentacao-desafio-logistico',
+  title: 'Apresentação do Desafio Logístico: Vídeo Oficial | FormaPlay',
+  description: 'Assista à apresentação do Desafio Logístico em 1 minuto. Conheça como o jogo de tabuleiro educacional da FormaPlay transforma conceitos teóricos de logística em experiências práticas e participativas de tomada de decisão.',
+  canonicalUrl: 'https://www.formaplayjogos.com.br/videos/apresentacao-desafio-logistico',
+  ogImage: 'https://img.youtube.com/vi/fs2an3x7TXs/hqdefault.jpg',
+  ogType: 'website',
+  schemas: [vidApresentacaoSchema, vidApresentacaoBreadcrumb],
+  noscriptContent: `
+    <h1>Apresentação do Desafio Logístico: o jogo que transforma teoria em prática</h1>
+    <p>Vídeo oficial de apresentação do Desafio Logístico. Jogo de tabuleiro educacional desenvolvido pela FormaPlay para 2 a 4 jogadores, simulando planejamento de rotas, custos e tomadas de decisão.</p>
+    <p>Assista no YouTube: <a href="https://youtu.be/fs2an3x7TXs" style="color: #f97316;">https://youtu.be/fs2an3x7TXs</a></p>
+    <p><a href="https://www.formaplayjogos.com.br/desafio-logistico" style="color: #f97316;">Conhecer o Desafio Logístico</a> | <a href="https://www.formaplayjogos.com.br/videos" style="color: #f97316;">Ver Todos os Vídeos</a></p>
+  `
+});
+
+// GARANTE QUE NÃO EXISTA ARQUIVO HTML ESTÁTICO PARA A ROTA LEGADA
+// O redirecionamento DEVE ser emitido como cabeçalho HTTP 308 (vercel.json) ou 301 (_redirects), e não HTTP 200.
+const legacyRedirectDir = path.join(distDir, 'videos/primeira-fase-empreenda-senac');
+if (fs.existsSync(legacyRedirectDir)) {
+  fs.rmSync(legacyRedirectDir, { recursive: true, force: true });
+  console.log('[✓] Removed static legacy directory to ensure real HTTP 308/301 header: dist/videos/primeira-fase-empreenda-senac');
+}
+
+// 10. VÍDEO DEDICADO 2: SEMIFINAL DO EMPREENDA SENAC 2026
+const vidSemifinalSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'VideoObject',
+  name: 'Desafio Logístico na Semifinal do Empreenda Senac 2026: Evolução do Projeto',
+  description: 'Vídeo desenvolvido para a etapa de avaliação da 2ª fase (semifinal) do Empreenda Senac 2026. Acompanhe a evolução do protótipo, a dinâmica das regras e a validação do jogo com turmas e professores reais.',
+  thumbnailUrl: 'https://img.youtube.com/vi/Y1DsO5okIPU/hqdefault.jpg',
+  uploadDate: '2024-08-01T00:00:00Z',
+  duration: 'PT2M',
+  embedUrl: 'https://www.youtube.com/embed/Y1DsO5okIPU',
+  contentUrl: 'https://youtu.be/Y1DsO5okIPU',
+  inLanguage: 'pt-BR',
+  publisher: {
+    '@type': 'Organization',
+    name: 'FormaPlay – Jogos Educacionais',
+    url: 'https://www.formaplayjogos.com.br',
+    logo: 'https://www.formaplayjogos.com.br/icone.webp'
+  }
+};
+
+const vidSemifinalBreadcrumb = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://www.formaplayjogos.com.br/' },
+    { '@type': 'ListItem', position: 2, name: 'Vídeos', item: 'https://www.formaplayjogos.com.br/videos' },
+    { '@type': 'ListItem', position: 3, name: 'Semifinal do Empreenda Senac 2026', item: 'https://www.formaplayjogos.com.br/videos/semifinal-empreenda-senac' }
+  ]
+};
+
+createPrerenderedPage({
+  subPath: 'videos/semifinal-empreenda-senac',
+  title: 'Desafio Logístico na Semifinal do Empreenda Senac 2026 | FormaPlay',
+  description: 'Vídeo desenvolvido para a etapa de avaliação da 2ª fase (semifinal) do Empreenda Senac 2026. Acompanhe a evolução do protótipo, a dinâmica das regras e a validação do jogo com turmas e professores reais.',
+  canonicalUrl: 'https://www.formaplayjogos.com.br/videos/semifinal-empreenda-senac',
+  ogImage: 'https://img.youtube.com/vi/Y1DsO5okIPU/hqdefault.jpg',
+  ogType: 'website',
+  schemas: [vidSemifinalSchema, vidSemifinalBreadcrumb],
+  noscriptContent: `
+    <h1>Desafio Logístico na semifinal do Empreenda Senac 2026: evolução do projeto</h1>
+    <p>Vídeo da 2ª fase (semifinal) do Empreenda Senac 2026 apresentando a maturidade metodológica, prototipagem física e validação em turmas reais de logística.</p>
+    <p>Assista no YouTube: <a href="https://youtu.be/Y1DsO5okIPU" style="color: #f97316;">https://youtu.be/Y1DsO5okIPU</a></p>
+    <p><a href="https://www.formaplayjogos.com.br/desafio-logistico" style="color: #f97316;">Conhecer o Desafio Logístico</a> | <a href="https://www.formaplayjogos.com.br/videos" style="color: #f97316;">Ver Todos os Vídeos</a></p>
+  `
+});
+
+console.log('[✓] All static pre-rendered routes and canonical redirects generated successfully.');

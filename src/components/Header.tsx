@@ -63,11 +63,14 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [isDesafioLogistico, isLogisticaEducadores]);
 
+  const isVideos = currentPath.startsWith('/videos');
+
   const homeMenuItems = [
     { label: 'Início', href: '/' },
     { label: 'Desafio Logístico', href: '/desafio-logistico' },
     { label: 'Para Educadores', href: '/logistica-em-sala-de-aula' },
     { label: 'Conteúdos', href: '/conteudos' },
+    { label: 'Vídeos', href: '/videos' },
     { label: 'Sobre', href: '/#sobre' },
     { label: 'Contato', href: '/#contato' },
   ];
@@ -78,6 +81,7 @@ export const Header: React.FC = () => {
     { label: 'Como Funciona', href: '#como-funciona' },
     { label: 'Para Educadores', href: '/logistica-em-sala-de-aula' },
     { label: 'Conteúdos', href: '/conteudos' },
+    { label: 'Vídeos', href: '/videos' },
     { label: 'Componentes', href: '#componentes' },
     { label: 'FAQ', href: '#faq' },
   ];
@@ -86,9 +90,19 @@ export const Header: React.FC = () => {
     { label: 'Início', href: '/' },
     { label: 'Atividades Práticas', href: '#atividades-praticas' },
     { label: 'Conteúdos', href: '/conteudos' },
+    { label: 'Vídeos', href: '/videos' },
     { label: 'O Professor', href: '#papel-professor' },
     { label: 'Desafio Logístico', href: '/desafio-logistico' },
     { label: 'FAQ', href: '#faq' },
+  ];
+
+  const videosMenuItems = [
+    { label: 'Início', href: '/' },
+    { label: 'Desafio Logístico', href: '/desafio-logistico' },
+    { label: 'Para Educadores', href: '/logistica-em-sala-de-aula' },
+    { label: 'Conteúdos', href: '/conteudos' },
+    { label: 'Vídeos', href: '/videos' },
+    { label: 'Contato', href: '/#contato' },
   ];
 
   let menuItems = homeMenuItems;
@@ -96,6 +110,8 @@ export const Header: React.FC = () => {
     menuItems = productMenuItems;
   } else if (isLogisticaEducadores) {
     menuItems = educadoresMenuItems;
+  } else if (isVideos) {
+    menuItems = videosMenuItems;
   }
 
   return (
@@ -112,7 +128,8 @@ export const Header: React.FC = () => {
               const isCurrentRoute = (item.href === '/' && currentPath === '/') || 
                                      (item.href === '/desafio-logistico' && currentPath === '/desafio-logistico') ||
                                      (item.href === '/logistica-em-sala-de-aula' && currentPath === '/logistica-em-sala-de-aula') ||
-                                     (item.href === '/conteudos' && currentPath.startsWith('/conteudos'));
+                                     (item.href === '/conteudos' && currentPath.startsWith('/conteudos')) ||
+                                     (item.href === '/videos' && currentPath.startsWith('/videos'));
               const isCurrentSection = item.href.startsWith('#') && activeSection === item.href.substring(1);
               const isActive = isCurrentRoute || isCurrentSection;
 

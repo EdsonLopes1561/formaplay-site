@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
   <url>
     <loc>https://www.formaplayjogos.com.br/</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://www.formaplayjogos.com.br/desafio-logistico</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.formaplayjogos.com.br/logistica-em-sala-de-aula</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://www.formaplayjogos.com.br/conteudos</loc>
-    <lastmod>2026-09-25</lastmod>
+    <lastmod>2026-10-17</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -41,5 +42,43 @@
     <lastmod>2026-09-25</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.formaplayjogos.com.br/videos</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.formaplayjogos.com.br/videos/apresentacao-desafio-logistico</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/fs2an3x7TXs/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Desafio Logístico: Apresentação Oficial e 1ª Fase do Empreenda Senac</video:title>
+      <video:description>Assista à apresentação oficial do Desafio Logístico em 1 minuto. Conheça a proposta didática do jogo de tabuleiro educacional e a validação do problema pedagógico na 1ª fase do Empreenda Senac.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/fs2an3x7TXs</video:player_loc>
+      <video:duration>60</video:duration>
+      <video:publication_date>2024-06-01T00:00:00Z</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:uploader info="https://www.formaplayjogos.com.br/">FormaPlay – Jogos Educacionais</video:uploader>
+    </video:video>
+  </url>
+  <url>
+    <loc>https://www.formaplayjogos.com.br/videos/semifinal-empreenda-senac</loc>
+    <lastmod>2026-10-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/Y1DsO5okIPU/hqdefault.jpg</video:thumbnail_loc>
+      <video:title>Desafio Logístico na Semifinal do Empreenda Senac 2026: Evolução do Projeto</video:title>
+      <video:description>Vídeo desenvolvido para a etapa de avaliação da 2ª fase (semifinal) do Empreenda Senac 2026. Acompanhe a evolução do protótipo, a dinâmica das regras e a validação do jogo com turmas e professores reais.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/Y1DsO5okIPU</video:player_loc>
+      <video:duration>120</video:duration>
+      <video:publication_date>2024-08-01T00:00:00Z</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+      <video:uploader info="https://www.formaplayjogos.com.br/">FormaPlay – Jogos Educacionais</video:uploader>
+    </video:video>
   </url>
 </urlset>

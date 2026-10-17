@@ -1,6 +1,13 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/videos/primeira-fase-empreenda-senac",
+      "destination": "/videos/apresentacao-desafio-logistico",
+      "permanent": true
+    }
+  ],
   "rewrites": [
     {
       "source": "/desafio-logistico",
