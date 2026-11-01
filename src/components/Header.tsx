@@ -64,6 +64,7 @@ export const Header: React.FC = () => {
   }, [isDesafioLogistico, isLogisticaEducadores]);
 
   const isVideos = currentPath.startsWith('/videos');
+  const isMusica = currentPath === '/musica' || currentPath === '/universo-musical';
 
   const homeMenuItems = [
     { label: 'Início', href: '/' },
@@ -71,6 +72,7 @@ export const Header: React.FC = () => {
     { label: 'Para Educadores', href: '/logistica-em-sala-de-aula' },
     { label: 'Conteúdos', href: '/conteudos' },
     { label: 'Vídeos', href: '/videos' },
+    { label: 'Música', href: '/musica' },
     { label: 'Sobre', href: '/#sobre' },
     { label: 'Contato', href: '/#contato' },
   ];
@@ -82,6 +84,7 @@ export const Header: React.FC = () => {
     { label: 'Para Educadores', href: '/logistica-em-sala-de-aula' },
     { label: 'Conteúdos', href: '/conteudos' },
     { label: 'Vídeos', href: '/videos' },
+    { label: 'Música', href: '/musica' },
     { label: 'Componentes', href: '#componentes' },
     { label: 'FAQ', href: '#faq' },
   ];
@@ -91,6 +94,7 @@ export const Header: React.FC = () => {
     { label: 'Atividades Práticas', href: '#atividades-praticas' },
     { label: 'Conteúdos', href: '/conteudos' },
     { label: 'Vídeos', href: '/videos' },
+    { label: 'Música', href: '/musica' },
     { label: 'O Professor', href: '#papel-professor' },
     { label: 'Desafio Logístico', href: '/desafio-logistico' },
     { label: 'FAQ', href: '#faq' },
@@ -100,6 +104,17 @@ export const Header: React.FC = () => {
     { label: 'Início', href: '/' },
     { label: 'Desafio Logístico', href: '/desafio-logistico' },
     { label: 'Para Educadores', href: '/logistica-em-sala-de-aula' },
+    { label: 'Conteúdos', href: '/conteudos' },
+    { label: 'Vídeos', href: '/videos' },
+    { label: 'Música', href: '/musica' },
+    { label: 'Contato', href: '/#contato' },
+  ];
+
+  const musicaMenuItems = [
+    { label: 'Início', href: '/' },
+    { label: 'Música Oficial', href: '#musica-oficial' },
+    { label: 'Biblioteca Musical', href: '#biblioteca-desafio-logistico' },
+    { label: 'Desafio Logístico', href: '/desafio-logistico' },
     { label: 'Conteúdos', href: '/conteudos' },
     { label: 'Vídeos', href: '/videos' },
     { label: 'Contato', href: '/#contato' },
@@ -112,6 +127,8 @@ export const Header: React.FC = () => {
     menuItems = educadoresMenuItems;
   } else if (isVideos) {
     menuItems = videosMenuItems;
+  } else if (isMusica) {
+    menuItems = musicaMenuItems;
   }
 
   return (
@@ -129,7 +146,8 @@ export const Header: React.FC = () => {
                                      (item.href === '/desafio-logistico' && currentPath === '/desafio-logistico') ||
                                      (item.href === '/logistica-em-sala-de-aula' && currentPath === '/logistica-em-sala-de-aula') ||
                                      (item.href === '/conteudos' && currentPath.startsWith('/conteudos')) ||
-                                     (item.href === '/videos' && currentPath.startsWith('/videos'));
+                                     (item.href === '/videos' && currentPath.startsWith('/videos')) ||
+                                     (item.href === '/musica' && (currentPath === '/musica' || currentPath === '/universo-musical'));
               const isCurrentSection = item.href.startsWith('#') && activeSection === item.href.substring(1);
               const isActive = isCurrentRoute || isCurrentSection;
 

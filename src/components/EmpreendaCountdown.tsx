@@ -5,21 +5,26 @@ import {
   getOfficialEmpreendaResultUrl,
   calculateEmpreendaTimeLeft,
   type CountdownTimeLeft,
+  type CountdownEventConfig,
 } from '../data/empreendaConfig';
+import { MusicaOficialCompactBar } from './MusicaOficialCompactBar';
 import styles from './EmpreendaCountdown.module.css';
 
 const padTwoDigits = (val: number): string => String(val).padStart(2, '0');
 
 interface EmpreendaCountdownProps {
-  /** Opcional para testes de validação de estado (antes/depois das 12h) */
+  /** Opcional para testes de validação de estado (antes/depois das 9h) */
   overrideNowMs?: number;
+  /** Configuração customizada do evento para reutilização futura */
+  config?: CountdownEventConfig;
 }
 
 export const EmpreendaCountdown: React.FC<EmpreendaCountdownProps> = ({
   overrideNowMs,
+  config = EMPREENDA_CONFIG,
 }) => {
   const [liveTimeLeft, setLiveTimeLeft] = useState<CountdownTimeLeft>(() =>
-    calculateEmpreendaTimeLeft(overrideNowMs ?? Date.now())
+    calculateEmpreendaTimeLeft(overrideNowMs ?? Date.now(), config.targetDateIso)
   );
 
   useEffect(() => {
@@ -28,18 +33,18 @@ export const EmpreendaCountdown: React.FC<EmpreendaCountdownProps> = ({
     }
 
     const timer = window.setInterval(() => {
-      setLiveTimeLeft(calculateEmpreendaTimeLeft(Date.now()));
+      setLiveTimeLeft(calculateEmpreendaTimeLeft(Date.now(), config.targetDateIso));
     }, 1000);
 
     return () => window.clearInterval(timer);
-  }, [overrideNowMs]);
+  }, [overrideNowMs, config.targetDateIso]);
 
   const timeLeft =
     overrideNowMs !== undefined
-      ? calculateEmpreendaTimeLeft(overrideNowMs)
+      ? calculateEmpreendaTimeLeft(overrideNowMs, config.targetDateIso)
       : liveTimeLeft;
 
-  const officialResultUrl = getOfficialEmpreendaResultUrl();
+  const officialResultUrl = getOfficialEmpreendaResultUrl(config);
 
   return (
     <section
@@ -55,11 +60,11 @@ export const EmpreendaCountdown: React.FC<EmpreendaCountdownProps> = ({
             <div className={styles.headerContent}>
               <div className={styles.badge}>
                 <Award size={16} className={styles.badgeIcon} />
-                <span>Jornada Empreenda Senac 2026</span>
+                <span>{config.badgeLabel || 'Jornada Empreenda Senac 2026'}</span>
               </div>
 
-              <h2 className={styles.title}>{EMPREENDA_CONFIG.title}</h2>
-              <p className={styles.subtitle}>{EMPREENDA_CONFIG.subtitle}</p>
+              <h2 className={styles.title}>{config.title}</h2>
+              <p className={styles.subtitle}>{config.subtitle}</p>
             </div>
 
             {!timeLeft.isReached ? (
@@ -117,7 +122,7 @@ export const EmpreendaCountdown: React.FC<EmpreendaCountdownProps> = ({
                 <div className={styles.reachedHeader}>
                   <CalendarCheck size={24} className={styles.reachedIcon} />
                   <p className={styles.reachedTitle} data-testid="empreenda-reached-msg">
-                    {EMPREENDA_CONFIG.reachedMessage}
+                    {config.reachedMessage}
                   </p>
                 </div>
                 <p className={styles.reachedNote}>
@@ -131,7 +136,7 @@ export const EmpreendaCountdown: React.FC<EmpreendaCountdownProps> = ({
                     className={styles.officialButton}
                     data-testid="empreenda-official-btn"
                   >
-                    <span>{EMPREENDA_CONFIG.officialButtonLabel}</span>
+                    <span>{config.officialButtonLabel}</span>
                     <ExternalLink size={18} />
                   </a>
                 </div>
@@ -142,7 +147,7 @@ export const EmpreendaCountdown: React.FC<EmpreendaCountdownProps> = ({
           <div className={styles.footerRow}>
             <p className={styles.disclaimer}>
               <Clock size={15} className={styles.disclaimerIcon} aria-hidden="true" />
-              <span>{EMPREENDA_CONFIG.disclaimerText}</span>
+              <span>{config.disclaimerText}</span>
             </p>
 
             {!timeLeft.isReached && (
@@ -157,6 +162,8 @@ export const EmpreendaCountdown: React.FC<EmpreendaCountdownProps> = ({
               </a>
             )}
           </div>
+
+          <MusicaOficialCompactBar />
         </div>
       </div>
     </section>

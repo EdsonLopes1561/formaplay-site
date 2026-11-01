@@ -1,47 +1,55 @@
 /**
  * Configuração centralizada do destaque e contagem regressiva
- * para o Empreenda Senac 2026.
+ * para eventos e marcos da FormaPlay (atualmente Empreenda Senac 2026).
  *
- * IMPORTANTE:
- * - Não confundir a lista pública da Semifinal com a futura lista oficial da Final.
+ * Arquitetura flexível e reutilizável:
+ * - O componente `EmpreendaCountdown` aceita qualquer objeto aderente a `CountdownEventConfig`.
+ * - Novos eventos, lançamentos e competições podem ser adicionados facilmente aqui.
  * - Quando a URL pública específica dos finalistas for divulgada pelo Senac,
  *   basta preencher o campo `finalistsPublicUrl` abaixo para atualizar o botão
  *   "Consultar resultado oficial" automaticamente.
  */
 
-export interface EmpreendaConfig {
+export interface CountdownEventConfig {
+  /** Identificador do evento */
+  id?: string;
   /** Data e hora de referência para o fim da contagem no fuso America/Sao_Paulo (UTC-03:00) */
   targetDateIso: string;
   /** Título exibido durante a contagem regressiva */
   title: string;
   /** Subtítulo exibido durante a contagem regressiva */
   subtitle: string;
+  /** Badge exibido no topo do card */
+  badgeLabel?: string;
   /** Nota explicativa sobre o horário de referência */
   disclaimerText: string;
-  /** Mensagem exibida automaticamente após as 12h00 de 03/11/2026 */
+  /** Mensagem exibida automaticamente após atingir o horário-alvo */
   reachedMessage: string;
   /** Texto do botão de consulta ao resultado oficial */
   officialButtonLabel: string;
-  /** Página oficial principal do Empreenda Senac */
+  /** Página oficial principal do evento */
   officialMainUrl: string;
   /**
-   * URL pública específica da lista de Finalistas (quando divulgada).
+   * URL pública específica da lista de resultados/finalistas (quando divulgada).
    * Enquanto for `null` ou vazia, o botão direciona para `officialMainUrl`.
    */
-  finalistsPublicUrl: string | null;
+  finalistsPublicUrl?: string | null;
   /**
-   * URL pública histórica dos classificados da Semifinal (apenas referência;
-   * NÃO utilizar como resultado da Final).
+   * URL pública histórica dos classificados da etapa anterior (apenas referência).
    */
-  semifinalClassifiedsUrl: string;
+  semifinalClassifiedsUrl?: string;
 }
 
-export const EMPREENDA_CONFIG: EmpreendaConfig = {
-  targetDateIso: '2026-11-03T12:00:00-03:00',
+export type EmpreendaConfig = CountdownEventConfig;
+
+export const EMPREENDA_CONFIG: CountdownEventConfig = {
+  id: 'empreenda-senac-2026',
+  targetDateIso: '2026-11-03T09:00:00-03:00',
   title: 'Empreenda Senac 2026 — Rumo à Final!',
   subtitle: 'Contagem regressiva para a data de divulgação dos finalistas.',
+  badgeLabel: 'Jornada Empreenda Senac 2026',
   disclaimerText:
-    'Resultado previsto para 3 de novembro de 2026. A contagem até as 12h é uma referência da FormaPlay, pois não foi informado um horário oficial de publicação.',
+    'Resultado previsto para 3 de novembro de 2026. A contagem até as 9h é uma referência observada no contador do portal do participante, não constituindo um horário oficialmente anunciado de publicação.',
   reachedMessage: 'Chegou o dia de conhecer os finalistas do Empreenda Senac 2026!',
   officialButtonLabel: 'Consultar resultado oficial',
   officialMainUrl: 'https://empreendasenac.azurewebsites.net/',
@@ -51,17 +59,18 @@ export const EMPREENDA_CONFIG: EmpreendaConfig = {
 
 /**
  * Retorna a URL oficial ativa para o botão "Consultar resultado oficial".
- * Prioriza a URL pública específica dos finalistas quando configurada;
- * caso contrário, utiliza a página oficial principal do Empreenda Senac.
+ * Prioriza a URL pública específica quando configurada; caso contrário, utiliza a página principal.
  */
-export const getOfficialEmpreendaResultUrl = (): string => {
+export const getOfficialEmpreendaResultUrl = (
+  config: CountdownEventConfig = EMPREENDA_CONFIG
+): string => {
   if (
-    EMPREENDA_CONFIG.finalistsPublicUrl &&
-    EMPREENDA_CONFIG.finalistsPublicUrl.trim().length > 0
+    config.finalistsPublicUrl &&
+    config.finalistsPublicUrl.trim().length > 0
   ) {
-    return EMPREENDA_CONFIG.finalistsPublicUrl.trim();
+    return config.finalistsPublicUrl.trim();
   }
-  return EMPREENDA_CONFIG.officialMainUrl;
+  return config.officialMainUrl;
 };
 
 export interface CountdownTimeLeft {

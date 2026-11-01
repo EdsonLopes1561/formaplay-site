@@ -538,4 +538,44 @@ createPrerenderedPage({
   `
 });
 
+// 11. UNIVERSO MUSICAL FORMAPLAY
+const musicaWebPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: 'Universo Musical FormaPlay | Música Oficial e Experiências Sonoras',
+  description: 'Conheça a identidade sonora da FormaPlay. Ouça a Música Oficial com player completo, ondas em tempo real e letra sincronizada.',
+  url: 'https://www.formaplayjogos.com.br/musica',
+  inLanguage: 'pt-BR',
+  publisher: {
+    '@type': 'Organization',
+    name: 'FormaPlay – Jogos Educacionais',
+    url: 'https://www.formaplayjogos.com.br',
+    logo: 'https://www.formaplayjogos.com.br/icone.webp'
+  }
+};
+
+const musicaBreadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Início', item: 'https://www.formaplayjogos.com.br/' },
+    { '@type': 'ListItem', position: 2, name: 'Universo Musical', item: 'https://www.formaplayjogos.com.br/musica' }
+  ]
+};
+
+createPrerenderedPage({
+  subPath: 'musica',
+  title: 'Universo Musical FormaPlay | Música Oficial e Experiências Sonoras',
+  description: 'Conheça a identidade sonora da FormaPlay. Ouça a Música Oficial com player completo, ondas em tempo real e letra sincronizada.',
+  canonicalUrl: 'https://www.formaplayjogos.com.br/musica',
+  ogImage: 'https://www.formaplayjogos.com.br/hero.webp',
+  ogType: 'website',
+  schemas: [musicaWebPageSchema, musicaBreadcrumbSchema],
+  noscriptContent: `
+    <h1>Universo Musical FormaPlay: música oficial e biblioteca sonora</h1>
+    <p>Ouça a Música Oficial da FormaPlay, acompanhe a letra sincronizada e conheça como a música potencializa dinâmicas de sala de aula e jogos educacionais.</p>
+    <p><a href="https://www.formaplayjogos.com.br/desafio-logistico" style="color: #f97316;">Conhecer o Desafio Logístico</a> | <a href="https://www.formaplayjogos.com.br/" style="color: #f97316;">Ir para a Página Inicial</a></p>
+  `
+});
+
 console.log('[✓] All static pre-rendered routes and canonical redirects generated successfully.');

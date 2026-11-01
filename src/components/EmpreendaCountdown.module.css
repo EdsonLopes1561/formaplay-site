@@ -151,7 +151,7 @@
   user-select: none;
 }
 
-/* Reached State (After 12h00 on 03/11/2026) */
+/* Reached State (After 09h00 on 03/11/2026) */
 .reachedBox {
   background: rgba(10, 17, 34, 0.88);
   border: 1px solid rgba(56, 189, 248, 0.4);

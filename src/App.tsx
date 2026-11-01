@@ -12,6 +12,7 @@ import { AtividadesPraticasArticle } from './pages/articles/AtividadesPraticasAr
 import { TomadaDecisaoArticle } from './pages/articles/TomadaDecisaoArticle';
 import { VideosHubPage } from './pages/VideosHubPage';
 import { VideoDetailPage } from './pages/VideoDetailPage';
+import { UniversoMusicalPage } from './pages/UniversoMusicalPage';
 import { getVideoBySlug } from './data/videos';
 
 const AppRoutes: React.FC = () => {
@@ -43,6 +44,10 @@ const AppRoutes: React.FC = () => {
 
   if (currentPath === '/videos') {
     return <VideosHubPage />;
+  }
+
+  if (currentPath === '/musica' || currentPath === '/universo-musical') {
+    return <UniversoMusicalPage />;
   }
 
   // Redirecionamento de rota legada para a página canônica consolidada

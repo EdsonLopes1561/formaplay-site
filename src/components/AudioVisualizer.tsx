@@ -3,17 +3,24 @@ import { useAudioPlayer } from '../context/AudioPlayerContext';
 
 interface AudioVisualizerProps {
   className?: string;
+  barCount?: number;
+  minHeight?: number;
 }
 
-const BAR_COUNT = 40;
+const DEFAULT_BAR_COUNT = 40;
 
-export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ className }) => {
+export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({
+  className,
+  barCount = DEFAULT_BAR_COUNT,
+  minHeight = 40,
+}) => {
   const { isPlaying, status, stopResetToken, getFrequencyData } = useAudioPlayer();
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const rafRef = useRef<number | null>(null);
-  const smoothedBarsRef = useRef<Float32Array>(new Float32Array(BAR_COUNT));
-  const peakBarsRef = useRef<Float32Array>(new Float32Array(BAR_COUNT));
-  const peakHoldFramesRef = useRef<Int8Array>(new Int8Array(BAR_COUNT));
+  const count = Math.max(16, Math.min(64, barCount));
+  const smoothedBarsRef = useRef<Float32Array>(new Float32Array(count));
+  const peakBarsRef = useRef<Float32Array>(new Float32Array(count));
+  const peakHoldFramesRef = useRef<Int8Array>(new Int8Array(count));
   const freqBufferRef = useRef<Uint8Array>(new Uint8Array(128));
   const [isVisible, setIsVisible] = useState<boolean>(true);
   const [prefersReducedMotion, setPrefersReducedMotion] = useState<boolean>(() => {
@@ -22,6 +29,13 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ className }) =
     }
     return false;
   });
+
+  // Re-initialize arrays if barCount prop changes
+  useEffect(() => {
+    smoothedBarsRef.current = new Float32Array(count);
+    peakBarsRef.current = new Float32Array(count);
+    peakHoldFramesRef.current = new Int8Array(count);
+  }, [count]);
 
   // Listen for prefers-reduced-motion changes
   useEffect(() => {
@@ -61,8 +75,8 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ className }) =
 
       const dpr = window.devicePixelRatio || 1;
       const rect = canvas.getBoundingClientRect();
-      const width = Math.max(240, Math.floor(rect.width));
-      const height = Math.max(96, Math.floor(rect.height));
+      const width = Math.max(160, Math.floor(rect.width));
+      const height = Math.max(minHeight, Math.floor(rect.height));
 
       if (canvas.width !== width * dpr || canvas.height !== height * dpr) {
         canvas.width = width * dpr;
@@ -101,9 +115,8 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ className }) =
       ctx.fillStyle = ambientGrad;
       ctx.fillRect(0, 0, width, height);
 
-      const baselineY = height * 0.81;
-      // Increased maxBarHeight to allow bars to reach higher into the top area
-      const maxBarHeight = height * 0.74;
+      const baselineY = height * 0.82;
+      const maxBarHeight = height * 0.75;
 
       // Baseline horizon glow line
       ctx.strokeStyle = activeGlow
@@ -111,19 +124,19 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ className }) =
         : 'rgba(59, 130, 246, 0.2)';
       ctx.lineWidth = 1;
       ctx.beginPath();
-      ctx.moveTo(12, baselineY + 1);
-      ctx.lineTo(width - 12, baselineY + 1);
+      ctx.moveTo(8, baselineY + 1);
+      ctx.lineTo(width - 8, baselineY + 1);
       ctx.stroke();
 
-      const horizontalPadding = 16;
+      const horizontalPadding = Math.max(8, Math.min(16, width * 0.04));
       const usableWidth = width - horizontalPadding * 2;
-      const count = bars.length;
-      const step = usableWidth / count;
-      const barWidth = Math.max(3, Math.min(12, step * 0.64));
+      const totalBars = bars.length;
+      const step = usableWidth / totalBars;
+      const barWidth = Math.max(2, Math.min(10, step * 0.64));
 
-      for (let i = 0; i < count; i++) {
+      for (let i = 0; i < totalBars; i++) {
         const normalized = Math.max(0.04, Math.min(1, bars[i]));
-        const barH = Math.max(4, normalized * maxBarHeight);
+        const barH = Math.max(3, normalized * maxBarHeight);
         const x = horizontalPadding + i * step + (step - barWidth) / 2;
         const y = baselineY - barH;
 
@@ -138,41 +151,41 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ className }) =
         ctx.save();
         if (activeGlow && normalized > 0.3) {
           ctx.shadowColor = 'rgba(56, 189, 248, 0.65)';
-          ctx.shadowBlur = Math.min(14, 6 + normalized * 10);
+          ctx.shadowBlur = Math.min(12, 4 + normalized * 8);
         }
         ctx.fillStyle = barGrad;
 
         // Draw rounded top bar
-        const radius = Math.min(barWidth / 2, 4);
+        const radius = Math.min(barWidth / 2, 3);
         ctx.beginPath();
         ctx.roundRect(x, y, barWidth, barH, [radius, radius, 1, 1]);
         ctx.fill();
         ctx.restore();
 
-        // Draw subtle luminous peak cap on top of each bar for studio-grade response
+        // Draw subtle luminous peak cap on top of each bar
         if (activeGlow && peaks && peaks[i] > 0.08) {
           const peakNorm = Math.max(0.05, Math.min(1, peaks[i]));
           const peakY = baselineY - peakNorm * maxBarHeight;
-          const capHeight = 2.5;
+          const capHeight = Math.max(1.8, Math.min(2.5, height * 0.04));
 
           ctx.save();
           ctx.shadowColor = 'rgba(125, 211, 252, 0.85)';
-          ctx.shadowBlur = 8;
+          ctx.shadowBlur = 6;
           ctx.fillStyle = '#f0f9ff';
           ctx.beginPath();
           ctx.roundRect(
             x,
-            Math.max(4, peakY - capHeight),
+            Math.max(2, peakY - capHeight),
             barWidth,
             capHeight,
-            1.5
+            1.2
           );
           ctx.fill();
           ctx.restore();
         }
 
         // Subtle mirror reflection below baseline
-        const reflectH = Math.min(height - baselineY - 4, barH * 0.24);
+        const reflectH = Math.min(height - baselineY - 2, barH * 0.22);
         if (reflectH > 1) {
           const reflGrad = ctx.createLinearGradient(
             x,
@@ -180,7 +193,7 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ className }) =
             x,
             baselineY + 2 + reflectH
           );
-          reflGrad.addColorStop(0, 'rgba(56, 189, 248, 0.28)');
+          reflGrad.addColorStop(0, 'rgba(56, 189, 248, 0.26)');
           reflGrad.addColorStop(1, 'rgba(56, 189, 248, 0)');
           ctx.fillStyle = reflGrad;
           ctx.fillRect(x, baselineY + 2, barWidth, reflectH);
@@ -189,18 +202,18 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ className }) =
 
       ctx.restore();
     },
-    []
+    [minHeight]
   );
 
   // Build initial calm baseline bars
   const getInitialBars = useCallback((): Float32Array => {
-    const arr = new Float32Array(BAR_COUNT);
-    for (let i = 0; i < BAR_COUNT; i++) {
-      const centerDist = Math.abs(i - (BAR_COUNT - 1) / 2) / (BAR_COUNT / 2);
+    const arr = new Float32Array(count);
+    for (let i = 0; i < count; i++) {
+      const centerDist = Math.abs(i - (count - 1) / 2) / (count / 2);
       arr[i] = 0.06 + (1 - centerDist) * 0.05;
     }
     return arr;
-  }, []);
+  }, [count]);
 
   // Reset to initial state when Stop is triggered or status is idle/stopped
   useEffect(() => {
@@ -243,8 +256,8 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ className }) =
 
     // If user prefers reduced motion, show a calm static representation while playing
     if (prefersReducedMotion) {
-      const staticPlaying = new Float32Array(BAR_COUNT);
-      for (let i = 0; i < BAR_COUNT; i++) {
+      const staticPlaying = new Float32Array(count);
+      for (let i = 0; i < count; i++) {
         staticPlaying[i] = 0.24 + Math.sin(i * 0.45) * 0.12;
       }
       smoothedBarsRef.current = staticPlaying;
@@ -269,14 +282,11 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ className }) =
       const totalBins = freqData.length; // 128 bins with fftSize 256
       const now = performance.now() / 1000;
 
-      for (let i = 0; i < BAR_COUNT; i++) {
+      for (let i = 0; i < count; i++) {
         let targetAmplitude: number;
 
         if (hasRealData && sum > 0) {
-          // Perceptual logarithmic/exponential bin mapping:
-          // Gives generous space to bass, punchy kick drums and warm mids,
-          // while covering crisp highs up to the top frequencies
-          const t = i / (BAR_COUNT - 1);
+          const t = i / (count - 1);
           const centerBin = Math.pow(t, 1.72) * (totalBins * 0.86);
           const binRadius = Math.max(1, Math.round(t * 3.2));
           const startBin = Math.max(0, Math.floor(centerBin - binRadius));
@@ -292,13 +302,10 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ className }) =
             binCount++;
           }
           const avgVal = binCount > 0 ? sumVal / binCount : 0;
-          // Weighted blend of peak and average for punchy transients and rich depth
           const sample = (maxVal * 0.72 + avgVal * 0.28) / 255;
 
-          // Equalization curve: slight boost for lower bass punch and upper treble presence
           const eqBoost = 1.1 + Math.pow(t, 1.15) * 0.85;
 
-          // Contrast curve (exponential gamma + gain) to expand vertical dynamic range
           let scaled = sample * eqBoost;
           if (scaled > 0) {
             scaled = Math.pow(scaled, 1.25) * 1.28;
@@ -306,15 +313,12 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ className }) =
 
           targetAmplitude = Math.min(0.98, Math.max(0.04, scaled));
         } else {
-          // Expressive fallback animation if AudioContext is pending gesture
           targetAmplitude =
             0.18 +
             Math.abs(Math.sin(now * 5.2 + i * 0.32)) * 0.52 +
             Math.abs(Math.cos(now * 3.4 - i * 0.22)) * 0.26;
         }
 
-        // Fast responsive attack (0.72) so drum kicks and beats snap up instantly,
-        // paired with smooth natural decay (0.16) for fluid release
         const prev = currentBars[i] || 0.04;
         if (targetAmplitude > prev) {
           currentBars[i] = prev + (targetAmplitude - prev) * 0.72;
@@ -322,15 +326,13 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ className }) =
           currentBars[i] = prev + (targetAmplitude - prev) * 0.16;
         }
 
-        // Peak Hold logic for studio-grade peak accents
         if (currentBars[i] >= peakBars[i]) {
           peakBars[i] = currentBars[i];
-          peakHoldFrames[i] = 5; // hold peak for ~5 frames (~80ms)
+          peakHoldFrames[i] = 5;
         } else {
           if (peakHoldFrames[i] > 0) {
             peakHoldFrames[i]--;
           } else {
-            // Smooth gravitational decay of the peak marker
             peakBars[i] = Math.max(currentBars[i], peakBars[i] - 0.016);
           }
         }
@@ -348,7 +350,7 @@ export const AudioVisualizer: React.FC<AudioVisualizerProps> = ({ className }) =
         rafRef.current = null;
       }
     };
-  }, [isPlaying, isVisible, status, prefersReducedMotion, getFrequencyData, drawFrame]);
+  }, [isPlaying, isVisible, status, prefersReducedMotion, count, getFrequencyData, drawFrame]);
 
   return (
     <canvas

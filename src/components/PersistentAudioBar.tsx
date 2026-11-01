@@ -35,39 +35,56 @@ export const PersistentAudioBar: React.FC = () => {
     openLyricsModal,
   } = useAudioPlayer();
 
-  const [isHomeSectionIntersecting, setIsHomeSectionIntersecting] =
+  const isPlayerPage =
+    currentPath === '/' ||
+    currentPath === '/musica' ||
+    currentPath === '/universo-musical';
+
+  const [isSectionIntersecting, setIsSectionIntersecting] =
     useState<boolean>(true);
   const [isMinimized, setIsMinimized] = useState<boolean>(false);
 
   useEffect(() => {
-    if (currentPath !== '/') {
+    if (!isPlayerPage) {
       return;
     }
 
-    const el = document.getElementById('musica-oficial');
-    if (!el || typeof IntersectionObserver === 'undefined') {
-      return;
-    }
+    const checkVisibility = () => {
+      const fullEl = document.getElementById('musica-oficial');
+      const compactEl = document.getElementById('musica-compacta');
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0]) {
-          setIsHomeSectionIntersecting(entries[0].isIntersecting);
+      let isAnyVisible = false;
+      if (fullEl) {
+        const rect = fullEl.getBoundingClientRect();
+        if (rect.bottom > 80 && rect.top < window.innerHeight - 80) {
+          isAnyVisible = true;
         }
-      },
-      { threshold: 0.12 }
-    );
+      }
+      if (compactEl) {
+        const rect = compactEl.getBoundingClientRect();
+        if (rect.bottom > 80 && rect.top < window.innerHeight - 80) {
+          isAnyVisible = true;
+        }
+      }
+      setIsSectionIntersecting(isAnyVisible);
+    };
 
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [currentPath]);
+    window.addEventListener('scroll', checkVisibility, { passive: true });
+    window.addEventListener('resize', checkVisibility, { passive: true });
+    checkVisibility();
 
-  const isMainSectionVisible = currentPath === '/' && isHomeSectionIntersecting;
+    return () => {
+      window.removeEventListener('scroll', checkVisibility);
+      window.removeEventListener('resize', checkVisibility);
+    };
+  }, [isPlayerPage]);
+
+  const isPlayerVisibleOnScreen = isPlayerPage && isSectionIntersecting;
 
   // Show the persistent bar when the user has started playback (playing or paused mid-song)
-  // and either navigated to another internal route or scrolled away from the main section
+  // and either navigated to another internal route or scrolled away from player sections
   const isActiveSession = isPlaying || (isPaused && currentTime > 0);
-  if (!hasInteracted || !isActiveSession || isMainSectionVisible) {
+  if (!hasInteracted || !isActiveSession || isPlayerVisibleOnScreen) {
     return null;
   }
 
