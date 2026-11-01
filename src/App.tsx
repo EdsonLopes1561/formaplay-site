@@ -1,5 +1,8 @@
 import React from 'react';
 import { RouterProvider, useRouter } from './router/RouterContext';
+import { AudioPlayerProvider } from './context/AudioPlayerContext';
+import { PersistentAudioBar } from './components/PersistentAudioBar';
+import { LyricsModal } from './components/LyricsModal';
 import { HomePage } from './pages/HomePage';
 import { DesafioLogisticoPage } from './pages/DesafioLogisticoPage';
 import { LogisticaSalaDeAulaPage } from './pages/LogisticaSalaDeAulaPage';
@@ -65,7 +68,11 @@ const AppRoutes: React.FC = () => {
 const App: React.FC = () => {
   return (
     <RouterProvider>
-      <AppRoutes />
+      <AudioPlayerProvider>
+        <AppRoutes />
+        <PersistentAudioBar />
+        <LyricsModal />
+      </AudioPlayerProvider>
     </RouterProvider>
   );
 };

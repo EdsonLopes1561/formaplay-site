@@ -2,8 +2,10 @@ import React from 'react';
 import { SEOHead } from '../components/SEOHead';
 import { Header } from '../components/Header';
 import { Hero } from '../components/Hero';
+import { EmpreendaCountdown } from '../components/EmpreendaCountdown';
 import { IndicadoresTracao } from '../components/IndicadoresTracao';
 import { Destaque } from '../components/Destaque';
+import { MusicaOficialSection } from '../components/MusicaOficialSection';
 import { DesafioLogisticoSalaDeAula } from '../components/DesafioLogisticoSalaDeAula';
 import { Sobre } from '../components/Sobre';
 import { ParaQuemEIndicado } from '../components/ParaQuemEIndicado';
@@ -62,8 +64,10 @@ export const HomePage: React.FC = () => {
       <Header />
       <main id="main-content">
         <Hero />
+        <EmpreendaCountdown />
         <IndicadoresTracao />
         <Destaque />
+        <MusicaOficialSection />
         <DesafioLogisticoSalaDeAula />
         <Sobre />
         <ParaQuemEIndicado />

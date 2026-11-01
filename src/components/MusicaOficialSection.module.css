@@ -1,0 +1,610 @@
+.section {
+  background: linear-gradient(180deg, #070d1e 0%, #0f172a 50%, #0b132b 100%);
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(56, 189, 248, 0.18);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.18);
+}
+
+.headerBlock {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
+}
+
+.sectionBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.95rem;
+  border-radius: 9999px;
+  background: rgba(56, 189, 248, 0.14);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #7dd3fc;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.85rem;
+}
+
+.sectionTitle {
+  font-size: clamp(1.9rem, 1.5rem + 1.5vw, 2.6rem);
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.6rem;
+}
+
+.sectionSubtitle {
+  font-size: 1.125rem;
+  color: #cbd5e1;
+}
+
+.playerShell {
+  background: linear-gradient(145deg, rgba(10, 17, 34, 0.96) 0%, rgba(15, 23, 42, 0.96) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.32);
+  border-radius: 1.35rem;
+  padding: 1.5rem 1.75rem;
+  box-shadow:
+    0 25px 60px rgba(0, 0, 0, 0.65),
+    0 0 35px rgba(59, 130, 246, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.35rem;
+}
+
+/* Top Bar */
+.playerTopBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.15);
+}
+
+.statusPill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.4rem 0.9rem;
+  border-radius: 9999px;
+  background: rgba(30, 41, 59, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  color: #cbd5e1;
+  font-size: 0.825rem;
+  font-weight: 600;
+}
+
+.statusPlaying {
+  background: rgba(6, 182, 212, 0.15);
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #7dd3fc;
+}
+
+.statusPaused {
+  background: rgba(249, 115, 22, 0.15);
+  border-color: rgba(249, 115, 22, 0.45);
+  color: #fdba74;
+}
+
+.statusLoading {
+  background: rgba(59, 130, 246, 0.18);
+  border-color: rgba(96, 165, 250, 0.45);
+  color: #93c5fd;
+}
+
+.statusError {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #fca5a5;
+}
+
+.pulseDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #38bdf8;
+  box-shadow: 0 0 10px #38bdf8;
+  animation: pulseGlow 1.3s infinite ease-in-out;
+}
+
+.spinIcon {
+  animation: spin 1s linear infinite;
+}
+
+.topBarRight {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.sectionTagBadge {
+  font-size: 0.775rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #94a3b8;
+  padding: 0.35rem 0.75rem;
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 0.5rem;
+}
+
+.fullLyricsBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 1rem;
+  border-radius: 0.6rem;
+  background: rgba(59, 130, 246, 0.18);
+  border: 1px solid rgba(56, 189, 248, 0.42);
+  color: #e0f2fe;
+  font-size: 0.875rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.fullLyricsBtn:hover,
+.fullLyricsBtn:focus-visible {
+  background: rgba(59, 130, 246, 0.32);
+  border-color: #38bdf8;
+  color: #ffffff;
+  transform: translateY(-1px);
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+/* Stage Grid: Visualizer + Synced Lyrics */
+.stageGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25rem;
+  align-items: stretch;
+}
+
+.visualizerPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: #040916;
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: 1rem;
+  padding: 0.9rem;
+  box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.75);
+}
+
+.visualizerCanvasWrap {
+  width: 100%;
+  height: 190px;
+  border-radius: 0.65rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.visualizerCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.visualizerCaption {
+  margin-top: 0.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.775rem;
+  color: #94a3b8;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Synchronized Lyrics (Karaoke Panel) */
+.karaokePanel {
+  background: linear-gradient(180deg, rgba(8, 15, 32, 0.95) 0%, rgba(15, 23, 42, 0.92) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 1rem;
+  padding: 1.15rem 1.35rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.karaokeHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+}
+
+.karaokeTitle {
+  font-size: 0.775rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+}
+
+.karaokePartBadge {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #38bdf8;
+}
+
+.karaokeViewport {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.45rem;
+  min-height: 185px;
+  text-align: center;
+}
+
+.lyricSlotFar,
+.lyricSlotNear {
+  min-height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.lyricPastFar,
+.lyricNextFar {
+  font-size: 0.85rem;
+  color: rgba(148, 163, 184, 0.42);
+  line-height: 1.35;
+  transition: color 0.2s ease;
+  text-align: center;
+}
+
+.lyricPastNear {
+  font-size: 0.95rem;
+  color: rgba(148, 163, 184, 0.7);
+  line-height: 1.4;
+  transition: color 0.2s ease;
+  text-align: center;
+}
+
+.lyricNextNear {
+  font-size: 0.95rem;
+  color: #cbd5e1;
+  line-height: 1.4;
+  transition: color 0.2s ease;
+  text-align: center;
+}
+
+.lyricPastFar:hover,
+.lyricPastNear:hover,
+.lyricNextNear:hover,
+.lyricNextFar:hover {
+  color: #38bdf8;
+}
+
+.nextLabel {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #38bdf8;
+  margin-right: 0.25rem;
+}
+
+.lyricSlotCurrent {
+  margin: 0.25rem 0;
+  padding: 0.7rem 1rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(
+    90deg,
+    rgba(37, 99, 235, 0.18) 0%,
+    rgba(6, 182, 212, 0.24) 50%,
+    rgba(37, 99, 235, 0.18) 100%
+  );
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  box-shadow: 0 0 22px rgba(56, 189, 248, 0.18);
+  transition: all 0.25s ease;
+}
+
+.instrumentalCurrent {
+  background: linear-gradient(
+    90deg,
+    rgba(30, 41, 59, 0.65) 0%,
+    rgba(37, 99, 235, 0.22) 50%,
+    rgba(30, 41, 59, 0.65) 100%
+  );
+  border-style: dashed;
+}
+
+.lyricCurrentText {
+  font-size: clamp(1.08rem, 0.95rem + 0.5vw, 1.35rem);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.35;
+  text-shadow: 0 0 14px rgba(56, 189, 248, 0.45);
+}
+
+.lyricCurrentSubtext {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #7dd3fc;
+}
+
+.lyricPlaceholder {
+  display: inline-block;
+  height: 1.25rem;
+}
+
+/* Error Banner */
+.errorBanner {
+  background: rgba(127, 29, 29, 0.45);
+  border: 1px solid rgba(248, 113, 113, 0.5);
+  border-radius: 0.75rem;
+  padding: 0.85rem 1.1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  color: #fecaca;
+  font-size: 0.9rem;
+}
+
+.errorTextWrap {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.retryBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 0.5rem;
+  background: rgba(239, 68, 68, 0.25);
+  border: 1px solid rgba(248, 113, 113, 0.6);
+  color: #ffffff;
+  font-size: 0.825rem;
+  font-weight: 700;
+}
+
+/* Progress Section */
+.progressSection {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.timeDisplay {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #cbd5e1;
+  font-variant-numeric: tabular-nums;
+  min-width: 44px;
+  text-align: center;
+}
+
+.progressBarWrapper {
+  position: relative;
+  flex: 1;
+  height: 10px;
+  background: rgba(30, 41, 59, 0.95);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+}
+
+.progressFill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #2563eb 0%, #06b6d4 65%, #38bdf8 100%);
+  border-radius: 9999px;
+  pointer-events: none;
+  box-shadow: 0 0 12px rgba(56, 189, 248, 0.45);
+}
+
+.progressInput {
+  width: 100%;
+  height: 22px;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+  accent-color: #38bdf8;
+}
+
+.progressInput:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 3px;
+  border-radius: 9999px;
+}
+
+/* Controls Row */
+.controlsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding-top: 0.4rem;
+}
+
+.transportControls {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  flex-wrap: wrap;
+}
+
+.controlBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  padding: 0.68rem 1.25rem;
+  border-radius: 0.7rem;
+  font-size: 0.925rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.controlBtn:focus-visible {
+  outline: 2px solid #38bdf8;
+  outline-offset: 2px;
+}
+
+.controlBtn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.playBtn {
+  background: linear-gradient(180deg, #f97316 0%, #ea580c 100%);
+  color: #ffffff;
+  border: 1px solid #c2410c;
+  box-shadow: 0 4px 14px rgba(234, 88, 12, 0.35);
+}
+
+.playBtn:not(:disabled):hover {
+  background: linear-gradient(180deg, #fb923c 0%, #f97316 100%);
+  transform: translateY(-1px);
+}
+
+.pauseBtn,
+.stopBtn {
+  background: rgba(30, 41, 59, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #e2e8f0;
+}
+
+.pauseBtn:not(:disabled):hover,
+.stopBtn:not(:disabled):hover {
+  background: rgba(51, 65, 85, 0.95);
+  border-color: #38bdf8;
+  color: #ffffff;
+}
+
+.activeTransport {
+  box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.55);
+}
+
+.volumeControls {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  padding: 0.45rem 0.85rem;
+  border-radius: 0.7rem;
+}
+
+.muteBtn {
+  color: #cbd5e1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  border-radius: 0.4rem;
+  transition: color 0.2s ease;
+}
+
+.muteBtn:hover,
+.muteBtn:focus-visible {
+  color: #38bdf8;
+  outline: none;
+}
+
+.volumeSlider {
+  width: 96px;
+  cursor: pointer;
+  accent-color: #38bdf8;
+}
+
+.volumePercent {
+  font-size: 0.775rem;
+  font-weight: 700;
+  color: #94a3b8;
+  min-width: 34px;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.45;
+    transform: scale(0.85);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (min-width: 1024px) {
+  .stageGrid {
+    grid-template-columns: 0.95fr 1.05fr;
+    gap: 1.5rem;
+  }
+
+  .visualizerCanvasWrap {
+    height: 215px;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 3.25rem 0;
+  }
+
+  .playerShell {
+    padding: 1.15rem 1rem;
+  }
+
+  .visualizerCanvasWrap {
+    height: 150px;
+  }
+
+  .controlsRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .transportControls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .controlBtn {
+    flex: 1;
+    padding: 0.65rem 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .volumeControls {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .volumeSlider {
+    flex: 1;
+  }
+}
+
