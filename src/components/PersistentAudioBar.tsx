@@ -27,6 +27,7 @@ export const PersistentAudioBar: React.FC = () => {
     duration,
     isMuted,
     activeLyric,
+    currentTrack,
     hasInteracted,
     togglePlayPause,
     stop,
@@ -109,9 +110,11 @@ export const PersistentAudioBar: React.FC = () => {
             <Music size={16} />
           </div>
           <div className={styles.songMeta}>
-            <span className={styles.songTitle}>{MUSICA_OFICIAL_META.title}</span>
+            <span className={styles.songTitle}>{currentTrack.title}</span>
             <span className={styles.liveLyric} title={activeLyric.text}>
-              {activeLyric.text}
+              {currentTrack.isOfficial
+                ? activeLyric.text
+                : `${currentTrack.collectionLabel} • ${currentTrack.genre}`}
             </span>
           </div>
         </div>

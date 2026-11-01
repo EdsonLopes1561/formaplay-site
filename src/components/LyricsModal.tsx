@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { X, Music, Play, Pause } from 'lucide-react';
+import { X, Music, Play, Pause, Info, FileText } from 'lucide-react';
 import { useAudioPlayer } from '../context/AudioPlayerContext';
 import {
   FULL_LYRICS_STANZAS,
@@ -14,6 +14,7 @@ export const LyricsModal: React.FC = () => {
     isPlaying,
     togglePlayPause,
     activeLyric,
+    modalTrack,
   } = useAudioPlayer();
 
   useEffect(() => {
@@ -30,6 +31,8 @@ export const LyricsModal: React.FC = () => {
   }, [isLyricsModalOpen, closeLyricsModal]);
 
   if (!isLyricsModalOpen) return null;
+
+  const isOfficial = !modalTrack || modalTrack.isOfficial;
 
   return (
     <div
@@ -50,24 +53,34 @@ export const LyricsModal: React.FC = () => {
           <div className={styles.headerInfo}>
             <div className={styles.badge}>
               <Music size={14} />
-              <span>Letra Oficial Completa</span>
+              <span>
+                {isOfficial
+                  ? 'Letra Oficial Completa'
+                  : `Letra — ${modalTrack.collectionLabel}`}
+              </span>
             </div>
             <h2 id="lyrics-modal-title" className={styles.title}>
-              {MUSICA_OFICIAL_META.title}
+              {isOfficial ? MUSICA_OFICIAL_META.title : modalTrack.title}
             </h2>
-            <p className={styles.subtitle}>{MUSICA_OFICIAL_META.subtitle}</p>
+            <p className={styles.subtitle}>
+              {isOfficial
+                ? MUSICA_OFICIAL_META.subtitle
+                : `${modalTrack.genre} • Duração: ${modalTrack.duration}`}
+            </p>
           </div>
 
           <div className={styles.headerActions}>
-            <button
-              type="button"
-              onClick={togglePlayPause}
-              className={styles.miniPlayBtn}
-              aria-label={isPlaying ? 'Pausar música' : 'Ouvir música'}
-            >
-              {isPlaying ? <Pause size={16} /> : <Play size={16} />}
-              <span>{isPlaying ? 'Pausar' : 'Ouvir'}</span>
-            </button>
+            {modalTrack.isAvailable && (
+              <button
+                type="button"
+                onClick={togglePlayPause}
+                className={styles.miniPlayBtn}
+                aria-label={isPlaying ? 'Pausar música' : 'Ouvir música'}
+              >
+                {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+                <span>{isPlaying ? 'Pausar' : 'Ouvir'}</span>
+              </button>
+            )}
 
             <button
               type="button"
@@ -82,42 +95,72 @@ export const LyricsModal: React.FC = () => {
         </div>
 
         <div className={styles.body}>
-          <div className={styles.stanzasGrid}>
-            {FULL_LYRICS_STANZAS.map((stanza) => {
-              const isCurrentSection =
-                isPlaying &&
-                activeLyric &&
-                !activeLyric.isInstrumental &&
-                stanza.lines.includes(activeLyric.text);
+          {isOfficial ? (
+            <div className={styles.stanzasGrid}>
+              {FULL_LYRICS_STANZAS.map((stanza) => {
+                const isCurrentSection =
+                  isPlaying &&
+                  activeLyric &&
+                  !activeLyric.isInstrumental &&
+                  stanza.lines.includes(activeLyric.text);
 
-              return (
-                <div
-                  key={stanza.id}
-                  className={`${styles.stanzaCard} ${
-                    stanza.isChorus ? styles.chorusCard : ''
-                  } ${isCurrentSection ? styles.activeStanzaCard : ''}`}
-                >
-                  <span className={styles.stanzaTitle}>{stanza.title}</span>
-                  <div className={styles.linesList}>
-                    {stanza.lines.map((line, idx) => {
-                      const isCurrentLine =
-                        isPlaying && activeLyric?.text === line;
-                      return (
-                        <p
-                          key={idx}
-                          className={`${styles.lyricLine} ${
-                            isCurrentLine ? styles.currentLineHighlight : ''
-                          }`}
-                        >
-                          {line}
-                        </p>
-                      );
-                    })}
+                return (
+                  <div
+                    key={stanza.id}
+                    className={`${styles.stanzaCard} ${
+                      stanza.isChorus ? styles.chorusCard : ''
+                    } ${isCurrentSection ? styles.activeStanzaCard : ''}`}
+                  >
+                    <span className={styles.stanzaTitle}>{stanza.title}</span>
+                    <div className={styles.linesList}>
+                      {stanza.lines.map((line, idx) => {
+                        const isCurrentLine =
+                          isPlaying && activeLyric?.text === line;
+                        return (
+                          <p
+                            key={idx}
+                            className={`${styles.lyricLine} ${
+                              isCurrentLine ? styles.currentLineHighlight : ''
+                            }`}
+                          >
+                            {line}
+                          </p>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          ) : modalTrack.lyrics ? (
+            <div className={styles.customLyricsBox}>
+              <div className={styles.customLyricsContent}>
+                {modalTrack.lyrics.split('\n\n').map((para, i) => (
+                  <p key={i} className={styles.customLyricParagraph}>
+                    {para}
+                  </p>
+                ))}
+              </div>
+            </div>
+          ) : (
+            <div className={styles.pendingLyricsBox}>
+              <div className={styles.pendingIconWrap}>
+                <FileText size={32} />
+              </div>
+              <h3 className={styles.pendingTitle}>Letra em fase de conferência</h3>
+              <p className={styles.pendingDescription}>
+                {modalTrack.lyricsNote ||
+                  'A letra oficial desta gravação está em fase de transcrição e validação artística. Ela será disponibilizada assim que a gravação final for publicada.'}
+              </p>
+              <div className={styles.pendingNotice}>
+                <Info size={18} />
+                <span>
+                  O áudio e a letra respeitam a gravação real original, garantindo total
+                  autenticidade à obra.
+                </span>
+              </div>
+            </div>
+          )}
         </div>
 
         <div className={styles.footer}>
@@ -136,4 +179,3 @@ export const LyricsModal: React.FC = () => {
     </div>
   );
 };
-

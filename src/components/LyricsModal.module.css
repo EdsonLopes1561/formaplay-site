@@ -211,6 +211,83 @@
   background: linear-gradient(180deg, #fb923c 0%, #f97316 100%);
 }
 
+/* Custom & Pending Lyrics */
+.customLyricsBox {
+  padding: 1rem;
+}
+
+.customLyricsContent {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 0.85rem;
+  padding: 1.5rem;
+}
+
+.customLyricParagraph {
+  font-size: 0.98rem;
+  color: #cbd5e1;
+  line-height: 1.7;
+  margin-bottom: 1.25rem;
+  white-space: pre-line;
+}
+
+.customLyricParagraph:last-child {
+  margin-bottom: 0;
+}
+
+.pendingLyricsBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px dashed rgba(56, 189, 248, 0.35);
+  border-radius: 1rem;
+  margin: 0.5rem;
+}
+
+.pendingIconWrap {
+  width: 64px;
+  height: 64px;
+  border-radius: 1rem;
+  background: rgba(56, 189, 248, 0.12);
+  color: #38bdf8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+}
+
+.pendingTitle {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin-bottom: 0.75rem;
+}
+
+.pendingDescription {
+  font-size: 0.98rem;
+  color: #cbd5e1;
+  line-height: 1.6;
+  max-width: 520px;
+  margin-bottom: 1.5rem;
+}
+
+.pendingNotice {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(249, 115, 22, 0.12);
+  border: 1px solid rgba(249, 115, 22, 0.3);
+  padding: 0.65rem 1.15rem;
+  border-radius: 0.65rem;
+  color: #fdba74;
+  font-size: 0.85rem;
+  text-align: left;
+  max-width: 540px;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

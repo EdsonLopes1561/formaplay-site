@@ -1,0 +1,90 @@
+[
+  {
+    "originalName": "Arena do Rock-Desafio Logistico.mp4",
+    "targetName": "arena-do-rock-desafio-logistico.mp3",
+    "title": "Arena do Rock — Desafio Logístico",
+    "srcSizeMB": "6.84",
+    "dstSizeMB": "4.08",
+    "dstSizeBytes": 4273987,
+    "duration": "2:58",
+    "durationSeconds": 178,
+    "audioCodecOriginal": "Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 194 kb/s"
+  },
+  {
+    "originalName": "Dance - Desafio Logistico.mp4",
+    "targetName": "dance-desafio-logistico.mp3",
+    "title": "Dance — Desafio Logístico",
+    "srcSizeMB": "4.84",
+    "dstSizeMB": "2.95",
+    "dstSizeBytes": 3093462,
+    "duration": "2:09",
+    "durationSeconds": 129,
+    "audioCodecOriginal": "Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 195 kb/s"
+  },
+  {
+    "originalName": "Musica calma - Desafio Logistico.mp4",
+    "targetName": "musica-calma-desafio-logistico.mp3",
+    "title": "Música Calma — Desafio Logístico",
+    "srcSizeMB": "2.75",
+    "dstSizeMB": "1.58",
+    "dstSizeBytes": 1652756,
+    "duration": "1:09",
+    "durationSeconds": 69,
+    "audioCodecOriginal": "Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 197 kb/s"
+  },
+  {
+    "originalName": "Obrigado Senac e Professores (1).mp4",
+    "targetName": "nossa-eterna-gratidao-senac-professores.mp3",
+    "title": "Nossa Eterna Gratidão — Obrigado, Senac e Professores",
+    "srcSizeMB": "267.18",
+    "dstSizeMB": "6.57",
+    "dstSizeBytes": 6894057,
+    "duration": "4:47",
+    "durationSeconds": 287,
+    "audioCodecOriginal": "Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 193 kb/s"
+  },
+  {
+    "originalName": "Pop Fem - Desafio Logistico.mp4",
+    "targetName": "pop-fem-desafio-logistico.mp3",
+    "title": "Pop Fem — Desafio Logístico",
+    "srcSizeMB": "6.44",
+    "dstSizeMB": "3.99",
+    "dstSizeBytes": 4187470,
+    "duration": "2:54",
+    "durationSeconds": 174,
+    "audioCodecOriginal": "Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 196 kb/s"
+  },
+  {
+    "originalName": "Pop Rap - Desafio Logistico.mp4",
+    "targetName": "pop-rap-desafio-logistico.mp3",
+    "title": "Pop Rap — Desafio Logístico",
+    "srcSizeMB": "5.97",
+    "dstSizeMB": "3.62",
+    "dstSizeBytes": 3794379,
+    "duration": "2:38",
+    "durationSeconds": 158,
+    "audioCodecOriginal": "Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 198 kb/s"
+  },
+  {
+    "originalName": "Pop Rock - Desafio 8.mp4",
+    "targetName": "pop-rock-desafio-8.mp3",
+    "title": "Pop Rock — Desafio 8",
+    "srcSizeMB": "5.08",
+    "dstSizeMB": "3.32",
+    "dstSizeBytes": 3477148,
+    "duration": "2:25",
+    "durationSeconds": 145,
+    "audioCodecOriginal": "Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 193 kb/s"
+  },
+  {
+    "originalName": "Rock - Desafio Logistico.mp4",
+    "targetName": "rock-desafio-logistico.mp3",
+    "title": "Rock — Desafio Logístico",
+    "srcSizeMB": "7.05",
+    "dstSizeMB": "4.10",
+    "dstSizeBytes": 4302199,
+    "duration": "2:59",
+    "durationSeconds": 179,
+    "audioCodecOriginal": "Audio: aac (LC) (mp4a / 0x6134706D), 48000 Hz, stereo, fltp, 194 kb/s"
+  }
+]

@@ -13,8 +13,19 @@ import {
   getActiveLyricIndex,
   type SyncedLyricLine,
 } from '../data/musicaOficialLyrics';
+import {
+  MUSICA_OFICIAL_TRACK,
+  OFFICIAL_TRACK_ID,
+  type MusicTrack,
+} from '../data/musicCatalog';
 
-export type PlaybackStatus = 'idle' | 'loading' | 'playing' | 'paused' | 'stopped' | 'error';
+export type PlaybackStatus =
+  | 'idle'
+  | 'loading'
+  | 'playing'
+  | 'paused'
+  | 'stopped'
+  | 'error';
 
 interface AudioPlayerContextValue {
   status: PlaybackStatus;
@@ -32,6 +43,9 @@ interface AudioPlayerContextValue {
   isLyricsModalOpen: boolean;
   hasInteracted: boolean;
   stopResetToken: number;
+  currentTrack: MusicTrack;
+  isOfficialTrackActive: boolean;
+  modalTrack: MusicTrack;
   play: () => Promise<void>;
   pause: () => void;
   stop: () => void;
@@ -40,9 +54,12 @@ interface AudioPlayerContextValue {
   setVolume: (newVolume: number) => void;
   toggleMute: () => void;
   openLyricsModal: () => void;
+  openTrackLyricsModal: (track: MusicTrack) => void;
   closeLyricsModal: () => void;
   retryLoad: () => Promise<void>;
   getFrequencyData: (buffer: Uint8Array) => boolean;
+  loadAndPlayTrack: (track: MusicTrack) => Promise<void>;
+  selectTrack: (track: MusicTrack) => void;
 }
 
 const AudioPlayerContext = createContext<AudioPlayerContextValue | null>(null);
@@ -65,6 +82,14 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
   const triedFallbackRef = useRef<boolean>(false);
   const isSourceAssignedRef = useRef<boolean>(false);
 
+  const [currentTrack, setCurrentTrack] = useState<MusicTrack>(MUSICA_OFICIAL_TRACK);
+  const currentTrackRef = useRef<MusicTrack>(MUSICA_OFICIAL_TRACK);
+
+  useEffect(() => {
+    currentTrackRef.current = currentTrack;
+  }, [currentTrack]);
+
+  const [modalTrack, setModalTrack] = useState<MusicTrack>(MUSICA_OFICIAL_TRACK);
   const [status, setStatus] = useState<PlaybackStatus>('idle');
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [currentTime, setCurrentTime] = useState<number>(0);
@@ -75,13 +100,14 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
   const [hasInteracted, setHasInteracted] = useState<boolean>(false);
   const [stopResetToken, setStopResetToken] = useState<number>(0);
 
-  // Ensure lazy assignment of audio src only when user interacts
-  const ensureAudioSource = useCallback(() => {
+  // Lazy assignment of audio source
+  const ensureAudioSource = useCallback((targetSrc?: string) => {
     const audio = audioRef.current;
     if (!audio) return;
-    if (!isSourceAssignedRef.current) {
+    const srcToUse = targetSrc || currentTrackRef.current.audioSrc || MUSICA_OFICIAL_META.audioSrc;
+    if (!isSourceAssignedRef.current || audio.src !== srcToUse) {
       isSourceAssignedRef.current = true;
-      audio.src = MUSICA_OFICIAL_META.audioSrc;
+      audio.src = srcToUse;
       audio.load();
     }
   }, []);
@@ -119,7 +145,7 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
         await audioContextRef.current.resume();
       }
     } catch {
-      // Fallback: if Web Audio API fails in a restricted browser, standard HTML5 audio still plays
+      // Fallback: if Web Audio API fails in restricted browser, standard HTML5 audio still plays
     }
   }, []);
 
@@ -129,7 +155,19 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
 
     setHasInteracted(true);
     setErrorMessage(null);
-    ensureAudioSource();
+
+    // If active track is not the official track when play() is called directly, ensure current track's source is loaded
+    const active = currentTrackRef.current;
+    if (!active.isAvailable || !active.audioSrc) {
+      // If active track has no audio, switch back to official track
+      setCurrentTrack(MUSICA_OFICIAL_TRACK);
+      currentTrackRef.current = MUSICA_OFICIAL_TRACK;
+      setDuration(MUSICA_OFICIAL_META.durationSeconds);
+      ensureAudioSource(MUSICA_OFICIAL_META.audioSrc);
+    } else {
+      ensureAudioSource(active.audioSrc);
+    }
+
     await ensureWebAudioGraph();
 
     try {
@@ -137,11 +175,10 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
       await audio.play();
       setStatus('playing');
     } catch {
-      // Wait for error event if network/file missing, or handle play interruption
       if (audio.error) {
         setStatus('error');
         setErrorMessage(
-          'Não foi possível carregar o arquivo da Música Oficial FormaPlay no momento.'
+          `Não foi possível carregar o arquivo de áudio (${currentTrackRef.current.title}) no momento.`
         );
       } else {
         setStatus('paused');
@@ -181,7 +218,8 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const seek = useCallback(
     (timeSeconds: number) => {
-      const clamped = Math.max(0, Math.min(timeSeconds, duration || MUSICA_OFICIAL_META.durationSeconds));
+      const maxDuration = duration || currentTrackRef.current.durationSeconds || MUSICA_OFICIAL_META.durationSeconds;
+      const clamped = Math.max(0, Math.min(timeSeconds, maxDuration));
       setCurrentTime(clamped);
       setHasInteracted(true);
 
@@ -192,7 +230,6 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
       try {
         audio.currentTime = clamped;
       } catch {
-        // If metadata isn't ready yet, apply once loadedmetadata fires
         const applySeekOnLoad = () => {
           try {
             audio.currentTime = clamped;
@@ -205,6 +242,79 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
       }
     },
     [duration, ensureAudioSource]
+  );
+
+  const selectTrack = useCallback((track: MusicTrack) => {
+    setCurrentTrack(track);
+    currentTrackRef.current = track;
+    setDuration(track.durationSeconds || 0);
+  }, []);
+
+  const loadAndPlayTrack = useCallback(
+    async (track: MusicTrack) => {
+      setHasInteracted(true);
+
+      // If track is not available (e.g. aguardando áudio), do not throw audio errors
+      if (!track.isAvailable || !track.audioSrc) {
+        // Stop current audio if playing to prevent playing wrong song
+        if (status === 'playing' && audioRef.current) {
+          audioRef.current.pause();
+        }
+        selectTrack(track);
+        setCurrentTime(0);
+        setStatus('idle');
+        return;
+      }
+
+      // If clicking on the track that is already active
+      if (currentTrackRef.current.id === track.id) {
+        if (status === 'playing') {
+          pause();
+        } else {
+          await play();
+        }
+        return;
+      }
+
+      // Switching to another track
+      const audio = audioRef.current;
+      if (audio) {
+        audio.pause();
+        try {
+          audio.currentTime = 0;
+        } catch {
+          // noop
+        }
+      }
+
+      setCurrentTime(0);
+      selectTrack(track);
+      setErrorMessage(null);
+
+      if (audio) {
+        isSourceAssignedRef.current = true;
+        audio.src = track.audioSrc;
+        audio.load();
+      }
+
+      await ensureWebAudioGraph();
+
+      try {
+        setStatus('loading');
+        if (audio) {
+          await audio.play();
+          setStatus('playing');
+        }
+      } catch {
+        if (audio?.error) {
+          setStatus('error');
+          setErrorMessage(`Não foi possível reproduzir "${track.title}".`);
+        } else {
+          setStatus('paused');
+        }
+      }
+    },
+    [status, pause, play, selectTrack, ensureWebAudioGraph]
   );
 
   const setVolume = useCallback((newVolume: number) => {
@@ -232,6 +342,12 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
   }, []);
 
   const openLyricsModal = useCallback(() => {
+    setModalTrack(currentTrackRef.current);
+    setIsLyricsModalOpen(true);
+  }, []);
+
+  const openTrackLyricsModal = useCallback((track: MusicTrack) => {
+    setModalTrack(track);
     setIsLyricsModalOpen(true);
   }, []);
 
@@ -245,7 +361,7 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
     triedFallbackRef.current = false;
     isSourceAssignedRef.current = true;
     setErrorMessage(null);
-    audio.src = MUSICA_OFICIAL_META.audioSrc;
+    audio.src = currentTrackRef.current.audioSrc || MUSICA_OFICIAL_META.audioSrc;
     audio.load();
     await play();
   }, [play]);
@@ -312,9 +428,15 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
     const audio = audioRef.current;
     if (!audio || !isSourceAssignedRef.current) return;
 
-    if (!triedFallbackRef.current && MUSICA_OFICIAL_META.fallbackAudioSrc) {
+    const active = currentTrackRef.current;
+
+    if (
+      active.id === OFFICIAL_TRACK_ID &&
+      !triedFallbackRef.current &&
+      active.fallbackAudioSrc
+    ) {
       triedFallbackRef.current = true;
-      audio.src = MUSICA_OFICIAL_META.fallbackAudioSrc;
+      audio.src = active.fallbackAudioSrc;
       audio.load();
       if (status === 'loading' || status === 'playing') {
         audio.play().catch(() => {
@@ -329,12 +451,27 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
 
     setStatus('error');
     setErrorMessage(
-      'Arquivo de áudio não encontrado ou indisponível no momento (/audio/forma-play-musica-oficial.mp3).'
+      `Arquivo de áudio não encontrado ou indisponível (${active.title}).`
     );
   };
 
-  const activeLyricIndex = getActiveLyricIndex(currentTime);
-  const activeLyric = SYNCED_LYRICS[activeLyricIndex] || SYNCED_LYRICS[0];
+  const isOfficialTrackActive = currentTrack.id === OFFICIAL_TRACK_ID;
+
+  const activeLyricIndex = isOfficialTrackActive
+    ? getActiveLyricIndex(currentTime)
+    : 0;
+
+  const activeLyric: SyncedLyricLine = isOfficialTrackActive
+    ? SYNCED_LYRICS[activeLyricIndex] || SYNCED_LYRICS[0]
+    : {
+        id: currentTrack.id,
+        startTime: 0,
+        endTime: duration || 180,
+        text: currentTrack.title,
+        subtext: currentTrack.collectionLabel,
+        section: currentTrack.genre,
+        isInstrumental: false,
+      };
 
   const value: AudioPlayerContextValue = {
     status,
@@ -352,6 +489,9 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
     isLyricsModalOpen,
     hasInteracted,
     stopResetToken,
+    currentTrack,
+    isOfficialTrackActive,
+    modalTrack,
     play,
     pause,
     stop,
@@ -360,15 +500,18 @@ export const AudioPlayerProvider: React.FC<{ children: React.ReactNode }> = ({
     setVolume,
     toggleMute,
     openLyricsModal,
+    openTrackLyricsModal,
     closeLyricsModal,
     retryLoad,
     getFrequencyData,
+    loadAndPlayTrack,
+    selectTrack,
   };
 
   return (
     <AudioPlayerContext.Provider value={value}>
       {children}
-      {/* Elemento de áudio único e compartilhado em todo o aplicativo (lazy preload="none") */}
+      {/* Elemento de áudio único e compartilhado em todo o site */}
       <audio
         ref={audioRef}
         preload="none"

@@ -19,6 +19,7 @@ import {
   SYNCED_LYRICS,
   formatAudioTime,
 } from '../data/musicaOficialLyrics';
+import { MUSICA_OFICIAL_TRACK } from '../data/musicCatalog';
 import { AudioVisualizer } from './AudioVisualizer';
 import styles from './MusicaOficialSection.module.css';
 
@@ -35,6 +36,8 @@ export const MusicaOficialSection: React.FC = () => {
     volume,
     isMuted,
     activeLyricIndex,
+    isOfficialTrackActive,
+    loadAndPlayTrack,
     play,
     pause,
     stop,
@@ -45,24 +48,53 @@ export const MusicaOficialSection: React.FC = () => {
     retryLoad,
   } = useAudioPlayer();
 
-  const progressPercent =
-    duration > 0 ? Math.min(100, Math.max(0, (currentTime / duration) * 100)) : 0;
+  const isOfficialPlaying = isOfficialTrackActive && isPlaying;
+  const isOfficialPaused = isOfficialTrackActive && isPaused;
+  const isOfficialLoading = isOfficialTrackActive && isLoading;
+  const displayCurrentTime = isOfficialTrackActive ? currentTime : 0;
+  const displayDuration =
+    isOfficialTrackActive && duration > 0
+      ? duration
+      : MUSICA_OFICIAL_META.durationSeconds;
 
+  const handlePlay = async () => {
+    if (!isOfficialTrackActive) {
+      await loadAndPlayTrack(MUSICA_OFICIAL_TRACK);
+    } else {
+      await play();
+    }
+  };
+
+  const handleSeek = (time: number) => {
+    if (!isOfficialTrackActive) {
+      loadAndPlayTrack(MUSICA_OFICIAL_TRACK).then(() => seek(time));
+    } else {
+      seek(time);
+    }
+  };
+
+  const progressPercent =
+    displayDuration > 0
+      ? Math.min(100, Math.max(0, (displayCurrentTime / displayDuration) * 100))
+      : 0;
+
+  const currentLyricIdx = isOfficialTrackActive ? activeLyricIndex : 0;
   const prevLine2 =
-    activeLyricIndex >= 2 ? SYNCED_LYRICS[activeLyricIndex - 2] : null;
+    currentLyricIdx >= 2 ? SYNCED_LYRICS[currentLyricIdx - 2] : null;
   const prevLine1 =
-    activeLyricIndex >= 1 ? SYNCED_LYRICS[activeLyricIndex - 1] : null;
-  const currentLine = SYNCED_LYRICS[activeLyricIndex] || SYNCED_LYRICS[0];
+    currentLyricIdx >= 1 ? SYNCED_LYRICS[currentLyricIdx - 1] : null;
+  const currentLine = SYNCED_LYRICS[currentLyricIdx] || SYNCED_LYRICS[0];
   const nextLine1 =
-    activeLyricIndex + 1 < SYNCED_LYRICS.length
-      ? SYNCED_LYRICS[activeLyricIndex + 1]
+    currentLyricIdx + 1 < SYNCED_LYRICS.length
+      ? SYNCED_LYRICS[currentLyricIdx + 1]
       : null;
   const nextLine2 =
-    activeLyricIndex + 2 < SYNCED_LYRICS.length
-      ? SYNCED_LYRICS[activeLyricIndex + 2]
+    currentLyricIdx + 2 < SYNCED_LYRICS.length
+      ? SYNCED_LYRICS[currentLyricIdx + 2]
       : null;
 
   const getStatusLabel = () => {
+    if (!isOfficialTrackActive) return 'Pronto para tocar';
     switch (status) {
       case 'loading':
         return 'Carregando áudio...';
@@ -108,13 +140,13 @@ export const MusicaOficialSection: React.FC = () => {
           <div className={styles.playerTopBar}>
             <div
               className={`${styles.statusPill} ${
-                isPlaying
+                isOfficialPlaying
                   ? styles.statusPlaying
-                  : isPaused
+                  : isOfficialPaused
                   ? styles.statusPaused
-                  : isLoading
+                  : isOfficialLoading
                   ? styles.statusLoading
-                  : hasError
+                  : hasError && isOfficialTrackActive
                   ? styles.statusError
                   : ''
               }`}
@@ -122,9 +154,9 @@ export const MusicaOficialSection: React.FC = () => {
               aria-live="polite"
               data-testid="player-status-indicator"
             >
-              {isLoading ? (
+              {isOfficialLoading ? (
                 <Loader2 size={15} className={styles.spinIcon} />
-              ) : isPlaying ? (
+              ) : isOfficialPlaying ? (
                 <span className={styles.pulseDot} aria-hidden="true" />
               ) : (
                 <Radio size={15} />
@@ -161,7 +193,7 @@ export const MusicaOficialSection: React.FC = () => {
               <div className={styles.visualizerCaption}>
                 <span>Espectro de áudio em tempo real</span>
                 <span>
-                  {formatAudioTime(currentTime)} / {formatAudioTime(duration)}
+                  {formatAudioTime(displayCurrentTime)} / {formatAudioTime(displayDuration)}
                 </span>
               </div>
             </div>
@@ -186,7 +218,7 @@ export const MusicaOficialSection: React.FC = () => {
                     <button
                       type="button"
                       className={styles.lyricPastFar}
-                      onClick={() => seek(prevLine2.startTime)}
+                      onClick={() => handleSeek(prevLine2.startTime)}
                       title="Voltar para este trecho"
                     >
                       {prevLine2.text}
@@ -204,7 +236,7 @@ export const MusicaOficialSection: React.FC = () => {
                     <button
                       type="button"
                       className={styles.lyricPastNear}
-                      onClick={() => seek(prevLine1.startTime)}
+                      onClick={() => handleSeek(prevLine1.startTime)}
                       title="Voltar para este trecho"
                       data-testid="lyric-prev-line"
                     >
@@ -244,7 +276,7 @@ export const MusicaOficialSection: React.FC = () => {
                     <button
                       type="button"
                       className={styles.lyricNextNear}
-                      onClick={() => seek(nextLine1.startTime)}
+                      onClick={() => handleSeek(nextLine1.startTime)}
                       title="Avançar para este trecho"
                       data-testid="lyric-next-line"
                     >
@@ -264,7 +296,7 @@ export const MusicaOficialSection: React.FC = () => {
                     <button
                       type="button"
                       className={styles.lyricNextFar}
-                      onClick={() => seek(nextLine2.startTime)}
+                      onClick={() => handleSeek(nextLine2.startTime)}
                       title="Avançar para este trecho"
                     >
                       {nextLine2.text}
@@ -303,7 +335,7 @@ export const MusicaOficialSection: React.FC = () => {
               className={styles.timeDisplay}
               data-testid="player-current-time"
             >
-              {formatAudioTime(currentTime)}
+              {formatAudioTime(displayCurrentTime)}
             </span>
 
             <div className={styles.progressBarWrapper}>
@@ -315,22 +347,22 @@ export const MusicaOficialSection: React.FC = () => {
               <input
                 type="range"
                 min={0}
-                max={duration || MUSICA_OFICIAL_META.durationSeconds}
+                max={displayDuration}
                 step={0.1}
-                value={currentTime}
-                onChange={(e) => seek( parseFloat(e.target.value) )}
+                value={displayCurrentTime}
+                onChange={(e) => handleSeek(parseFloat(e.target.value))}
                 className={styles.progressInput}
                 aria-label="Barra de progresso da música"
                 aria-valuemin={0}
-                aria-valuemax={Math.round(duration)}
-                aria-valuenow={Math.round(currentTime)}
-                aria-valuetext={`${formatAudioTime(currentTime)} de ${formatAudioTime(duration)}`}
+                aria-valuemax={Math.round(displayDuration)}
+                aria-valuenow={Math.round(displayCurrentTime)}
+                aria-valuetext={`${formatAudioTime(displayCurrentTime)} de ${formatAudioTime(displayDuration)}`}
                 data-testid="player-progress-slider"
               />
             </div>
 
             <span className={styles.timeDisplay} data-testid="player-duration">
-              {formatAudioTime(duration)}
+              {formatAudioTime(displayDuration)}
             </span>
           </div>
 
@@ -339,15 +371,15 @@ export const MusicaOficialSection: React.FC = () => {
             <div className={styles.transportControls}>
               <button
                 type="button"
-                onClick={play}
-                disabled={isPlaying || isLoading}
+                onClick={handlePlay}
+                disabled={isOfficialPlaying || isOfficialLoading}
                 className={`${styles.controlBtn} ${styles.playBtn} ${
-                  isPlaying ? styles.activeTransport : ''
+                  isOfficialPlaying ? styles.activeTransport : ''
                 }`}
                 aria-label="Reproduzir música oficial"
                 data-testid="player-play-btn"
               >
-                {isLoading ? (
+                {isOfficialLoading ? (
                   <Loader2 size={20} className={styles.spinIcon} />
                 ) : (
                   <Play size={20} />
@@ -358,9 +390,9 @@ export const MusicaOficialSection: React.FC = () => {
               <button
                 type="button"
                 onClick={pause}
-                disabled={!isPlaying}
+                disabled={!isOfficialPlaying}
                 className={`${styles.controlBtn} ${styles.pauseBtn} ${
-                  isPaused ? styles.activeTransport : ''
+                  isOfficialPaused ? styles.activeTransport : ''
                 }`}
                 aria-label="Pausar música mantendo a posição"
                 data-testid="player-pause-btn"
@@ -372,7 +404,7 @@ export const MusicaOficialSection: React.FC = () => {
               <button
                 type="button"
                 onClick={stop}
-                disabled={!isPlaying && !isPaused && currentTime === 0}
+                disabled={!isOfficialPlaying && !isOfficialPaused && displayCurrentTime === 0}
                 className={`${styles.controlBtn} ${styles.stopBtn}`}
                 aria-label="Parar música e voltar ao início"
                 data-testid="player-stop-btn"

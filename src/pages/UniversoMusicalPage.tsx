@@ -4,21 +4,15 @@ import { Header } from '../components/Header';
 import { Footer } from '../components/Footer';
 import { WhatsappFloat } from '../components/WhatsappFloat';
 import { MusicaOficialSection } from '../components/MusicaOficialSection';
+import { BibliotecaMusicalSection } from '../components/BibliotecaMusicalSection';
 import { Link } from '../router/RouterContext';
 import {
   Music,
   Truck,
-  Sparkles,
-  Zap,
-  Activity,
-  Headphones,
-  Info,
   ArrowRight,
   ExternalLink,
   Play,
   Radio,
-  Coffee,
-  Compass,
 } from 'lucide-react';
 import styles from './UniversoMusicalPage.module.css';
 
@@ -64,69 +58,6 @@ export const UniversoMusicalPage: React.FC = () => {
       el.scrollIntoView({ behavior: 'smooth' });
     }
   };
-
-  const estilosDesafioLogistico = [
-    {
-      id: 'rock-estrada',
-      name: 'Rock na Estrada',
-      icon: <Zap size={24} />,
-      badge: 'Potência & Imprevistos',
-      desc: 'Guitarras enérgicas e batida acelerada para enfrentar imprevistos na rota, ultrapassagens de metas e viradas estratégicas na partida.',
-      inspiration:
-        'Inspirado na força dos motores e na determinação de quem não para diante dos desafios do caminho.',
-      status: 'Em produção',
-    },
-    {
-      id: 'samba-rodovia',
-      name: 'Samba da Rodovia',
-      icon: <Compass size={24} />,
-      badge: 'Brasilidade & Malha Viária',
-      desc: 'A cadência marcante da nossa cultura levada para a malha logística. Movimento contínuo, fluidez de cargas e integração de norte a sul.',
-      inspiration:
-        'Celebra a ginga, a resiliência e a paixão que movem o transporte rodoviário pelo território brasileiro.',
-      status: 'Em produção',
-    },
-    {
-      id: 'pagode-parada',
-      name: 'Pagode na Parada',
-      icon: <Coffee size={24} />,
-      badge: 'Pontos de Apoio & Trabalho em Equipe',
-      desc: 'Clima descontraído e acolhedor para as pausas nos postos de apoio. Momentos de descanso, confraternização e planejamento entre os times.',
-      inspiration:
-        'Homenagem aos pontos de encontro nas estradas, onde boas conversas renovam o ânimo para o próximo trecho.',
-      status: 'Em produção',
-    },
-    {
-      id: 'eletronico-logistico',
-      name: 'Eletrônico Logístico',
-      icon: <Activity size={24} />,
-      badge: 'Tecnologia, Frotas & Velocidade',
-      desc: 'Sintetizadores dinâmicos e precisão milimétrica. A trilha sonora ideal para cálculo veloz de rotas, telemetria inteligente e fluxos modernos.',
-      inspiration:
-        'A pulsação da logística 4.0: centros de distribuição inteligentes e tecnologia conectando cada entrega.',
-      status: 'Em produção',
-    },
-    {
-      id: 'acustico-calmaria',
-      name: 'Música Leve / Acústica',
-      icon: <Headphones size={24} />,
-      badge: 'Foco, Serenidade & Estratégia',
-      desc: 'Harmonias orgânicas e serenas para momentos de calmaria ao entardecer. Foco mental profundo para gestão de custos e decisões calculadas.',
-      inspiration:
-        'A tranquilidade reconfortante das longas retas ao pôr do sol, mantendo a mente lúcida até o destino final.',
-      status: 'Em produção',
-    },
-    {
-      id: 'proximos-ritmos',
-      name: 'Próximos Ritmos da Malha',
-      icon: <Sparkles size={24} />,
-      badge: 'Expansão Sonora Pedagógica',
-      desc: 'Novas sonoridades regionais brasileiras em desenvolvimento no laboratório criativo da FormaPlay para as futuras expansões do jogo.',
-      inspiration:
-        'Explorando os sotaques e as tradições de cada rota e corredor logístico do país.',
-      status: 'Em desenvolvimento',
-    },
-  ];
 
   return (
     <div className={styles.pageWrapper}>
@@ -221,7 +152,7 @@ export const UniversoMusicalPage: React.FC = () => {
                   aria-label="Ver os estilos da Biblioteca Musical"
                 >
                   <Radio size={18} />
-                  <span>Explorar Ritmos da Estrada</span>
+                  <span>Explorar Biblioteca Musical</span>
                 </button>
               </div>
             </div>
@@ -233,69 +164,8 @@ export const UniversoMusicalPage: React.FC = () => {
           <MusicaOficialSection />
         </div>
 
-        {/* SEÇÃO DA BIBLIOTECA MUSICAL: "DESAFIO LOGÍSTICO EM TODOS OS RITMOS" */}
-        <section
-          id="biblioteca-desafio-logistico"
-          className={styles.librarySection}
-          aria-label="Biblioteca Musical do Desafio Logístico"
-        >
-          <div className="container">
-            <div className={styles.libraryHeader}>
-              <div className={styles.libraryBadge}>
-                <Sparkles size={16} />
-                <span>Desafio Logístico em Todos os Ritmos</span>
-              </div>
-              <h2 className={styles.libraryTitle}>
-                A Trilha Sonora de Cada Momento da Jornada
-              </h2>
-              <p className={styles.libraryDescription}>
-                Assim como a paisagem muda a cada quilômetro de rodovia, as partidas do{' '}
-                <strong>Desafio Logístico</strong> ganham dinamismo através de ritmos especialmente
-                pensados para cada etapa da jornada operacional e pedagógica.
-              </p>
-            </div>
-
-            {/* Grid dos Estilos */}
-            <div className={styles.stylesGrid}>
-              {estilosDesafioLogistico.map((estilo) => (
-                <article key={estilo.id} className={styles.styleCard}>
-                  <div className={styles.cardHeader}>
-                    <div className={styles.styleIconWrap} aria-hidden="true">
-                      {estilo.icon}
-                    </div>
-                    <span className={styles.styleContextBadge}>{estilo.badge}</span>
-                  </div>
-
-                  <h3 className={styles.styleName}>{estilo.name}</h3>
-                  <p className={styles.styleDesc}>{estilo.desc}</p>
-
-                  <div className={styles.styleInspirationWrap}>
-                    <span className={styles.inspirationLabel}>Conexão com a estrada:</span>
-                    <p className={styles.styleInspiration}>{estilo.inspiration}</p>
-                  </div>
-
-                  <div className={styles.cardFooter}>
-                    <span className={styles.statusPill}>
-                      <span className={styles.statusDot} aria-hidden="true" />
-                      {estilo.status}
-                    </span>
-                  </div>
-                </article>
-              ))}
-            </div>
-
-            {/* Aviso informativo de transparência */}
-            <div className={styles.noticeBox} role="note">
-              <Info size={22} className={styles.noticeIcon} />
-              <p className={styles.noticeText}>
-                <strong>Transparência & Qualidade Artística:</strong> todas as faixas instrumentais
-                estão em fase de gravação e produção de áudio dedicado. Elas serão disponibilizadas
-                em alta fidelidade conforme o cronograma pedagógico do jogo, sem arquivos fictícios
-                ou simulações artificiais.
-              </p>
-            </div>
-          </div>
-        </section>
+        {/* SEÇÃO DA BIBLIOTECA MUSICAL (CATÁLOGO DINÂMICO DE GRAVAÇÕES REAIS) */}
+        <BibliotecaMusicalSection />
 
         {/* EQUILÍBRIO EDUCACIONAL & CONEXÃO COM O JOGO */}
         <section className={styles.eduBalanceSection} aria-label="Integração Pedagógica">
